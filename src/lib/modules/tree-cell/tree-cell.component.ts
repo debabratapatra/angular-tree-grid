@@ -8,6 +8,8 @@ import { Configs } from '../../models/Configs.model';
   styleUrls: ['./tree-cell.component.scss']
 })
 export class TreeCellComponent implements OnInit {
+  is_expand_column: boolean;
+  show_expand_icon: boolean;
   @Input()
   configs: Configs;
 
@@ -21,6 +23,9 @@ export class TreeCellComponent implements OnInit {
   column: Column;
 
   @Input()
+  expand_tracker: any;
+
+  @Input()
   cellclick: EventEmitter<any>;
 
   @Output() rowexpand: EventEmitter<any> = new EventEmitter();
@@ -28,7 +33,8 @@ export class TreeCellComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.row_data);
+    this.is_expand_column = this.index === 0;
+    this.show_expand_icon = !this.row_data.leaf;
   }
 
   onCellClick(event) {

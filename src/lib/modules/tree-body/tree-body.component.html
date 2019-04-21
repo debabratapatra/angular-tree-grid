@@ -1,13 +1,16 @@
-<tr *ngFor="let rec of processed_data">  
-  <td *ngFor="let column of columns; index as i">
-    <db-tree-cell
-      [configs]="configs"
-      [column]="column"
-      [index]="i"
-      [row_data]="rec"
-      [cellclick]="cellclick"
-      (rowexpand)="onRowExpand($event)"
-    >
-    </db-tree-cell>
-  </td>
+<tr *ngFor="let rec of processed_data">
+  <ng-container *ngIf="expand_tracker[rec.parent_pathx]">
+    <td *ngFor="let column of columns; index as i">
+      <db-tree-cell
+        [configs]="configs"
+        [column]="column"
+        [index]="i"
+        [row_data]="rec"
+        [expand_tracker]="expand_tracker"
+        [cellclick]="cellclick"
+        (rowexpand)="onRowExpand($event)"
+      >
+      </db-tree-cell>
+    </td>
+  </ng-container>
 </tr>

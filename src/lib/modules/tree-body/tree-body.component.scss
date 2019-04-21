@@ -16,22 +16,7 @@ tr {
     }
     span.parent_container {
         padding-left: 45px;
-    }            
-    
-    i.minus {
-        border: 1px solid rgba(0, 0, 0, 0);
-    
-        &:before {
-            content: '';  
-            width: 18px;
-            height: 1px;
-            border-top: 2px solid $icon-border-color;
-            display: block;
-            position: absolute;
-            margin-top: -15px;
-            margin-left: 6px;
-        }
-    }            
+    }         
 }
 
 tr td {

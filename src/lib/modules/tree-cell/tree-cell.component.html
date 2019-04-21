@@ -1,4 +1,26 @@
 <div (click)="onCellClick($event)">
-  <i [ngClass]="configs.css.expand_class" class="expand-icon" aria-hidden="true" *ngIf="!row_data.leaf && index===0"></i>
-  <span>{{row_data[column.name]}}</span>
+  <ng-container *ngIf="is_expand_column">
+    <div [ngStyle]="{'padding-left': row_data.leaf ? row_data.levelx * 20 + 'px' : row_data.levelx * 10 + 'px'}">
+      <ng-container *ngIf="!expand_tracker[row_data.pathx]">
+          <i 
+          [ngClass]="configs.css.expand_class" 
+          class="expand-icon" 
+          aria-hidden="true"
+          *ngIf="show_expand_icon"
+        ></i>
+      </ng-container>
+      <ng-container *ngIf="expand_tracker[row_data.pathx]">
+          <i 
+          [ngClass]="configs.css.collapse_class" 
+          class="expand-icon" 
+          aria-hidden="true"
+          *ngIf="show_expand_icon"
+        ></i>
+      </ng-container>      
+      <span>{{row_data[column.name]}}</span>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!is_expand_column">
+      <span>{{row_data[column.name]}}</span>
+  </ng-container>  
 </div>

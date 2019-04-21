@@ -35,7 +35,8 @@ export class TreeBodyComponent implements OnInit {
   }
 
   onRowExpand(event) {
-    console.log(event);
+    const row_data = event.data;
+    this.expand_tracker[row_data.pathx] = !this.expand_tracker[row_data.pathx];
   }
 
 }
