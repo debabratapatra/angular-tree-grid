@@ -1,4 +1,4 @@
-<div>
+<div (click)="onCellClick($event)">
   <i [ngClass]="configs.css.expand_class" class="expand-icon" aria-hidden="true" *ngIf="!row_data.leaf && index===0"></i>
   <span>{{row_data[column.name]}}</span>
 </div>

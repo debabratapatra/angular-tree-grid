@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { Configs } from './models/Configs.model';
 import { AngularTreeViewService } from './angular-tree-view.service';
 import { Column } from './models/Column.model';
@@ -39,6 +39,9 @@ export class AngularTreeViewComponent implements OnChanges {
     hidden: false,
     sortable: true
   };
+
+   @Output() cellclick: EventEmitter<any> = new EventEmitter();
+   @Output() expand: EventEmitter<any> = new EventEmitter();
 
   constructor(private angularTreeViewService: AngularTreeViewService) { }
 

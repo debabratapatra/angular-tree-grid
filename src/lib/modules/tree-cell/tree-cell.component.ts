@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Column } from '../../models/Column.model';
 import { Configs } from '../../models/Configs.model';
 
@@ -15,15 +15,27 @@ export class TreeCellComponent implements OnInit {
   index: number;
 
   @Input()
-  row_data: Object;
+  row_data: any;
 
   @Input()
   column: Column;
+
+  @Input()
+  cellclick: EventEmitter<any>;
+
+  @Output() rowexpand: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
     console.log(this.row_data);
+  }
+
+  onCellClick(event) {
+    if (this.index === 0 && !this.row_data.leaf) {
+      this.rowexpand.emit({event: event, data: this.row_data});
+    }
+    this.cellclick.emit({event: event, data: this.row_data});
   }
 
 }

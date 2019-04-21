@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Configs } from '../../models/Configs.model';
 import { Column } from '../../models/Column.model';
 
@@ -23,9 +23,19 @@ export class TreeBodyComponent implements OnInit {
   @Input()
   columns: Column[];
 
+  @Input()
+  cellclick: EventEmitter<any>;
+
+  @Input()
+  expand: EventEmitter<any>;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onRowExpand(event) {
+    console.log(event);
   }
 
 }
