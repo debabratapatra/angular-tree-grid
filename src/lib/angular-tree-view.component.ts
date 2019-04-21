@@ -42,6 +42,7 @@ export class AngularTreeViewComponent implements OnChanges {
 
    @Output() cellclick: EventEmitter<any> = new EventEmitter();
    @Output() expand: EventEmitter<any> = new EventEmitter();
+   @Output() collapse: EventEmitter<any> = new EventEmitter();
 
   constructor(private angularTreeViewService: AngularTreeViewService) { }
 

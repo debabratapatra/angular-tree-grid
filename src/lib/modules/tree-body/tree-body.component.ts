@@ -29,6 +29,9 @@ export class TreeBodyComponent implements OnInit {
   @Input()
   expand: EventEmitter<any>;
 
+  @Input()
+  collapse: EventEmitter<any>;
+
   constructor() { }
 
   ngOnInit() {
@@ -36,6 +39,11 @@ export class TreeBodyComponent implements OnInit {
 
   onRowExpand(event) {
     const row_data = event.data;
+    if (this.expand_tracker[row_data.pathx]) {
+      this.collapse.emit(event);
+    } else {
+      this.expand.emit(event);
+    }
     this.expand_tracker[row_data.pathx] = !this.expand_tracker[row_data.pathx];
   }
 
