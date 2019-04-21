@@ -1,13 +1,10 @@
-<table>
-    <tbody>
-        <tr *ngFor="let rec of processedData">
-            <td>
-                <span *ngIf="!rec.leaf">$</span>
-                <span>{{rec.name}}</span>
-            </td>
-            <td>
-                <span>{{rec.age}}</span>
-            </td>
-        </tr>
+<table class="db-tree-view">
+    <tbody db-tree-body
+    [processedData]="processedData"
+    [expandTracker]="expandTracker"
+    [data]="data"
+    [configs]="configs"
+    >
+        
     </tbody>
 </table>

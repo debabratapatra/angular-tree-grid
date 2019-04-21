@@ -6,5 +6,6 @@ export interface Configs {
     columns?: Column[];
     data_loading_text: string;
     row_class_function: Function;
-    parent_id: string;
+    parent_id?: string;
+    id?: string;
 }

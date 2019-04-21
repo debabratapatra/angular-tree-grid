@@ -7,7 +7,7 @@ export class AngularTreeViewService {
 
   constructor() { }
 
-  processData(data, processedData, expandTracker, configs) {
+  processData(data, processed_data, expand_tracker, configs) {
     // let top = data.reduce((a, b) => a.parent < b.parent ? a : b);
 
     const top = 0;
@@ -19,11 +19,11 @@ export class AngularTreeViewService {
 
     const children = this.findChildren(data, top, configs);
 
-    this.orderData(data, processedData, configs, children, []);
+    this.orderData(data, processed_data, configs, children, []);
 
-    processedData.map(rec => {
+    processed_data.map(rec => {
       rec.pathx = rec.pathx.join('.');
-      expandTracker[rec.pathx] = false;
+      expand_tracker[rec.pathx] = false;
     });
   }
 
@@ -31,20 +31,20 @@ export class AngularTreeViewService {
     return data.filter(rec => rec[configs.parent_id] === id);
   }
 
-  orderData(data, processedData, configs, parents, paths) {
+  orderData(data, processed_data, configs, parents, paths) {
     parents.forEach(parent => {
       const children = this.findChildren(data, parent[configs.id], configs);
 
       if (children.length === 0) {
         parent.leaf = true;
         parent.pathx = [...paths];
-        processedData.push(parent);
+        processed_data.push(parent);
       } else {
         parent.pathx = [...paths];
-        processedData.push(parent);
+        processed_data.push(parent);
 
-        const newPaths = [...paths, parent[configs.id];
-        this.orderData(data, processedData, configs, children, newPaths);
+        const newPaths = [...paths, parent[configs.id]];
+        this.orderData(data, processed_data, configs, children, newPaths);
       }
 
     });

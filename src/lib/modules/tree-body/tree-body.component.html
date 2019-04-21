@@ -1,3 +1,9 @@
-<p>
-  tree-body works!
-</p>
+<tr *ngFor="let rec of processedData">
+  <td>
+      <i [ngClass]="configs.css.expand_class" aria-hidden="true" *ngIf="!rec.leaf"></i>
+      <span>{{rec.name}}</span>
+  </td>
+  <td>
+      <span>{{rec.age}}</span>
+  </td>
+</tr>

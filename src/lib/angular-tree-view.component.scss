@@ -1,0 +1,18 @@
+$icon-border-color: #222;
+$sort-color: #ddd;
+$sort-hover-color: rgb(175, 175, 175);
+$sort-active-color: rgb(138, 137, 137);
+
+.db-tree-view {
+    line-height: 1.5em;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+    word-break: normal;
+    word-break: keep-all;
+    border: solid 1px gray;
+    color: #4b4b4b;    
+}
