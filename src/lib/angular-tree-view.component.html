@@ -1,10 +1,19 @@
 <table class="db-tree-view">
-    <tbody db-tree-body
-    [processedData]="processedData"
-    [expandTracker]="expandTracker"
-    [data]="data"
-    [configs]="configs"
-    >
-        
+    <thead 
+        db-tree-head
+        [processed_data]="processed_data"
+        [expand_tracker]="expand_tracker"
+        [data]="data"
+        [columns]="columns"
+        [configs]="configs">
+    </thead>
+
+    <tbody 
+        db-tree-body
+        [processed_data]="processed_data"
+        [expand_tracker]="expand_tracker"
+        [data]="data"
+        [columns]="columns"
+        [configs]="configs">        
     </tbody>
 </table>

@@ -28,12 +28,12 @@ export class AngularTreeViewService {
   }
 
   findChildren(data, id, configs) {
-    return data.filter(rec => rec[configs.parent_id] === id);
+    return data.filter(rec => rec[configs.parent_id_field] === id);
   }
 
   orderData(data, processed_data, configs, parents, paths) {
     parents.forEach(parent => {
-      const children = this.findChildren(data, parent[configs.id], configs);
+      const children = this.findChildren(data, parent[configs.id_field], configs);
 
       if (children.length === 0) {
         parent.leaf = true;
@@ -43,7 +43,7 @@ export class AngularTreeViewService {
         parent.pathx = [...paths];
         processed_data.push(parent);
 
-        const newPaths = [...paths, parent[configs.id]];
+        const newPaths = [...paths, parent[configs.id_field]];
         this.orderData(data, processed_data, configs, children, newPaths);
       }
 

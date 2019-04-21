@@ -38,33 +38,7 @@ tr td {
     border: 1px solid #cdd5dc;
     vertical-align: middle;
     position: relative;
-    padding: 0.5rem 0.5rem;
-
-    i.plus {
-        border: 1px solid rgba(0, 0, 0, 0);
-    
-        &:before {
-            content: '';
-            width: 18px;
-            height: 1px;
-            border-top: 2px solid $icon-border-color;
-            display: block;
-            position: absolute;
-            margin-top: -15px;
-            margin-left: 6px;
-        }
-    
-        &:after {
-            content: '';
-            width: 1px;
-            height: 18px;
-            border-right: 2px solid $icon-border-color;
-            display: block;
-            position: absolute;
-            margin-top: -23px;
-            margin-left: 14px;
-        }
-    }
+    padding: 0.5rem 0.5rem;    
 }
 
 td.clear-left-border {

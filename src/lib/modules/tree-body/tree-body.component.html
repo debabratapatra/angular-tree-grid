@@ -1,9 +1,11 @@
-<tr *ngFor="let rec of processedData">
-  <td>
-      <i [ngClass]="configs.css.expand_class" aria-hidden="true" *ngIf="!rec.leaf"></i>
-      <span>{{rec.name}}</span>
-  </td>
-  <td>
-      <span>{{rec.age}}</span>
+<tr *ngFor="let rec of processed_data">  
+  <td *ngFor="let column of columns; index as i">
+    <db-tree-cell
+      [configs]="configs"
+      [column]="column"
+      [index]="i"
+      [row_data]="rec"
+    >
+    </db-tree-cell>
   </td>
 </tr>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Configs } from '../../models/Configs.model';
+import { Column } from '../../models/Column.model';
 
 @Component({
   selector: '[db-tree-body]',
@@ -14,10 +15,13 @@ export class TreeBodyComponent implements OnInit {
   configs: Configs;
 
   @Input()
-  processedData: any[];
+  processed_data: any[];
 
   @Input()
-  expandTracker: Object;
+  expand_tracker: Object;
+
+  @Input()
+  columns: Column[];
 
   constructor() { }
 

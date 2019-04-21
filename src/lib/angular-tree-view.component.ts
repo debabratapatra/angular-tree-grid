@@ -11,6 +11,7 @@ import { Column } from './models/Column.model';
 export class AngularTreeViewComponent implements OnChanges {
   processed_data: any[] = [];
   expand_tracker: Object = {};
+  columns: Column[] = [];
 
   @Input()
   data: any[];
@@ -43,6 +44,7 @@ export class AngularTreeViewComponent implements OnChanges {
 
   ngOnChanges() {
     this.setDefaultConfigs();
+    this.setColumnNames();
     this.angularTreeViewService.processData(this.data, this.processed_data, this.expand_tracker, this.configs);
   }
 
@@ -50,12 +52,32 @@ export class AngularTreeViewComponent implements OnChanges {
     this.processed_data = [];
     this.configs = Object.assign({}, this.default_configs, this.configs);
 
-    if (!this.configs.id) {
+    if (!this.configs.id_field) {
       window.console.error('id field is mandatory!');
     }
 
-    if (!this.configs.parent_id) {
+    if (!this.configs.parent_id_field) {
       window.console.error('parent_id field is mandatory!');
+    }
+  }
+
+  setColumnNames() {
+    this.columns = this.configs.columns ? this.configs.columns : [];
+
+    // If columns doesn't exist in user's object.
+    if (!this.configs.columns) {
+      const column_keys = Object.keys(this.data[0]);
+
+      // Insert Header and default configuration.
+      column_keys.forEach(key => {
+        this.columns.push(Object.assign({'header': key, 'name': key}, this.default_column_config));
+      });
+    } else {
+
+      // Insert Header and default configuration.
+      for (let i = 0; i < this.columns.length; i++) {
+        this.columns[i] = Object.assign({}, this.default_column_config, this.columns[i]);
+      }
     }
   }
 
