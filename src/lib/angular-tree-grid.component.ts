@@ -1,14 +1,14 @@
 import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { Configs } from './models/Configs.model';
-import { AngularTreeViewService } from './angular-tree-view.service';
+import { AngularTreeGridService } from './angular-tree-grid.service';
 import { Column } from './models/Column.model';
 
 @Component({
-  selector: 'db-angular-tree-view',
-  templateUrl: 'angular-tree-view.component.html',
-  styleUrls: ['./angular-tree-view.component.scss']
+  selector: 'db-angular-tree-grid',
+  templateUrl: 'angular-tree-grid.component.html',
+  styleUrls: ['./angular-tree-grid.component.scss']
 })
-export class AngularTreeViewComponent implements OnChanges {
+export class AngularTreeGridComponent implements OnChanges {
   processed_data: any[] = [];
   expand_tracker: Object = {};
   columns: Column[] = [];
@@ -44,12 +44,12 @@ export class AngularTreeViewComponent implements OnChanges {
    @Output() expand: EventEmitter<any> = new EventEmitter();
    @Output() collapse: EventEmitter<any> = new EventEmitter();
 
-  constructor(private angularTreeViewService: AngularTreeViewService) { }
+  constructor(private angularTreeGridService: AngularTreeGridService) { }
 
   ngOnChanges() {
     this.setDefaultConfigs();
     this.setColumnNames();
-    this.angularTreeViewService.processData(this.data, this.processed_data, this.expand_tracker, this.configs);
+    this.angularTreeGridService.processData(this.data, this.processed_data, this.expand_tracker, this.configs);
   }
 
   setDefaultConfigs() {

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AngularTreeViewComponent } from './angular-tree-view.component';
+import { AngularTreeGridComponent } from './angular-tree-grid.component';
 
 describe('AngularTreeViewComponent', () => {
-  let component: AngularTreeViewComponent;
-  let fixture: ComponentFixture<AngularTreeViewComponent>;
+  let component: AngularTreeGridComponent;
+  let fixture: ComponentFixture<AngularTreeGridComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AngularTreeViewComponent ]
+      declarations: [ AngularTreeGridComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AngularTreeViewComponent);
+    fixture = TestBed.createComponent(AngularTreeGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

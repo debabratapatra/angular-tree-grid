@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
-import { AngularTreeViewComponent } from './angular-tree-view.component';
+import { AngularTreeGridComponent } from './angular-tree-grid.component';
 import { CommonModule } from '@angular/common';
 import { TreeBodyModule } from './modules/tree-body/tree-body.module';
 import { TreeHeadModule } from './modules/tree-head/tree-head.module';
 
 @NgModule({
-  declarations: [AngularTreeViewComponent],
+  declarations: [AngularTreeGridComponent],
   imports: [
     CommonModule,
     TreeBodyModule,
     TreeHeadModule
   ],
-  exports: [AngularTreeViewComponent]
+  exports: [AngularTreeGridComponent]
 })
-export class AngularTreeViewModule { }
+export class AngularTreeGridModule { }

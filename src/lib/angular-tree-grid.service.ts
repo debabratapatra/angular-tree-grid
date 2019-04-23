@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AngularTreeViewService {
+export class AngularTreeGridService {
 
   constructor() { }
 
