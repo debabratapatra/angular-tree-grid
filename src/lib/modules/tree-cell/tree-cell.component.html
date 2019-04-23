@@ -17,10 +17,10 @@
           *ngIf="show_expand_icon"
         ></i>
       </ng-container>      
-      <span>{{row_data[column.name]}}</span>
+      <span>{{column.renderer ? column.renderer(row_data[column.name], row_data) : row_data[column.name] }}</span>
     </div>
   </ng-container>
   <ng-container *ngIf="!is_expand_column">
-      <span>{{row_data[column.name]}}</span>
+      <span>{{column.renderer ? column.renderer(row_data[column.name], row_data) : row_data[column.name]}}</span>
   </ng-container>  
 </div>
