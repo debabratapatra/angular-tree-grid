@@ -17,10 +17,30 @@
           *ngIf="show_expand_icon"
         ></i>
       </ng-container>      
-      <span>{{column.renderer ? column.renderer(row_data[column.name], row_data) : row_data[column.name] }}</span>
+      <ng-container [ngSwitch]="column.type">
+        <db-custom-cell-component 
+          *ngSwitchCase="'custom'"
+          [column]="column" 
+          [row_data]="row_data">
+        </db-custom-cell-component>
+        <db-tree-cell-view
+          *ngSwitchDefault 
+          [column] = "column"
+          [row_data] = "row_data">
+        </db-tree-cell-view>
+      </ng-container>
     </div>
   </ng-container>
-  <ng-container *ngIf="!is_expand_column">
-      <span>{{column.renderer ? column.renderer(row_data[column.name], row_data) : row_data[column.name]}}</span>
+  <ng-container *ngIf="!is_expand_column" [ngSwitch]="column.type">
+    <db-custom-cell-component 
+      *ngSwitchCase="'custom'"
+      [column]="column" 
+      [row_data]="row_data">
+    </db-custom-cell-component>
+    <db-tree-cell-view
+      *ngSwitchDefault 
+      [column] = "column"
+      [row_data] = "row_data">
+    </db-tree-cell-view>
   </ng-container>  
 </div>
