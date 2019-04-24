@@ -17,7 +17,7 @@ Click <a href="https://angular-tree-grid.stackblitz.io/" target="_blank">here</a
 Import NgtreegridModule Module in your application module.
 
 ```javascript
-  import {AngularTreeViewModule} from 'angular-tree-grid';
+  import {AngularTreeGridModule} from 'angular-tree-grid';
 ```
 
 Add it to your imports array.
@@ -25,7 +25,7 @@ Add it to your imports array.
 ```javascript
     @NgModule({
       imports: [
-        AngularTreeViewModule
+        AngularTreeGridModule
       ]
     })
 ```
@@ -58,6 +58,9 @@ Below are configs that can be set
     * **header:** Header of the column that will be displayed in the table
     * **width:** Width of the column
     * **renderer:** It is a method which can be used to transform the value before value of the column is rendered.
+    * **type:** Set to 'custom' to have custom component for the column. Otherwise leave blank.
+    * **component:** Custome View Component. Mandatory if type is custom.
+    * **onComponentInit:** Callback function for the column on component init.
 
 #### Example
 ```
@@ -80,7 +83,7 @@ Below are configs that can be set
 ### HTML
 Add below node to your html.
 ```
-  <db-angular-tree-view [data]="data" [configs]="configs"></db-angular-tree-view>
+  <db-angular-tree-grid [data]="data" [configs]="configs"></db-angular-tree-grid>
 ```
 
 ## License
