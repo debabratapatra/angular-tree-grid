@@ -58,6 +58,9 @@ Below are configs that can be set
     * **header:** Header of the column that will be displayed in the table
     * **width:** Width of the column
     * **renderer:** It is a method which can be used to transform the value before value of the column is rendered.
+    * **type:** Set to 'custom' to have custom component for the column. Otherwise leave blank.
+    * **component:** Custome View Component. Mandatory if type is custom.
+    * **onComponentInit:** Callback function for the column on component init.
 
 #### Example
 ```
