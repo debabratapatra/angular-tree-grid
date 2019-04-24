@@ -1,5 +1,5 @@
 /*
- * Public API Surface of angular-tree-view
+ * Public API Surface of angular-tree-grid
  */
 
 export * from './lib/angular-tree-grid.service';
