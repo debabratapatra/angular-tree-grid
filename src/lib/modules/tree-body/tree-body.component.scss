@@ -1,14 +1,6 @@
 @import '../../angular-tree-grid.component.scss';
 
-tr.child {
-    background: #fff;
-    td:nth-child(2) {
-        padding: 0.875rem 1.25rem 0.875rem 2.5rem !important;
-    }
-}
-tr.parent {
-    background: #fafbff;
-}
+
 
 tr {
     &.selected {
@@ -16,24 +8,34 @@ tr {
     }
     span.parent_container {
         padding-left: 45px;
-    }         
-}
+    }
 
-tr td {
-    border: 1px solid #cdd5dc;
-    vertical-align: middle;
-    position: relative;
-    padding: 0.5rem 0.5rem;    
-}
+    &.child {
+        background: #fff;
+        td:nth-child(2) {
+            padding: 0.875rem 1.25rem 0.875rem 2.5rem !important;
+        }
+    }
+    &.parent {
+        background: #fafbff;
+    }
 
-td.clear-left-border {
-    border-left: 0 !important;
-}
+    td {
+        border: 1px solid #cdd5dc;
+        vertical-align: middle;
+        position: relative;
+        padding: 0.5rem 0.5rem;
+    
+        &.column-hide {
+            display: none;
+        }
 
-td.clear-right-border {
-    border-right: 0 !important;
-}
+        &.clear-left-border {
+            border-left: 0 !important;
+        }
 
-.column-hide {
-    display: none;
+        &.clear-right-border {
+            border-right: 0 !important;
+        }
+    }
 }

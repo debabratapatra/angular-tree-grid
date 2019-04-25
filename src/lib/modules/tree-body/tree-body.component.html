@@ -1,6 +1,6 @@
 <tr *ngFor="let rec of processed_data">
   <ng-container *ngIf="expand_tracker[rec.parent_pathx]">
-    <td *ngFor="let column of columns; index as i">
+    <td *ngFor="let column of columns; index as i" [ngClass]="{'column-hide': column.hidden}">
       <db-tree-cell
         [configs]="configs"
         [column]="column"
