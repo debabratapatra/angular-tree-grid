@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { config } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,19 +8,38 @@ export class AngularTreeGridService {
 
   constructor() { }
 
-  processData(data, processed_data, expand_tracker, configs) {
-    // let top = data.reduce((a, b) => a.parent < b.parent ? a : b);
+  findTopParentNode(data, configs) {
+    const ids = data.map(element => element[configs.id_field]);
+    let top_parents = [];
 
-    const top = 0;
+    // Find parents ie if parent_id is not present in ids.
+    data.forEach(element => {
+      if (!ids.includes(element[configs.parent_id_field])) {
+        top_parents.push(element[configs.parent_id_field]);
+      }
+    });
+
+    // Remove duplicates
+    top_parents = top_parents.filter(function(item, pos, self) {
+      return self.indexOf(item) === pos;
+    });
+
+    return top_parents;
+  }
+
+  processData(data, processed_data, expand_tracker, configs) {
+    const top_parents = this.findTopParentNode(data, configs);
 
     data.map(rec => {
       rec.pathx = [];
       rec.leaf = false;
     });
 
-    const children = this.findChildren(data, top, configs);
+    top_parents.forEach(top_parent => {
+      const children = this.findChildren(data, top_parent, configs);
 
-    this.orderData(data, processed_data, configs, children, [], 0);
+      this.orderData(data, processed_data, configs, children, [], 0);
+    });
 
     processed_data.map(rec => {
       const parent_pathx = rec.parent_pathx;
