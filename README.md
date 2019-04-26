@@ -35,16 +35,16 @@ Data should look like below. Data should have Unique field(id) and Parent field(
 
 ```
   data= [
-    { id: 1, name: 'Ashok', age: 60, parent: 0},
-    { id: 2, name: 'Sam', age: 40, parent: 1},
-    { id: 3, name: 'Sriya', age: 36, parent: 1},
-    { id: 4, name: 'Prakash', age: 20, parent: 2},
-    { id: 5, name: 'Sneha', age: 21, parent: 3},
-    { id: 6, name: 'Ashok', age: 60, parent: 0},
-    { id: 7, name: 'Sam', age: 40, parent: 6},
-    { id: 8, name: 'Sriya', age: 36, parent: 6},
-    { id: 9, name: 'Prakash', age: 20, parent: 8},
-    { id: 10, name: 'Sneha', age: 21, parent: 8},
+    { idx: 1, name: 'Ashok', age: 60, parentx: 0},
+    { idx: 2, name: 'Sam', age: 40, parentx: 1},
+    { idx: 3, name: 'Sriya', age: 36, parentx: 1},
+    { idx: 4, name: 'Prakash', age: 20, parentx: 2},
+    { idx: 5, name: 'Sneha', age: 21, parentx: 3},
+    { idx: 6, name: 'Pritam', age: 60, parentx: 34},
+    { idx: 7, name: 'Roshan', age: 40, parentx: 6},
+    { idx: 8, name: 'Suraj', age: 36, parentx: 6},
+    { idx: 9, name: 'Swarup', age: 20, parentx: 8},
+    { idx: 10, name: 'Aditya', age: 21, parentx: 8},
   ];
 ```
 
@@ -75,7 +75,10 @@ Below are configs that can be set
       },
       {
         name: 'age',
-        header: 'Age'
+        header: 'Age',
+        renderer: function(value) {
+          return value + ' years';
+        }
       }
     ]
   };
