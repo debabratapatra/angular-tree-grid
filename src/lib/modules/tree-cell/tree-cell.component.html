@@ -31,16 +31,38 @@
       </ng-container>
     </div>
   </ng-container>
-  <ng-container *ngIf="!is_expand_column" [ngSwitch]="column.type">
-    <db-custom-cell-component 
-      *ngSwitchCase="'custom'"
-      [column]="column" 
-      [row_data]="row_data">
-    </db-custom-cell-component>
-    <db-tree-cell-view
-      *ngSwitchDefault 
-      [column] = "column"
-      [row_data] = "row_data">
-    </db-tree-cell-view>
-  </ng-container>  
+  <ng-container *ngIf="!is_expand_column">
+    <ng-container *ngIf="!edit_on || !column.editable" [ngSwitch]="column.type">
+      <db-custom-cell-component 
+        *ngSwitchCase="'custom'"
+        [column]="column" 
+        [row_data]="row_data">
+      </db-custom-cell-component>
+      <db-tree-cell-view
+        *ngSwitchDefault 
+        [column] = "column"
+        [row_data] = "row_data">
+      </db-tree-cell-view>
+    </ng-container> 
+
+    <ng-container *ngIf="edit_on && column.editable">
+        <db-custom-cell-editor-component 
+          *ngIf="column.editor" 
+          [cell_value]="cell_value" 
+          [column]="column" 
+          [row_data]="row_data"
+          (canceledit)="canceledit.emit(row_data['idx'])"
+          (editcomplete)="onEditComplete($event)">
+      </db-custom-cell-editor-component>
+      <db-tree-cell-editor 
+          *ngIf="!column.editor"
+          [cell_value]="cell_value" 
+          [row_data]="row_data" 
+          [column]="column"
+          (canceledit)="canceledit.emit(row_data['idx'])"
+          (editcomplete)="onEditComplete($event)"
+          >
+      </db-tree-cell-editor>
+    </ng-container> 
+  </ng-container>
 </div>

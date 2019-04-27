@@ -41,6 +41,9 @@ export class TreeBodyComponent implements OnInit {
   @Input()
   rowdelete: EventEmitter<any>;
 
+  @Input()
+  rowsave: EventEmitter<any>;
+
   constructor() { }
 
   ngOnInit() {
@@ -54,6 +57,30 @@ export class TreeBodyComponent implements OnInit {
       this.expand.emit(event);
     }
     this.expand_tracker[row_data.pathx] = !this.expand_tracker[row_data.pathx];
+  }
+
+  saveRecord($event) {
+    const rec = $event.data;
+
+    if (this.configs.actions.resolve_edit) {
+      const promise = new Promise((resolve, reject) => {
+        this.rowsave.emit({
+          data: rec,
+          resolve: resolve
+        });
+      });
+
+      promise.then(() => {
+        this.edit_tracker[rec['idx']] = false;
+      }).catch((err) => {});
+    } else {
+      this.edit_tracker[rec['idx']] = false;
+      this.rowsave.emit(rec);
+    }
+  }
+
+  cancelEdit(index) {
+    this.edit_tracker[index] = false;
   }
 
 }

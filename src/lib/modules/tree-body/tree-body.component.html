@@ -17,6 +17,7 @@
         [index]="i"
         [row_data]="rec"
         [expand_tracker]="expand_tracker"
+        [edit_on]="edit_tracker[rec[configs.id_field]]"
         [cellclick]="cellclick"
         (rowexpand)="onRowExpand($event)"
       >

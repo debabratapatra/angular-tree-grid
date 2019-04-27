@@ -28,7 +28,12 @@ export class TreeCellComponent implements OnInit {
   @Input()
   cellclick: EventEmitter<any>;
 
+  @Input()
+  edit_on: boolean;
+
   @Output() rowexpand: EventEmitter<any> = new EventEmitter();
+  @Output() canceledit: EventEmitter<any> = new EventEmitter();
+  @Output() editcomplete: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -42,6 +47,10 @@ export class TreeCellComponent implements OnInit {
       this.rowexpand.emit({event: event, data: this.row_data});
     }
     this.cellclick.emit({event: event, data: this.row_data});
+  }
+
+  onEditComplete($event) {
+    this.editcomplete.emit({event: $event, data: this.row_data});
   }
 
 }
