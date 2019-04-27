@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { config } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

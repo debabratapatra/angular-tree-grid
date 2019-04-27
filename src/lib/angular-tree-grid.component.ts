@@ -47,9 +47,29 @@ export class AngularTreeGridComponent implements OnChanges {
   constructor(private angularTreeGridService: AngularTreeGridService) { }
 
   ngOnChanges() {
+    if (!this.validateConfigs()) {
+      return;
+    }
     this.setDefaultConfigs();
     this.setColumnNames();
     this.angularTreeGridService.processData(this.data, this.processed_data, this.expand_tracker, this.configs);
+  }
+
+  validateConfigs() {
+    const element = this.data[0];
+    let isValidated = true;
+
+    if (!element.hasOwnProperty(this.configs.id_field)) {
+      isValidated = false;
+      console.error('id_field doesn\'t exist!');
+    }
+
+    if (!element.hasOwnProperty(this.configs.parent_id_field)) {
+      isValidated = false;
+      console.error('parent_id_field doesn\'t exist!');
+    }
+
+    return isValidated;
   }
 
   setDefaultConfigs() {
