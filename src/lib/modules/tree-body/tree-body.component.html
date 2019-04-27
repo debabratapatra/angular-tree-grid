@@ -20,6 +20,7 @@
         [edit_on]="edit_tracker[rec[configs.id_field]]"
         [cellclick]="cellclick"
         (rowexpand)="onRowExpand($event)"
+        (editcomplete)="saveRecord($event)"
       >
       </db-tree-cell>
     </td>

@@ -42,10 +42,13 @@ export class TreeCellComponent implements OnInit {
     this.show_expand_icon = !this.row_data.leaf;
   }
 
-  onCellClick(event) {
+  expandRow(event) {
     if (this.index === 0 && !this.row_data.leaf) {
       this.rowexpand.emit({event: event, data: this.row_data});
     }
+  }
+
+  onCellClick(event) {
     this.cellclick.emit({event: event, data: this.row_data});
   }
 
