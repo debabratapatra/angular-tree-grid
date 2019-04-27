@@ -12,6 +12,10 @@ export class AngularTreeGridComponent implements OnChanges {
   processed_data: any[] = [];
   expand_tracker: Object = {};
   columns: Column[] = [];
+  edit_tracker: Object = {}; // Track Edit options.
+  internal_configs: any = {
+    show_add_row: false
+  };
 
   @Input()
   data: any[];
@@ -29,8 +33,18 @@ export class AngularTreeGridComponent implements OnChanges {
       save_class: '',
       cancel_class: ''
     },
+    actions: {
+      edit: false,
+      add: false,
+      delete: false,
+      resolve_edit: false,
+      resolve_add: false,
+      resolve_delete: false
+    },
     data_loading_text: 'Loading...',
-    row_class_function: () => true
+    row_class_function: () => true,
+    row_edit_function: () => true,
+    row_delete_function: () => true
   };
   default_column_config: Column = {
     sorted: 0,
@@ -43,6 +57,10 @@ export class AngularTreeGridComponent implements OnChanges {
    @Output() cellclick: EventEmitter<any> = new EventEmitter();
    @Output() expand: EventEmitter<any> = new EventEmitter();
    @Output() collapse: EventEmitter<any> = new EventEmitter();
+   @Output() rowselect: EventEmitter<any> = new EventEmitter();
+   @Output() rowadd: EventEmitter<any> = new EventEmitter();
+   @Output() rowsave: EventEmitter<any> = new EventEmitter();
+   @Output() rowdelete: EventEmitter<any> = new EventEmitter();
 
   constructor(private angularTreeGridService: AngularTreeGridService) { }
 
@@ -52,7 +70,13 @@ export class AngularTreeGridComponent implements OnChanges {
     }
     this.setDefaultConfigs();
     this.setColumnNames();
-    this.angularTreeGridService.processData(this.data, this.processed_data, this.expand_tracker, this.configs);
+    this.angularTreeGridService.processData(
+      this.data,
+      this.processed_data,
+      this.expand_tracker,
+      this.configs,
+      this.edit_tracker
+    );
   }
 
   validateConfigs() {

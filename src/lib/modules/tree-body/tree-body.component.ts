@@ -21,6 +21,12 @@ export class TreeBodyComponent implements OnInit {
   expand_tracker: Object;
 
   @Input()
+  edit_tracker: Object;
+
+  @Input()
+  internal_configs: Object;
+
+  @Input()
   columns: Column[];
 
   @Input()
@@ -31,6 +37,9 @@ export class TreeBodyComponent implements OnInit {
 
   @Input()
   collapse: EventEmitter<any>;
+
+  @Input()
+  rowdelete: EventEmitter<any>;
 
   constructor() { }
 

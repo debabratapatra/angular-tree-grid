@@ -21,11 +21,18 @@ export class TreeHeadComponent implements OnInit {
   expand_tracker: Object;
 
   @Input()
+  internal_configs: any;
+
+  @Input()
   columns: Column[];
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addRow() {
+    this.internal_configs.show_add_row = true;
   }
 
 }

@@ -26,7 +26,7 @@ export class AngularTreeGridService {
     return top_parents;
   }
 
-  processData(data, processed_data, expand_tracker, configs) {
+  processData(data, processed_data, expand_tracker, configs, edit_tracker) {
     const top_parents = this.findTopParentNode(data, configs);
 
     data.map(rec => {
@@ -48,6 +48,7 @@ export class AngularTreeGridService {
       // Add current id to create current path.
       rec.pathx = parent_pathx.join('.');
       expand_tracker[rec.pathx] = false;
+      edit_tracker[rec[configs.id_field]] = false;
     });
 
     // Expand root.

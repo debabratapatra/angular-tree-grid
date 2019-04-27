@@ -1,4 +1,14 @@
 <tr *ngFor="let rec of processed_data">
+  <td db-tree-cell-actions 
+    *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add) && expand_tracker[rec.parent_pathx]" 
+    [row_data]="rec"
+    [configs]="configs"
+    [processed_data]="processed_data"
+    [edit_tracker]="edit_tracker"
+    [rowdelete]="rowdelete"
+    (canceledit)="cancelEdit($event)" 
+    (editcomplete)="saveRecord($event)">
+  </td>
   <ng-container *ngIf="expand_tracker[rec.parent_pathx]">
     <td *ngFor="let column of columns; index as i" [ngClass]="{'column-hide': column.hidden}">
       <db-tree-cell

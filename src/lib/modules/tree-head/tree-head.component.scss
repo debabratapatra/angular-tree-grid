@@ -18,6 +18,10 @@ tr {
         &.column-hide {
             display: none;
         }
+
+        &.header-editable {
+            width: 70px;
+        }
     }
 }
 

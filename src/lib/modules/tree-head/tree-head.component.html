@@ -1,4 +1,9 @@
 <tr>
+  <th *ngIf="configs.actions.add || configs.actions.edit || configs.actions.delete" class="header-editable" 
+    (click)="addRow()">
+    <i *ngIf="!internal_configs.show_add_row && configs.actions.add" [ngClass]="configs.css.add_class" aria-hidden="true" title="Add a row"></i>
+    <span *ngIf="internal_configs.show_add_row || !configs.actions.add">Actions</span>
+  </th>
   <th *ngFor="let column of columns" [ngClass]="{'column-hide': column.hidden}">
     <div>{{column.header}}</div>    
   </th>
