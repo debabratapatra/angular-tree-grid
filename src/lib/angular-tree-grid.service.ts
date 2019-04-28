@@ -26,8 +26,9 @@ export class AngularTreeGridService {
     return top_parents;
   }
 
-  processData(data, processed_data, expand_tracker, configs, edit_tracker) {
+  processData(data, processed_data, expand_tracker, configs, edit_tracker, internal_configs) {
     const top_parents = this.findTopParentNode(data, configs);
+    internal_configs.top_parents = top_parents;
 
     data.map(rec => {
       rec.pathx = [];

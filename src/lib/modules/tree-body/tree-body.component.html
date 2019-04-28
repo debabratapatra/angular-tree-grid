@@ -1,7 +1,7 @@
-<tr *ngFor="let rec of processed_data">
+<tr *ngFor="let row_data of processed_data">
   <td db-tree-cell-actions 
-    *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add) && expand_tracker[rec.parent_pathx]" 
-    [row_data]="rec"
+    *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add) && expand_tracker[row_data.parent_pathx]" 
+    [row_data]="row_data"
     [configs]="configs"
     [processed_data]="processed_data"
     [edit_tracker]="edit_tracker"
@@ -10,15 +10,15 @@
     (canceledit)="cancelEdit($event)" 
     (editcomplete)="saveRecord($event)">
   </td>
-  <ng-container *ngIf="expand_tracker[rec.parent_pathx]">
+  <ng-container *ngIf="expand_tracker[row_data.parent_pathx]">
     <td *ngFor="let column of columns; index as i" [ngClass]="{'column-hide': column.hidden}">
       <db-tree-cell
         [configs]="configs"
         [column]="column"
         [index]="i"
-        [row_data]="rec"
+        [row_data]="row_data"
         [expand_tracker]="expand_tracker"
-        [edit_on]="edit_tracker[rec[configs.id_field]]"
+        [edit_on]="edit_tracker[row_data[configs.id_field]]"
         [cellclick]="cellclick"
         (rowexpand)="onRowExpand($event)"
         (editcomplete)="saveRecord($event)"
@@ -26,7 +26,9 @@
       </db-tree-cell>
     </td>
     <td *ngIf="internal_configs.show_parent_col">
-      <select *ngIf="edit_tracker[rec[configs.id_field]]" [(ngModel)]="rec[configs.parent_id_field]">
+      <select *ngIf="edit_tracker[row_data[configs.id_field]] &&
+         !internal_configs.top_parents.includes(row_data[configs.parent_id_field])" 
+        [(ngModel)]="row_data[configs.parent_id_field]">
         <option *ngFor="let parent of parents" [value]="parent.id">{{parent.value}}</option>
       </select>
     </td>

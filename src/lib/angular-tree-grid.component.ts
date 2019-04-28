@@ -77,13 +77,24 @@ export class AngularTreeGridComponent implements OnChanges {
       this.processed_data,
       this.expand_tracker,
       this.configs,
-      this.edit_tracker
+      this.edit_tracker,
+      this.internal_configs
     );
   }
 
   validateConfigs() {
     const element = this.data[0];
     let isValidated = true;
+
+    if (!this.configs.id_field) {
+      isValidated = false;
+      window.console.error('id field is mandatory!');
+    }
+
+    if (!this.configs.parent_id_field) {
+      isValidated = false;
+      window.console.error('parent_id field is mandatory!');
+    }
 
     if (!element.hasOwnProperty(this.configs.id_field)) {
       isValidated = false;
@@ -107,13 +118,9 @@ export class AngularTreeGridComponent implements OnChanges {
     this.processed_data = [];
     this.configs = Object.assign({}, this.default_configs, this.configs);
 
-    if (!this.configs.id_field) {
-      window.console.error('id field is mandatory!');
-    }
-
-    if (!this.configs.parent_id_field) {
-      window.console.error('parent_id field is mandatory!');
-    }
+    // Deep clone.
+    this.configs.actions = Object.assign({}, this.default_configs.actions, this.configs.actions);
+    this.configs.css = Object.assign({}, this.default_configs.css, this.configs.css);
   }
 
   setColumnNames() {

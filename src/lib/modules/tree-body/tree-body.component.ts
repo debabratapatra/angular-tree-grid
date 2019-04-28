@@ -74,7 +74,8 @@ export class TreeBodyComponent implements OnInit {
         this.processed_data,
         this.expand_tracker,
         this.configs,
-        this.edit_tracker
+        this.edit_tracker,
+        this.internal_configs
       );
   }
 
