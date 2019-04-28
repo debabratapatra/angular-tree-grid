@@ -53,14 +53,32 @@ Below are configs that can be set
 
 1. **id_field(Mandatory):** It's a mandatory field. It is a column key.
 2. **parent_id_field(Mandatory):** It's a mandatory field. It is a column key.
-6. **columns(Optional):** It is an array. If not provided all keys of the data Array will be used as Column Headers. Please find the description below.
+2. **parent_display_field(Mandatory):** It's a mandatory field. It is the display field of id/parent_id.
+8. **actions(Optional):** Action column.
+     * **add:** Boolean for add feature. It defaults to false.
+     * **edit:** Boolean for edit feature. It defaults to false.
+     * **delete:** Boolean for delete feature. It defaults to false.
+     * **resolve_add:** Manually resolve add(after making call to server). It defaults to false. See <a href="https://ng-tree-grid.stackblitz.io/resolve_row_add">example</a> for more information.
+     * **resolve_edit:** Manually resolve edit. It defaults to false.
+     * **resolve_delete:** Manually resolve delete feature. It defaults to false.
+5. **css(Optional):** Css class for icons
+    * **expand_class(Optional):** Icon class for Expand icon. Font Awesome class can be given.
+    * **collapse_class(Optional):** Icon class for Collapse icon. Font Awesome class can be given.
+    * **add_class(Optional):** Icon class for Add icon. Font Awesome class can be given.
+    * **edit_class(Optional):** Icon class for Edit icon. Font Awesome class can be given.
+    * **delete_class(Optional):** Icon class for Delete icon. Font Awesome class can be given.
+    * **save_class(Optional):** Icon class for Save icon. Font Awesome class can be given.
+    * **cancel_class(Optional):** Icon class for Cancel icon. Font Awesome class can be given.
+6. **columns(Optional):** It is an Array. If not provided all keys of the data Array will be used as Column Headers. Please find the description below.
     * **name:** key of the column
     * **header:** Header of the column that will be displayed in the table
     * **width:** Width of the column
     * **hidden:** Show/Hide column. It defaults to false.
-    * **renderer:** It is a method which can be used to transform the value before value of the column is rendered.
+    * **editable:** To make a specific column editable. By default columns are not editable. edit option needs to be true at grid level.
+    * **renderer:** It is a method to render customized value for the column. See this <a href="https://ng-tree-grid.stackblitz.io/basic_tree_grid">Example</a>.
     * **type:** Set to 'custom' to have custom component for the column. Otherwise leave blank.
     * **component:** Custome View Component. Mandatory if type is custom.
+    * **editor:** Custome Editor Component. If given custom editor component will be used instead of default editor. See exampole.
     * **onComponentInit:** Callback function for the column on component init.
 
 #### Example
