@@ -21,6 +21,12 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule
   ],
-  exports: [TreeCellComponent, TreeCellActionsComponent]
+  exports: [
+    TreeCellComponent,
+    CustomCellViewComponent,
+    CustomCellEditorComponent,
+    TreeCellEditorComponent,
+    TreeCellActionsComponent
+  ]
 })
 export class TreeCellModule { }

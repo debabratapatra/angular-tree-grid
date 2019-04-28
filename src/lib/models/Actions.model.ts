@@ -5,4 +5,5 @@ export interface Actions {
     resolve_edit: boolean;
     resolve_add: boolean;
     resolve_delete: boolean;
+    edit_parent: boolean;
 }

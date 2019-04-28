@@ -7,4 +7,7 @@
   <th *ngFor="let column of columns" [ngClass]="{'column-hide': column.hidden}">
     <div>{{column.header}}</div>    
   </th>
+  <th *ngIf="internal_configs.show_parent_col">
+    Parent
+  </th>
 </tr>

@@ -8,6 +8,7 @@ export interface Configs {
     data_loading_text: string;
     row_class_function: Function;
     parent_id_field?: string;
+    parent_display_field?: string;
     id_field?: string;
     actions: Actions;
     row_edit_function: any;

@@ -14,7 +14,8 @@ export class AngularTreeGridComponent implements OnChanges {
   columns: Column[] = [];
   edit_tracker: Object = {}; // Track Edit options.
   internal_configs: any = {
-    show_add_row: false
+    show_add_row: false,
+    show_parent_col: false
   };
 
   @Input()
@@ -39,7 +40,8 @@ export class AngularTreeGridComponent implements OnChanges {
       delete: false,
       resolve_edit: false,
       resolve_add: false,
-      resolve_delete: false
+      resolve_delete: false,
+      edit_parent: false
     },
     data_loading_text: 'Loading...',
     row_class_function: () => true,
@@ -91,6 +93,11 @@ export class AngularTreeGridComponent implements OnChanges {
     if (!element.hasOwnProperty(this.configs.parent_id_field)) {
       isValidated = false;
       console.error('parent_id_field doesn\'t exist!');
+    }
+
+    if (!element.hasOwnProperty(this.configs.parent_display_field)) {
+      isValidated = false;
+      console.error('parent_display_field doesn\'t exist!');
     }
 
     return isValidated;

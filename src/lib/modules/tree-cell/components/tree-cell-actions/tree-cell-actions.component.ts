@@ -14,6 +14,9 @@ export class TreeCellActionsComponent implements OnInit {
   edit_tracker: any;
 
   @Input()
+  internal_configs: any;
+
+  @Input()
   configs: Configs;
 
   @Input()
@@ -32,6 +35,11 @@ export class TreeCellActionsComponent implements OnInit {
 
   enableEdit(index) {
     this.edit_tracker[index] = true;
+
+    // Only if edit_parent is true.
+    if (this.configs.actions.edit_parent) {
+      this.internal_configs.show_parent_col = true;
+    }
   }
 
   findRecordIndex(idx: number) {

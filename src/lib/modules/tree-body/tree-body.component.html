@@ -5,6 +5,7 @@
     [configs]="configs"
     [processed_data]="processed_data"
     [edit_tracker]="edit_tracker"
+    [internal_configs]="internal_configs"
     [rowdelete]="rowdelete"
     (canceledit)="cancelEdit($event)" 
     (editcomplete)="saveRecord($event)">
@@ -23,6 +24,11 @@
         (editcomplete)="saveRecord($event)"
       >
       </db-tree-cell>
+    </td>
+    <td *ngIf="internal_configs.show_parent_col">
+      <select *ngIf="edit_tracker[rec[configs.id_field]]" [(ngModel)]="rec[configs.parent_id_field]">
+        <option *ngFor="let parent of parents" [value]="parent.id">{{parent.value}}</option>
+      </select>
     </td>
   </ng-container>
 </tr>

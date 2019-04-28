@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Configs } from '../../models/Configs.model';
 import { Column } from '../../models/Column.model';
+import { AngularTreeGridService } from '../../angular-tree-grid.service';
 
 @Component({
   selector: '[db-tree-body]',
@@ -8,6 +9,8 @@ import { Column } from '../../models/Column.model';
   styleUrls: ['./tree-body.component.scss']
 })
 export class TreeBodyComponent implements OnInit {
+  parents: Object[];
+
   @Input()
   data: any[];
 
@@ -24,7 +27,7 @@ export class TreeBodyComponent implements OnInit {
   edit_tracker: Object;
 
   @Input()
-  internal_configs: Object;
+  internal_configs: any;
 
   @Input()
   columns: Column[];
@@ -44,9 +47,35 @@ export class TreeBodyComponent implements OnInit {
   @Input()
   rowsave: EventEmitter<any>;
 
-  constructor() { }
+  constructor(private angularTreeGridService: AngularTreeGridService) { }
 
   ngOnInit() {
+    this.parents = this.data.map(
+      element => {
+        return {
+          'id': element[this.configs.id_field],
+          'value': element[this.configs.parent_display_field]
+        };
+      }
+    );
+  }
+
+  refreshData(element) {
+    // If edit parent is not tru then don't refresh.
+    if (!this.configs.actions.edit_parent) {
+      return;
+    }
+    element[this.configs.parent_id_field] = parseInt(element[this.configs.parent_id_field], 10);
+      this.processed_data = [];
+      this.expand_tracker = {};
+      this.edit_tracker = {};
+      this.angularTreeGridService.processData(
+        this.data,
+        this.processed_data,
+        this.expand_tracker,
+        this.configs,
+        this.edit_tracker
+      );
   }
 
   onRowExpand(event) {
@@ -60,27 +89,30 @@ export class TreeBodyComponent implements OnInit {
   }
 
   saveRecord($event) {
-    const rec = $event.data;
+    const element = $event.data;
 
     if (this.configs.actions.resolve_edit) {
       const promise = new Promise((resolve, reject) => {
         this.rowsave.emit({
-          data: rec,
+          data: element,
           resolve: resolve
         });
       });
 
       promise.then(() => {
-        this.edit_tracker[rec['idx']] = false;
+        this.edit_tracker[element['idx']] = false;
+        this.refreshData(element);
       }).catch((err) => {});
     } else {
-      this.edit_tracker[rec['idx']] = false;
-      this.rowsave.emit(rec);
+      this.edit_tracker[element['idx']] = false;
+      this.refreshData(element);
+      this.rowsave.emit(element);
     }
   }
 
   cancelEdit(index) {
     this.edit_tracker[index] = false;
+    this.internal_configs.show_parent_col = false;
   }
 
 }

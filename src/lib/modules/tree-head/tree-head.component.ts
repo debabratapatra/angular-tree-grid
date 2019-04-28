@@ -8,6 +8,7 @@ import { Column } from '../../models/Column.model';
   styleUrls: ['./tree-head.component.scss']
 })
 export class TreeHeadComponent implements OnInit {
+
   @Input()
   data: any[];
 
@@ -19,6 +20,9 @@ export class TreeHeadComponent implements OnInit {
 
   @Input()
   expand_tracker: Object;
+
+  @Input()
+  edit_tracker: any;
 
   @Input()
   internal_configs: any;
