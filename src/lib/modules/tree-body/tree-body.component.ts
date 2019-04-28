@@ -47,6 +47,9 @@ export class TreeBodyComponent implements OnInit {
   @Input()
   rowsave: EventEmitter<any>;
 
+  @Input()
+  rowadd: EventEmitter<any>;
+
   constructor(private angularTreeGridService: AngularTreeGridService) { }
 
   ngOnInit() {
@@ -109,6 +112,11 @@ export class TreeBodyComponent implements OnInit {
       this.refreshData(element);
       this.rowsave.emit(element);
     }
+  }
+
+  addRow(element) {
+    this.refreshData(element);
+    this.rowadd.emit(element);
   }
 
   cancelEdit(index) {

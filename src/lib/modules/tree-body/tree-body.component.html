@@ -1,3 +1,15 @@
+<tr *ngIf="data.length==0">
+  <td [innerHTML]="configs.data_loading_text" [attr.colspan]="columns.length + 1" style="text-align: center"></td>
+</tr>
+<tr db-add-row 
+  [columns]="columns" 
+  [configs]="configs" 
+  [internal_configs]="internal_configs" 
+  [processed_data]="processed_data" 
+  [data]="data"
+  (rowadd)="addRow($event)"
+  *ngIf="internal_configs.show_add_row">
+</tr>
 <tr *ngFor="let row_data of processed_data">
   <td db-tree-cell-actions 
     *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add) && expand_tracker[row_data.parent_pathx]" 
