@@ -84,12 +84,23 @@ export class TreeBodyComponent implements OnInit {
 
   onRowExpand(event) {
     const row_data = event.data;
-    if (this.expand_tracker[row_data.pathx]) {
-      this.collapse.emit(event);
-    } else {
-      this.expand.emit(event);
-    }
-    this.expand_tracker[row_data.pathx] = !this.expand_tracker[row_data.pathx];
+    this.expand_tracker[row_data.pathx] = true;
+    this.expand.emit(event);
+  }
+
+  onRowCollapse(event) {
+    const row_data = event.data;
+    this.expand_tracker[row_data.pathx] = false;
+
+    // Collapse all of its children.
+    const keys = Object.keys(this.expand_tracker);
+    keys.forEach(key => {
+      if (key.includes(row_data.pathx)) {
+        this.expand_tracker[key] = 0;
+      }
+    });
+
+    this.collapse.emit(event);
   }
 
   saveRecord($event) {

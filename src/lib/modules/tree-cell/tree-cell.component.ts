@@ -32,6 +32,7 @@ export class TreeCellComponent implements OnInit {
   edit_on: boolean;
 
   @Output() rowexpand: EventEmitter<any> = new EventEmitter();
+  @Output() rowcollapse: EventEmitter<any> = new EventEmitter();
   @Output() canceledit: EventEmitter<any> = new EventEmitter();
   @Output() editcomplete: EventEmitter<any> = new EventEmitter();
 
@@ -45,6 +46,12 @@ export class TreeCellComponent implements OnInit {
   expandRow(event) {
     if (this.index === 0 && !this.row_data.leaf) {
       this.rowexpand.emit({event: event, data: this.row_data});
+    }
+  }
+
+  collapseRow(event) {
+    if (this.index === 0 && !this.row_data.leaf) {
+      this.rowcollapse.emit({event: event, data: this.row_data});
     }
   }
 

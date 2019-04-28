@@ -12,7 +12,7 @@
         </span>
       </ng-container>
       <ng-container *ngIf="expand_tracker[row_data.pathx]">
-        <span (click)="expandRow($event)">
+        <span (click)="collapseRow($event)">
           <i 
             [ngClass]="configs.css.collapse_class" 
             class="expand-icon" 
