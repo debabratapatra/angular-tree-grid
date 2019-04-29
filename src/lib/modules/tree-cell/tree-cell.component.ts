@@ -10,6 +10,7 @@ import { Configs } from '../../models/Configs.model';
 export class TreeCellComponent implements OnInit {
   is_expand_column: boolean;
   show_expand_icon: boolean;
+  cell_value: string;
   @Input()
   configs: Configs;
 
@@ -41,6 +42,7 @@ export class TreeCellComponent implements OnInit {
   ngOnInit() {
     this.is_expand_column = this.index === 0;
     this.show_expand_icon = !this.row_data.leaf;
+    this.cell_value = this.row_data[this.column.name];
   }
 
   expandRow(event) {
