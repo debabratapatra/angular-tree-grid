@@ -8,9 +8,10 @@
   [processed_data]="processed_data" 
   [data]="data"
   (rowadd)="addRow($event)"
-  *ngIf="internal_configs.show_add_row">
+  *ngIf="internal_configs.show_add_row"
+  class="{{configs.row_class_function(data)}}">
 </tr>
-<tr *ngFor="let row_data of processed_data">
+<tr *ngFor="let row_data of processed_data" class="{{configs.row_class_function(data)}}">
   <td db-tree-cell-actions 
     *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add) && expand_tracker[row_data.parent_pathx]" 
     [row_data]="row_data"
