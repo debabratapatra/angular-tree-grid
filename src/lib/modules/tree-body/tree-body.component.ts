@@ -50,6 +50,9 @@ export class TreeBodyComponent implements OnInit {
   @Input()
   rowadd: EventEmitter<any>;
 
+  @Input()
+  rowselect: EventEmitter<any>;
+
   constructor(private angularTreeGridService: AngularTreeGridService) { }
 
   ngOnInit() {
@@ -133,6 +136,14 @@ export class TreeBodyComponent implements OnInit {
   cancelEdit(index) {
     this.edit_tracker[index] = false;
     this.internal_configs.show_parent_col = false;
+  }
+
+  rowSelect(row_data, event) {
+    this.processed_data.forEach(data => {
+      data.row_selected = false;
+    });
+    row_data.row_selected = true;
+    this.rowselect.emit({data: row_data, event: event});
   }
 
 }

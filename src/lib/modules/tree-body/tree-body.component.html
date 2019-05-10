@@ -11,7 +11,11 @@
   *ngIf="internal_configs.show_add_row"
   class="{{configs.row_class_function(data)}}">
 </tr>
-<tr *ngFor="let row_data of processed_data" class="{{configs.row_class_function(data)}}">
+<tr 
+  *ngFor="let row_data of processed_data"
+  [attr.class]="configs.row_class_function(data) + ' ' + (row_data.row_selected ? configs.css.row_selection_class : '')"
+  (click)="rowSelect(row_data, $event)" 
+  >
   <td db-tree-cell-actions 
     *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add) && expand_tracker[row_data.parent_pathx]" 
     [row_data]="row_data"

@@ -32,7 +32,8 @@ export class AngularTreeGridComponent implements OnChanges {
       edit_class: '',
       delete_class: '',
       save_class: '',
-      cancel_class: ''
+      cancel_class: '',
+      row_selection_class: 'selected'
     },
     actions: {
       edit: false,

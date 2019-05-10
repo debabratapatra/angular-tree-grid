@@ -48,12 +48,14 @@ export class TreeCellComponent implements OnInit {
   expandRow(event) {
     if (this.index === 0 && !this.row_data.leaf) {
       this.rowexpand.emit({event: event, data: this.row_data});
+      event.stopPropagation();
     }
   }
 
   collapseRow(event) {
     if (this.index === 0 && !this.row_data.leaf) {
       this.rowcollapse.emit({event: event, data: this.row_data});
+      event.stopPropagation();
     }
   }
 

@@ -6,4 +6,5 @@ export interface CssClass {
     delete_class: string;
     save_class: string;
     cancel_class: string;
+    row_selection_class: string;
 }
