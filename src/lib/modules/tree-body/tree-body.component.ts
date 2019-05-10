@@ -56,14 +56,18 @@ export class TreeBodyComponent implements OnInit {
   constructor(private angularTreeGridService: AngularTreeGridService) { }
 
   ngOnInit() {
-    this.parents = this.data.map(
-      element => {
-        return {
-          'id': element[this.configs.id_field],
-          'value': element[this.configs.parent_display_field]
-        };
-      }
-    );
+
+    // Add check as we are running library on changes.
+    if (this.data) {
+      this.parents = this.data.map(
+        element => {
+          return {
+            'id': element[this.configs.id_field],
+            'value': element[this.configs.parent_display_field]
+          };
+        }
+      );
+    }
   }
 
   refreshData(element) {

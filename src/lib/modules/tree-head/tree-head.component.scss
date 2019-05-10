@@ -19,8 +19,8 @@ tr {
             display: none;
         }
 
-        &.header-editable {
-            width: 70px;
+        &.action-header {
+            width: 50px;
         }
 
         i.plus {
@@ -65,5 +65,5 @@ th.clear-right-border {
 
 svg {
     width: 25px;
-    padding-right: 5px;
+    padding-right: 3px;
 }

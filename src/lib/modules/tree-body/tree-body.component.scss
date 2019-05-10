@@ -25,6 +25,10 @@ tr {
         vertical-align: middle;
         position: relative;
         padding: 0.5rem 0.5rem;
+
+        &:nth-child(1) {
+            padding: 0.3rem;
+        }
     
         &.column-hide {
             display: none;

@@ -1,5 +1,5 @@
 <tr>
-  <th *ngIf="configs.actions.add || configs.actions.edit || configs.actions.delete" class="header-editable" 
+  <th *ngIf="configs.actions.add || configs.actions.edit || configs.actions.delete" class="action-header" 
     (click)="addRow()">
     <i *ngIf="!internal_configs.show_add_row && configs.actions.add" [ngClass]="configs.css.add_class" aria-hidden="true" title="Add a row"></i>
     <span *ngIf="internal_configs.show_add_row || !configs.actions.add">Actions</span>

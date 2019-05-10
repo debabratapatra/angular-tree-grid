@@ -84,6 +84,14 @@ export class AngularTreeGridComponent implements OnChanges {
   }
 
   validateConfigs() {
+    if (!this.data || this.data.length === 0) {
+      window.console.warn('data can\'t be empty!');
+      return;
+    }
+    if (!this.configs) {
+      window.console.warn('configs can\'t be empty!');
+      return;
+    }
     const element = this.data[0];
     let isValidated = true;
 

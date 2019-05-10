@@ -1,11 +1,12 @@
 @import '../../angular-tree-grid.component.scss';
 
 i.expand-icon {
-    margin-right: 33px;
+    margin-right: 8px;
 }
 
 i.plus {
     border: 1px solid rgba(0, 0, 0, 0);
+    margin-right: 32px;
 
     &:before {
         content: '';
@@ -32,6 +33,7 @@ i.plus {
 
 i.minus {
     border: 1px solid rgba(0, 0, 0, 0);
+    margin-right: 32px;
 
     &:before {
         content: '';  
