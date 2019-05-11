@@ -7,4 +7,5 @@ export interface CssClass {
     save_class: string;
     cancel_class: string;
     row_selection_class: string;
+    header_class: string;
 }

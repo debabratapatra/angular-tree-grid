@@ -6,6 +6,7 @@ export interface Column {
     editable: Boolean;
     hidden: Boolean;
     sortable: Boolean;
+    width?: string;
     renderer?: any;
     type?: string;
     component?: any;
