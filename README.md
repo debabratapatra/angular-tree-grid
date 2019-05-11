@@ -69,10 +69,12 @@ Below are configs that can be set
     * **delete_class(Optional):** Icon class for Delete icon. Font Awesome class can be given.
     * **save_class(Optional):** Icon class for Save icon. Font Awesome class can be given.
     * **cancel_class(Optional):** Icon class for Cancel icon. Font Awesome class can be given.
+    * **row_selection_class(Optional):** Class for selected row.
+    * **header_class(Optional):** Class for header.
 6. **columns(Optional):** It is an Array. If not provided all keys of the data Array will be used as Column Headers. Please find the description below.
     * **name:** key of the column
     * **header:** Header of the column that will be displayed in the table
-    * **width:** Width of the column
+    * **width:** Width of the column.
     * **hidden:** Show/Hide column. It defaults to false.
     * **editable:** To make a specific column editable. By default columns are not editable. edit option needs to be true at grid level.
     * **renderer:** It is a method to render customized value for the column. See this <a href="https://ng-tree-grid.stackblitz.io/basic_tree_grid">Example</a>.
