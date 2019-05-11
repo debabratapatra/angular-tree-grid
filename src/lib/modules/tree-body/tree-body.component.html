@@ -44,8 +44,7 @@
       </db-tree-cell>
     </td>
     <td *ngIf="internal_configs.show_parent_col">
-      <select *ngIf="edit_tracker[row_data[configs.id_field]] &&
-         !internal_configs.top_parents.includes(row_data[configs.parent_id_field])" 
+      <select *ngIf="edit_tracker[row_data[configs.id_field]]" 
         [(ngModel)]="row_data[configs.parent_id_field]">
         <option *ngFor="let parent of parents" [value]="parent.id">{{parent.value}}</option>
       </select>
