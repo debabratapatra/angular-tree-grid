@@ -1,7 +1,11 @@
+import { AngularTreeGridService } from '../angular-tree-grid.service';
+
 export class Store {
     processed_data: any[];
     raw_data: any[];
     display_data: any[];
+
+    constructor(private angularTreeGridService: AngularTreeGridService) { }
 
     getRawData() {
         return this.raw_data;
@@ -14,6 +18,7 @@ export class Store {
     setProcessedData(processed_data) {
         this.processed_data = processed_data;
         this.display_data = [...processed_data];
+        this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
     }
 
     getDisplayData() {

@@ -18,7 +18,7 @@ export class AngularTreeGridComponent implements OnChanges {
     show_add_row: false,
     show_parent_col: false
   };
-  store = new Store();
+  store = new Store(this.angularTreeGridService);
 
   @Input()
   data: any[];
@@ -69,7 +69,7 @@ export class AngularTreeGridComponent implements OnChanges {
    @Output() rowsave: EventEmitter<any> = new EventEmitter();
    @Output() rowdelete: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor(private angularTreeGridService: AngularTreeGridService) { }
 
   ngOnChanges() {
     if (!this.validateConfigs()) {
