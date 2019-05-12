@@ -14,4 +14,12 @@ export class AngularTreeGridService {
   updateDisplayDataObservable(display_data: any[]) {
     this.display_data_observable.next(display_data);
   }
+
+  expandAll(expand_tracker) {
+    for (const key in expand_tracker) {
+      if (expand_tracker.hasOwnProperty(key)) {
+        expand_tracker[key] = true;
+      }
+    }
+  }
 }

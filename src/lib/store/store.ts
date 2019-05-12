@@ -15,14 +15,49 @@ export class Store {
         this.raw_data = raw_data;
     }
 
+    getProcessedData(processed_data) {
+        return this.processed_data;
+    }
+
     setProcessedData(processed_data) {
         this.processed_data = processed_data;
-        this.display_data = [...processed_data];
-        this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
+        this.setDisplayData([...processed_data]);
     }
 
     getDisplayData() {
         return this.display_data;
+    }
+
+    setDisplayData(display_data) {
+        this.display_data = display_data;
+        this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
+    }
+
+    filterBy(fields, search_values) {
+        this.display_data = this.processed_data.filter((record) => {
+            let found = true;
+            for (let index = 0; index < fields.length; index++) {
+                const field_value = record[fields[index]];
+                const search_value = search_values[index];
+
+                // If blank then continue.
+                if (!search_value) {
+                    continue;
+                }
+
+                if (typeof(field_value) === 'number') {
+                    if (field_value !== parseInt(search_value, 10)) {
+                        found = false;
+                    }
+                } else {
+                    if (field_value.indexOf(search_value) === -1) {
+                        found = false;
+                    }
+                }
+            }
+            return found;
+        });
+        this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
     }
 
     findTopParentNode(data, configs) {

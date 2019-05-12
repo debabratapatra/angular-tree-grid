@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Column } from '../../../../models/Column.model';
 import { Configs } from '../../../../models/Configs.model';
 import { Store } from '../../../../store/store';
+import { AngularTreeGridService } from '../../../../angular-tree-grid.service';
 
 @Component({
   selector: '[db-filter-row]',
@@ -9,6 +10,7 @@ import { Store } from '../../../../store/store';
   styleUrls: ['./filter-row.component.scss']
 })
 export class FilterRowComponent implements OnInit {
+  search_values: Object = {};
 
   @Input()
   store: Store;
@@ -17,14 +19,22 @@ export class FilterRowComponent implements OnInit {
   columns: Column[];
 
   @Input()
+  expand_tracker: any;
+
+  @Input()
   configs: Configs;
 
-  constructor() { }
+  constructor(private angularTreeGridService: AngularTreeGridService) { }
 
   ngOnInit() {
+    this.columns.forEach(column => {
+      this.search_values[column.name] = '';
+    });
   }
 
-  filter(column) {
+  filter() {
+    this.store.filterBy(this.columns.map(column => column.name), Object.values(this.search_values));
+    this.angularTreeGridService.expandAll(this.expand_tracker);
   }
 
 }
