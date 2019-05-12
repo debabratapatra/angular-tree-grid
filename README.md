@@ -57,6 +57,7 @@ Below are configs that can be set
 | *id_field  | string  |  n/a | It's a mandatory field. It is a column key.  |
 |  *parent_id_field |  string | n/a  | It's a mandatory field. It is a column key.  |
 |  *parent_display_field |  string | n/a  |  It's a mandatory field. It is the display field of id/parent_id. |
+|  filter |  boolean | false  |  It enables filter toolbar. Filter is customizable at column level. |
 |  row_class_function |  Function | n/a  |  Callback function for row class. A custom class can be returned which will be added to the row. |
 |  row_edit_function |  Function | n/a  |  Callback function for edit feature. Based on the return type(Boolean) of this function, edit can be enabled/disabled for a specific row. See <a href="https://angular-tree-grid.stackblitz.io/cond_row_edit">Example</a> for more information. |
 |  row_delete_function |  Function | n/a  |  Callback function for delete feature. Based on the return type(Boolean) of this function, delete can be enabled/disabled for a specific row. See <a href="https://angular-tree-grid.stackblitz.io/cond_row_edit">Example</a> for more information. |
@@ -92,6 +93,7 @@ Below are configs that can be set
 | header  | string  |  n/a | Header of the column that will be displayed in the table.  |
 | width  | string  |  n/a | Width of the column with unit(px/rem).  |
 | hidden  | boolean  |  false | Show/Hide column.  |
+| filter  | boolean  |  true | Enable/Disable filter.  |
 | editable  | boolean  |  false | To make a specific column editable. By default columns are not editable. edit option needs to be true at **grid** level..  |
 | renderer  | Function  |  n/a | It is a method to render customized value for the column. See this <a href="https://angular-tree-grid.stackblitz.io/basic_tree_grid">Example</a>.  |
 | type  | string  |  '' | Set to 'custom' to have custom component for the column. Otherwise leave blank.  |
