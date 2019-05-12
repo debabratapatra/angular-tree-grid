@@ -4,8 +4,8 @@ export interface Column {
     sorted: number;
     sort_type: string;
     editable: Boolean;
+    filter: Boolean;
     hidden: Boolean;
-    sortable: Boolean;
     width?: string;
     renderer?: any;
     type?: string;

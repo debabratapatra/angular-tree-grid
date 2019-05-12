@@ -1,6 +1,14 @@
 <tr *ngIf="data.length==0">
   <td [innerHTML]="configs.data_loading_text" [attr.colspan]="columns.length + 1" style="text-align: center"></td>
 </tr>
+<tr db-filter-row 
+  [columns]="columns" 
+  [configs]="configs"
+  [processed_data]="processed_data" 
+  [data]="data"
+  *ngIf="configs.filter"
+  [ngClass]="configs.css.row_filter_class">
+</tr>
 <tr db-add-row 
   [columns]="columns" 
   [configs]="configs" 

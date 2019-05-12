@@ -34,7 +34,8 @@ export class AngularTreeGridComponent implements OnChanges {
       save_class: '',
       cancel_class: '',
       row_selection_class: 'selected',
-      header_class: ''
+      header_class: '',
+      row_filter_class: ''
     },
     actions: {
       edit: false,
@@ -55,7 +56,7 @@ export class AngularTreeGridComponent implements OnChanges {
     sort_type: null,
     editable: false,
     hidden: false,
-    sortable: true
+    filter: true
   };
 
    @Output() cellclick: EventEmitter<any> = new EventEmitter();
