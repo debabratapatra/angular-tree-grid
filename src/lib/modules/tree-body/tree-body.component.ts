@@ -73,20 +73,20 @@ export class TreeBodyComponent implements OnInit {
   }
 
   refreshData(element) {
-    // If edit parent is not tru then don't refresh.
+    // If edit parent is not true then don't refresh.
     if (!this.configs.actions.edit_parent) {
       return;
     }
     element[this.configs.parent_id_field] = parseInt(element[this.configs.parent_id_field], 10);
-      this.expand_tracker = {};
-      this.edit_tracker = {};
-      this.store.processData(
-        this.store.getRawData(),
-        this.expand_tracker,
-        this.configs,
-        this.edit_tracker,
-        this.internal_configs
-      );
+    this.expand_tracker = {};
+    this.edit_tracker = {};
+    this.store.processData(
+      this.store.getRawData(),
+      this.expand_tracker,
+      this.configs,
+      this.edit_tracker,
+      this.internal_configs
+    );
   }
 
   onRowExpand(event) {
@@ -123,10 +123,12 @@ export class TreeBodyComponent implements OnInit {
 
       promise.then(() => {
         this.edit_tracker[element['idx']] = false;
+        this.internal_configs.show_parent_col = false;
         this.refreshData(element);
       }).catch((err) => {});
     } else {
       this.edit_tracker[element['idx']] = false;
+      this.internal_configs.show_parent_col = false;
       this.refreshData(element);
       this.rowsave.emit(element);
     }
