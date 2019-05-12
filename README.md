@@ -57,6 +57,7 @@ Below are configs that can be set
 | *id_field  | string  |  n/a | It's a mandatory field. It is a column key.  |
 |  *parent_id_field |  string | n/a  | It's a mandatory field. It is a column key.  |
 |  *parent_display_field |  string | n/a  |  It's a mandatory field. It is the display field of id/parent_id. |
+|  data_loading_text |  string | 'Loading...'  |  Loading place holder. This will be displayed when data is empty. |
 |  filter |  boolean | false  |  It enables filter toolbar. Filter is customizable at column level. |
 |  row_class_function |  Function | n/a  |  Callback function for row class. A custom class can be returned which will be added to the row. |
 |  row_edit_function |  Function | n/a  |  Callback function for edit feature. Based on the return type(Boolean) of this function, edit can be enabled/disabled for a specific row. See <a href="https://angular-tree-grid.stackblitz.io/cond_row_edit">Example</a> for more information. |
@@ -94,7 +95,7 @@ Below are configs that can be set
 | width  | string  |  n/a | Width of the column with unit(px/rem).  |
 | hidden  | boolean  |  false | Show/Hide column.  |
 | filter  | boolean  |  true | Enable/Disable filter.  |
-| editable  | boolean  |  false | To make a specific column editable. By default columns are not editable. edit option needs to be true at **grid** level..  |
+| editable  | boolean  |  false | To make a specific column editable. By default columns are not editable. edit option needs to be true at **grid** level.  |
 | renderer  | Function  |  n/a | It is a method to render customized value for the column. See this <a href="https://angular-tree-grid.stackblitz.io/basic_tree_grid">Example</a>.  |
 | type  | string  |  '' | Set to 'custom' to have custom component for the column. Otherwise leave blank.  |
 | component  | Object  |  n/a | Custom View Component. Mandatory if type is custom.See this <a href="https://angular-tree-grid.stackblitz.io/custom_view_component">Example</a>.|
@@ -121,6 +122,18 @@ Below are configs that can be set
     ]
   };
 ```
+
+#### Events
+
+| Event  |Arguments   | Description |
+|---|---|---|
+| expand  | **row_data:** Expanded Row | Event fires when parent is expanded.  |
+| collapse  | **row_data:** Collapsed Row | Event fires when parent is collapsed.  |
+| cellclick  | **event** Consist of: <ul><li> **row:** Selected Row </li><li> **column:** Selected Column</li></ul> | Event fires when a child cell is clicked.  |
+| rowselect  | **row:** Selected Row | Event fires when a row is selected.  |
+| rowsave  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is saved.  |
+| rowdelete  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is deleted.  |
+| rowadd  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is added.  |
 
 ### HTML
 Add below node to your html.
