@@ -10,6 +10,7 @@ export interface Configs {
     parent_display_field?: string;
     id_field?: string;
     actions: Actions;
+    filter: boolean;
     row_class_function: Function;
     row_edit_function: Function;
     row_delete_function: Function;

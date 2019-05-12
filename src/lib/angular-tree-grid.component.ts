@@ -49,6 +49,7 @@ export class AngularTreeGridComponent implements OnChanges {
       edit_parent: false
     },
     data_loading_text: 'Loading...',
+    filter: false,
     row_class_function: () => true,
     row_edit_function: () => true,
     row_delete_function: () => true
