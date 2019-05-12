@@ -2,6 +2,7 @@ import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core
 import { Configs } from './models/Configs.model';
 import { AngularTreeGridService } from './angular-tree-grid.service';
 import { Column } from './models/Column.model';
+import { Store } from './store/store';
 
 @Component({
   selector: 'db-angular-tree-grid',
@@ -17,6 +18,7 @@ export class AngularTreeGridComponent implements OnChanges {
     show_add_row: false,
     show_parent_col: false
   };
+  store = new Store();
 
   @Input()
   data: any[];
@@ -67,7 +69,7 @@ export class AngularTreeGridComponent implements OnChanges {
    @Output() rowsave: EventEmitter<any> = new EventEmitter();
    @Output() rowdelete: EventEmitter<any> = new EventEmitter();
 
-  constructor(private angularTreeGridService: AngularTreeGridService) { }
+  constructor() { }
 
   ngOnChanges() {
     if (!this.validateConfigs()) {
@@ -75,9 +77,8 @@ export class AngularTreeGridComponent implements OnChanges {
     }
     this.setDefaultConfigs();
     this.setColumnNames();
-    this.angularTreeGridService.processData(
+    this.store.processData(
       this.data,
-      this.processed_data,
       this.expand_tracker,
       this.configs,
       this.edit_tracker,

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Configs } from '../../models/Configs.model';
 import { Column } from '../../models/Column.model';
 import { AngularTreeGridService } from '../../angular-tree-grid.service';
+import { Store } from '../../store/store';
 
 @Component({
   selector: '[db-tree-body]',
@@ -10,15 +11,14 @@ import { AngularTreeGridService } from '../../angular-tree-grid.service';
 })
 export class TreeBodyComponent implements OnInit {
   parents: Object[];
+  raw_data: any[];
+  display_data: any[];
 
   @Input()
-  data: any[];
+  store: Store;
 
   @Input()
   configs: Configs;
-
-  @Input()
-  processed_data: any[];
 
   @Input()
   expand_tracker: Object;
@@ -58,8 +58,9 @@ export class TreeBodyComponent implements OnInit {
   ngOnInit() {
 
     // Add check as we are running library on changes.
-    if (this.data) {
-      this.parents = this.data.map(
+    this.raw_data = this.store.getRawData();
+    if (this.raw_data) {
+      this.parents = this.raw_data.map(
         element => {
           return {
             'id': element[this.configs.id_field],
@@ -68,6 +69,7 @@ export class TreeBodyComponent implements OnInit {
         }
       );
     }
+    this.display_data = this.store.getDisplayData();
   }
 
   refreshData(element) {
@@ -76,12 +78,10 @@ export class TreeBodyComponent implements OnInit {
       return;
     }
     element[this.configs.parent_id_field] = parseInt(element[this.configs.parent_id_field], 10);
-      this.processed_data = [];
       this.expand_tracker = {};
       this.edit_tracker = {};
-      this.angularTreeGridService.processData(
-        this.data,
-        this.processed_data,
+      this.store.processData(
+        this.store.getRawData(),
         this.expand_tracker,
         this.configs,
         this.edit_tracker,
@@ -143,7 +143,7 @@ export class TreeBodyComponent implements OnInit {
   }
 
   rowSelect(row_data, event) {
-    this.processed_data.forEach(data => {
+    this.store.getDisplayData().forEach(data => {
       data.row_selected = false;
     });
     row_data.row_selected = true;

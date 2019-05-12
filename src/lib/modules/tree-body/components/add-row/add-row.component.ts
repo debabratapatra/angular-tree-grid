@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
 import { Column } from '../../../../models/Column.model';
 import { Configs } from '../../../../models/Configs.model';
+import { Store } from '../../../../store/store';
 
 @Component({
   selector: '[db-add-row]',
@@ -9,15 +10,13 @@ import { Configs } from '../../../../models/Configs.model';
   encapsulation: ViewEncapsulation.None
 })
 export class AddRowComponent implements OnInit {
+  raw_data: any[];
   row_data: Object = {};
   parents: Object[] = [];
   show_add_row: boolean;
 
   @Input()
-  data: any;
-
-  @Input()
-  processed_data: any;
+  store: Store;
 
   @Input()
   columns: Column[];
@@ -34,10 +33,11 @@ export class AddRowComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.raw_data = this.store.getRawData();
     this.columns.forEach(column => {
       this.row_data[column.name] = '';
     });
-    this.parents = this.data.map(
+    this.parents = this.raw_data.map(
       element => {
         return {
           'id': element[this.configs.id_field],
@@ -48,9 +48,7 @@ export class AddRowComponent implements OnInit {
   }
 
   saveAddRecord(e) {
-    const index = this.processed_data.length;
-
-    this.data.push(this.row_data);
+    this.raw_data.push(this.row_data);
     this.internal_configs.show_add_row = false;
 
     this.rowadd.emit(this.row_data);

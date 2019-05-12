@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Configs } from '../../models/Configs.model';
 import { Column } from '../../models/Column.model';
+import { Store } from '../../store/store';
 
 @Component({
   selector: '[db-tree-head]',
@@ -10,13 +11,10 @@ import { Column } from '../../models/Column.model';
 export class TreeHeadComponent implements OnInit {
 
   @Input()
-  data: any[];
+  store: Store;
 
   @Input()
   configs: Configs;
-
-  @Input()
-  processed_data: any[];
 
   @Input()
   expand_tracker: Object;
