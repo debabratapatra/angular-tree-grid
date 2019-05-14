@@ -1,11 +1,13 @@
 import { AngularTreeGridService } from '../angular-tree-grid.service';
+import { Configs } from '../models/Configs.model';
 
 export class Store {
     processed_data: any[];
     raw_data: any[];
     display_data: any[];
+    configs: Configs;
 
-    constructor(private angularTreeGridService: AngularTreeGridService) { }
+    constructor(private angularTreeGridService: AngularTreeGridService) {}
 
     getRawData() {
         return this.raw_data;
@@ -37,8 +39,8 @@ export class Store {
         this.display_data = this.processed_data.filter((record) => {
             let found = true;
             for (let index = 0; index < fields.length; index++) {
-                const field_value = record[fields[index]];
-                const search_value = search_values[index];
+                let field_value = record[fields[index]];
+                let search_value = search_values[index];
 
                 // If blank then continue.
                 if (!search_value) {
@@ -50,6 +52,11 @@ export class Store {
                         found = false;
                     }
                 } else {
+                    const column = this.configs.columns[index];
+                    if (!column.case_sensitive_filter) {
+                        field_value = field_value.toLowerCase();
+                        search_value = search_value.toLowerCase();
+                    }
                     if (field_value.indexOf(search_value) === -1) {
                         found = false;
                     }
@@ -110,6 +117,7 @@ export class Store {
         expand_tracker[''] = true;
         this.setProcessedData(processed_data);
         this.setRawData(data);
+        this.configs = configs;
     }
 
     findChildren(data, id, configs) {

@@ -59,7 +59,8 @@ export class AngularTreeGridComponent implements OnChanges {
     sort_type: null,
     editable: false,
     hidden: false,
-    filter: true
+    filter: true,
+    case_sensitive_filter: false
   };
 
    @Output() cellclick: EventEmitter<any> = new EventEmitter();
