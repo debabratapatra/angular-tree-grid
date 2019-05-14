@@ -98,6 +98,7 @@ Below are configs that can be set
 | width  | string  |  n/a | Width of the column with unit(px/rem).  |
 | hidden  | boolean  |  false | Show/Hide column.  |
 | filter  | boolean  |  true | Enable/Disable filter.  |
+| case_sensitive_filter  | boolean  |  false | Case Sensitive/Insensitive Filter.  |
 | editable  | boolean  |  false | To make a specific column editable. By default columns are not editable. edit option needs to be true at **grid** level.  |
 | renderer  | Function  |  n/a | It is a method to render customized value for the column. See this <a href="https://angular-tree-grid.stackblitz.io/basic_tree_grid">Example</a>.  |
 | type  | string  |  '' | Set to 'custom' to have custom component for the column. Otherwise leave blank.  |
