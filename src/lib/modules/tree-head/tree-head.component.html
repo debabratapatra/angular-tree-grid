@@ -1,3 +1,4 @@
+<ng-container *ngIf="configs">
 <tr [ngClass]="configs.css.header_class">
   <th *ngIf="configs.actions.add || configs.actions.edit || configs.actions.delete" class="action-header" 
     (click)="addRow()">
@@ -11,3 +12,4 @@
     Parent
   </th>
 </tr>
+</ng-container>

@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Configs } from './models/Configs.model';
 import { AngularTreeGridService } from './angular-tree-grid.service';
 import { Column } from './models/Column.model';
@@ -9,7 +9,7 @@ import { Store } from './store/store';
   templateUrl: 'angular-tree-grid.component.html',
   styleUrls: ['./angular-tree-grid.component.scss']
 })
-export class AngularTreeGridComponent implements OnChanges {
+export class AngularTreeGridComponent implements OnChanges, OnInit {
   processed_data: any[] = [];
   expand_tracker: Object = {};
   columns: Column[] = [];
@@ -72,6 +72,15 @@ export class AngularTreeGridComponent implements OnChanges {
    @Output() rowdelete: EventEmitter<any> = new EventEmitter();
 
   constructor(private angularTreeGridService: AngularTreeGridService) { }
+
+  ngOnInit() {
+    if (!this.validateConfigs()) {
+      return;
+    }
+    this.setDefaultConfigs();
+    this.setColumnNames();
+    console.log('root', this.configs);
+  }
 
   ngOnChanges() {
     if (!this.validateConfigs()) {
@@ -155,6 +164,14 @@ export class AngularTreeGridComponent implements OnChanges {
         this.columns[i] = Object.assign({}, this.default_column_config, this.columns[i]);
       }
     }
+  }
+
+  collapseAll() {
+    this.angularTreeGridService.collapseAll(this.expand_tracker);
+  }
+
+  expandAll() {
+    this.angularTreeGridService.expandAll(this.expand_tracker);
   }
 
 }

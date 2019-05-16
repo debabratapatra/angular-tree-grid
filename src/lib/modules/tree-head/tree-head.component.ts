@@ -31,6 +31,7 @@ export class TreeHeadComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.configs);
   }
 
   addRow() {

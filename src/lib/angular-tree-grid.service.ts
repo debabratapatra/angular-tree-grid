@@ -22,4 +22,12 @@ export class AngularTreeGridService {
       }
     }
   }
+
+  collapseAll(expand_tracker) {
+    for (const key in expand_tracker) {
+      if (expand_tracker.hasOwnProperty(key)) {
+        expand_tracker[key] = false;
+      }
+    }
+  }
 }
