@@ -29,5 +29,6 @@ export class AngularTreeGridService {
         expand_tracker[key] = false;
       }
     }
+    expand_tracker[''] = true;
   }
 }
