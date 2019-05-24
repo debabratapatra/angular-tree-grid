@@ -37,12 +37,13 @@ export class TreeCellActionsComponent implements OnInit {
     this.display_data = this.store.getDisplayData();
   }
 
-  enableEdit(index) {
+  enableEdit(index, row_data) {
     this.edit_tracker[index] = true;
 
     // Only if edit_parent is true.
     if (this.configs.actions.edit_parent) {
       this.internal_configs.show_parent_col = true;
+      this.internal_configs.current_edited_row = {...row_data};
     }
   }
 

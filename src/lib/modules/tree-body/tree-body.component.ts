@@ -126,15 +126,22 @@ export class TreeBodyComponent implements OnInit {
       });
 
       promise.then(() => {
-        this.edit_tracker[element['idx']] = false;
-        this.internal_configs.show_parent_col = false;
-        this.refreshData(element);
+        this.checkAndRefreshData(element);
       }).catch((err) => {});
     } else {
-      this.edit_tracker[element['idx']] = false;
-      this.internal_configs.show_parent_col = false;
-      this.refreshData(element);
+      this.checkAndRefreshData(element);
       this.rowsave.emit(element);
+    }
+  }
+
+  checkAndRefreshData(element) {
+    this.edit_tracker[element[this.configs.id_field]] = false;
+    this.internal_configs.show_parent_col = false;
+
+    // Only refresh if Parent has been changed.
+    if (this.internal_configs.current_edited_row[this.configs.parent_id_field]
+      !== element[this.configs.parent_id_field]) {
+        this.refreshData(element);
     }
   }
 
@@ -143,7 +150,12 @@ export class TreeBodyComponent implements OnInit {
     this.rowadd.emit(element);
   }
 
-  cancelEdit(index) {
+  cancelEdit(row_data) {
+    const index = row_data[this.configs.id_field];
+
+    // Cancel all changes ie copy from back up.
+    Object.assign(row_data, this.internal_configs.current_edited_row);
+
     this.edit_tracker[index] = false;
     this.internal_configs.show_parent_col = false;
   }

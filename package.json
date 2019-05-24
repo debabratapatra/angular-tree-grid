@@ -1,6 +1,6 @@
 {
   "name": "angular-tree-grid",
-  "version": "2.2.9",
+  "version": "2.3.0",
   "homepage": "https://github.com/debabratapatra/angular-tree-grid",  
   "license" : "MIT",
   "peerDependencies": {
@@ -15,7 +15,7 @@
     "type" : "git",
     "url" : "https://github.com/debabratapatra/angular-tree-grid.git"
   },
-  "keywords": ["Angular", "TreeView", "MultilevelTree", "Tree", "Grid", "Angular Tree view", 
+  "keywords": ["Angular", "TreeView", "Tree", "Grid", "Angular Tree view", 
     "Angular Tree Component", "Angular Tree grid Directive", "Angular4", "Angular5", "Angular6", "Angular7",
-    "Opensource"]
+    "Opensource", "Angular Tree Grid"]
 }

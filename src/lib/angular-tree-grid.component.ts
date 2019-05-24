@@ -79,7 +79,6 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     }
     this.setDefaultConfigs();
     this.setColumnNames();
-    console.log('root', this.configs);
   }
 
   ngOnChanges() {
