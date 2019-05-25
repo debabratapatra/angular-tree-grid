@@ -145,5 +145,8 @@ Add below node to your html.
   <db-angular-tree-grid [data]="data" [configs]="configs"></db-angular-tree-grid>
 ```
 
+### Can you hire me?
+Yes. Please contact me at <a href="mailto:debabratapatra12@gmail.com">debabratapatra12@gmail.com</a>.
+
 ## License
 This project is licensed under the MIT license.
