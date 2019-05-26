@@ -1,7 +1,7 @@
 {
   "name": "angular-tree-grid",
-  "version": "2.3.0",
-  "homepage": "https://debabratapatra.github.io/",  
+  "version": "2.3.1",
+  "homepage": "https://github.com/debabratapatra/angular-tree-grid#readme",
   "license" : "MIT",
   "peerDependencies": {
     "@angular/common": "^7.0.0",
@@ -9,13 +9,18 @@
   },
   "author": { 
     "name" : "Debabrata Patra",
-    "email" : "debabratapatra12@gmail.com"
+    "email" : "debabratapatra12@gmail.com",
+    "url" : "https://debabratapatra.github.io/"
   },
   "repository": {
     "type" : "git",
     "url" : "https://github.com/debabratapatra/angular-tree-grid.git"
   },
-  "keywords": ["Angular", "TreeView", "Tree", "Grid", "Angular Tree view", 
-    "Angular Tree Component", "Angular Tree grid Directive", "Angular4", "Angular5", "Angular6", "Angular7",
+  "bugs": {
+    "url" : "https://github.com/debabratapatra/angular-tree-grid/issues",
+    "email" : "debabratapatra12@gmail.com"
+  },
+  "keywords": ["Angular", "Tree View", "Tree", "Grid", "Angular Tree view", 
+    "Angular Tree Component", "Angular Tree grid Directive", "Angular 4", "Angular 5", "Angular 6", "Angular 7",
     "Opensource", "Angular Tree Grid"]
 }
