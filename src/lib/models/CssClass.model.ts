@@ -8,4 +8,5 @@ export interface CssClass {
     cancel_class: string;
     row_selection_class: string;
     header_class: string;
+    row_filter_class: string;
 }

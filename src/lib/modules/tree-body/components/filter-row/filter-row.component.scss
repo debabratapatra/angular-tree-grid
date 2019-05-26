@@ -1,0 +1,16 @@
+@import '../../tree-body.component.scss';
+
+td {
+    border: 1px solid #cdd5dc;
+    vertical-align: middle;
+    position: relative;
+    padding: 0.2rem;
+
+    input {
+        width: 100%;
+        padding: 0.1rem;
+        box-sizing: border-box;
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing: border-box;
+    }
+}

@@ -1,26 +1,34 @@
-<tr *ngIf="data.length==0">
+<ng-container *ngIf="configs">
+<tr *ngIf="raw_data.length==0">
   <td [innerHTML]="configs.data_loading_text" [attr.colspan]="columns.length + 1" style="text-align: center"></td>
+</tr>
+<tr db-filter-row 
+  [columns]="columns" 
+  [configs]="configs"
+  [store]="store"
+  *ngIf="configs.filter"
+  [expand_tracker]="expand_tracker"
+  [ngClass]="configs.css.row_filter_class">
 </tr>
 <tr db-add-row 
   [columns]="columns" 
   [configs]="configs" 
   [internal_configs]="internal_configs" 
-  [processed_data]="processed_data" 
-  [data]="data"
+  [store]="store"
   (rowadd)="addRow($event)"
   *ngIf="internal_configs.show_add_row"
-  class="{{configs.row_class_function(data)}}">
+  class="{{configs.row_class_function(raw_data)}}">
 </tr>
 <tr 
-  *ngFor="let row_data of processed_data"
-  [attr.class]="configs.row_class_function(data) + ' ' + (row_data.row_selected ? configs.css.row_selection_class : '')"
+  *ngFor="let row_data of display_data"
+  [attr.class]="configs.row_class_function(raw_data) + ' ' + (row_data.row_selected ? configs.css.row_selection_class : '')"
   (click)="rowSelect(row_data, $event)" 
   >
   <td db-tree-cell-actions 
     *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add) && expand_tracker[row_data.parent_pathx]" 
     [row_data]="row_data"
     [configs]="configs"
-    [processed_data]="processed_data"
+    [store]="store"
     [edit_tracker]="edit_tracker"
     [internal_configs]="internal_configs"
     [rowdelete]="rowdelete"
@@ -51,3 +59,4 @@
     </td>
   </ng-container>
 </tr>
+</ng-container>

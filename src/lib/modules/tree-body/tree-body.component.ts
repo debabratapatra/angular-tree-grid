@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Configs } from '../../models/Configs.model';
 import { Column } from '../../models/Column.model';
 import { AngularTreeGridService } from '../../angular-tree-grid.service';
+import { Store } from '../../store/store';
 
 @Component({
   selector: '[db-tree-body]',
@@ -10,15 +11,14 @@ import { AngularTreeGridService } from '../../angular-tree-grid.service';
 })
 export class TreeBodyComponent implements OnInit {
   parents: Object[];
+  raw_data: any[];
+  display_data: any[];
 
   @Input()
-  data: any[];
+  store: Store;
 
   @Input()
   configs: Configs;
-
-  @Input()
-  processed_data: any[];
 
   @Input()
   expand_tracker: Object;
@@ -53,13 +53,18 @@ export class TreeBodyComponent implements OnInit {
   @Input()
   rowselect: EventEmitter<any>;
 
-  constructor(private angularTreeGridService: AngularTreeGridService) { }
+  constructor(private angularTreeGridService: AngularTreeGridService) {
+    this.angularTreeGridService.display_data_observable$.subscribe((display_data) => {
+      this.display_data = display_data;
+    });
+  }
 
   ngOnInit() {
 
     // Add check as we are running library on changes.
-    if (this.data) {
-      this.parents = this.data.map(
+    this.raw_data = this.store.getRawData();
+    if (this.raw_data) {
+      this.parents = this.raw_data.map(
         element => {
           return {
             'id': element[this.configs.id_field],
@@ -68,25 +73,24 @@ export class TreeBodyComponent implements OnInit {
         }
       );
     }
+
   }
 
   refreshData(element) {
-    // If edit parent is not tru then don't refresh.
+    // If edit parent is not true then don't refresh.
     if (!this.configs.actions.edit_parent) {
       return;
     }
     element[this.configs.parent_id_field] = parseInt(element[this.configs.parent_id_field], 10);
-      this.processed_data = [];
-      this.expand_tracker = {};
-      this.edit_tracker = {};
-      this.angularTreeGridService.processData(
-        this.data,
-        this.processed_data,
-        this.expand_tracker,
-        this.configs,
-        this.edit_tracker,
-        this.internal_configs
-      );
+    this.expand_tracker = {};
+    this.edit_tracker = {};
+    this.store.processData(
+      this.store.getRawData(),
+      this.expand_tracker,
+      this.configs,
+      this.edit_tracker,
+      this.internal_configs
+    );
   }
 
   onRowExpand(event) {
@@ -122,13 +126,22 @@ export class TreeBodyComponent implements OnInit {
       });
 
       promise.then(() => {
-        this.edit_tracker[element['idx']] = false;
-        this.refreshData(element);
+        this.checkAndRefreshData(element);
       }).catch((err) => {});
     } else {
-      this.edit_tracker[element['idx']] = false;
-      this.refreshData(element);
+      this.checkAndRefreshData(element);
       this.rowsave.emit(element);
+    }
+  }
+
+  checkAndRefreshData(element) {
+    this.edit_tracker[element[this.configs.id_field]] = false;
+    this.internal_configs.show_parent_col = false;
+
+    // Only refresh if Parent has been changed.
+    if (this.internal_configs.current_edited_row[this.configs.parent_id_field]
+      !== element[this.configs.parent_id_field]) {
+        this.refreshData(element);
     }
   }
 
@@ -137,13 +150,18 @@ export class TreeBodyComponent implements OnInit {
     this.rowadd.emit(element);
   }
 
-  cancelEdit(index) {
+  cancelEdit(row_data) {
+    const index = row_data[this.configs.id_field];
+
+    // Cancel all changes ie copy from back up.
+    Object.assign(row_data, this.internal_configs.current_edited_row);
+
     this.edit_tracker[index] = false;
     this.internal_configs.show_parent_col = false;
   }
 
   rowSelect(row_data, event) {
-    this.processed_data.forEach(data => {
+    this.store.getDisplayData().forEach(data => {
       data.row_selected = false;
     });
     row_data.row_selected = true;

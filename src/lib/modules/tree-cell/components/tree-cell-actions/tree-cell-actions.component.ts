@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Configs } from '../../../../models/Configs.model';
+import { Store } from '../../../../store/store';
 
 @Component({
   selector: '[db-tree-cell-actions]',
@@ -7,8 +8,10 @@ import { Configs } from '../../../../models/Configs.model';
   styleUrls: ['./tree-cell-actions.component.scss']
 })
 export class TreeCellActionsComponent implements OnInit {
+  display_data: any;
+
   @Input()
-  processed_data: any;
+  store: Store;
 
   @Input()
   edit_tracker: any;
@@ -31,20 +34,22 @@ export class TreeCellActionsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.display_data = this.store.getDisplayData();
   }
 
-  enableEdit(index) {
+  enableEdit(index, row_data) {
     this.edit_tracker[index] = true;
 
     // Only if edit_parent is true.
     if (this.configs.actions.edit_parent) {
       this.internal_configs.show_parent_col = true;
+      this.internal_configs.current_edited_row = {...row_data};
     }
   }
 
   findRecordIndex(idx: number) {
-    for (const index in this.processed_data) {
-      if (this.processed_data[index].idx === idx) {
+    for (const index in this.display_data) {
+      if (this.display_data[index].idx === idx) {
         return index;
       }
     }
@@ -60,10 +65,10 @@ export class TreeCellActionsComponent implements OnInit {
       });
 
       promise.then(() => {
-        this.processed_data.splice(this.findRecordIndex(rec.idx), 1);
+        this.display_data.splice(this.findRecordIndex(rec.idx), 1);
       }).catch((err) => {});
     } else {
-      this.processed_data.splice(this.findRecordIndex(rec.idx), 1);
+      this.display_data.splice(this.findRecordIndex(rec.idx), 1);
       this.rowdelete.emit(rec);
     }
   }

@@ -1,0 +1,6 @@
+<td *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add)"></td>
+<td *ngFor="let column of columns">
+  <div *ngIf="column.filter">
+    <input type="text" (keyup)="filter()" [(ngModel)]="search_values[column.name]">
+  </div>
+</td>

@@ -1,14 +1,15 @@
-import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnChanges, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Configs } from './models/Configs.model';
 import { AngularTreeGridService } from './angular-tree-grid.service';
 import { Column } from './models/Column.model';
+import { Store } from './store/store';
 
 @Component({
   selector: 'db-angular-tree-grid',
   templateUrl: 'angular-tree-grid.component.html',
   styleUrls: ['./angular-tree-grid.component.scss']
 })
-export class AngularTreeGridComponent implements OnChanges {
+export class AngularTreeGridComponent implements OnChanges, OnInit {
   processed_data: any[] = [];
   expand_tracker: Object = {};
   columns: Column[] = [];
@@ -17,6 +18,7 @@ export class AngularTreeGridComponent implements OnChanges {
     show_add_row: false,
     show_parent_col: false
   };
+  store = new Store(this.angularTreeGridService);
 
   @Input()
   data: any[];
@@ -34,7 +36,8 @@ export class AngularTreeGridComponent implements OnChanges {
       save_class: '',
       cancel_class: '',
       row_selection_class: 'selected',
-      header_class: ''
+      header_class: '',
+      row_filter_class: ''
     },
     actions: {
       edit: false,
@@ -46,6 +49,7 @@ export class AngularTreeGridComponent implements OnChanges {
       edit_parent: false
     },
     data_loading_text: 'Loading...',
+    filter: false,
     row_class_function: () => true,
     row_edit_function: () => true,
     row_delete_function: () => true
@@ -55,7 +59,8 @@ export class AngularTreeGridComponent implements OnChanges {
     sort_type: null,
     editable: false,
     hidden: false,
-    sortable: true
+    filter: true,
+    case_sensitive_filter: false
   };
 
    @Output() cellclick: EventEmitter<any> = new EventEmitter();
@@ -68,15 +73,22 @@ export class AngularTreeGridComponent implements OnChanges {
 
   constructor(private angularTreeGridService: AngularTreeGridService) { }
 
+  ngOnInit() {
+    if (!this.validateConfigs()) {
+      return;
+    }
+    this.setDefaultConfigs();
+    this.setColumnNames();
+  }
+
   ngOnChanges() {
     if (!this.validateConfigs()) {
       return;
     }
     this.setDefaultConfigs();
     this.setColumnNames();
-    this.angularTreeGridService.processData(
+    this.store.processData(
       this.data,
-      this.processed_data,
       this.expand_tracker,
       this.configs,
       this.edit_tracker,
@@ -151,6 +163,14 @@ export class AngularTreeGridComponent implements OnChanges {
         this.columns[i] = Object.assign({}, this.default_column_config, this.columns[i]);
       }
     }
+  }
+
+  collapseAll() {
+    this.angularTreeGridService.collapseAll(this.expand_tracker);
+  }
+
+  expandAll() {
+    this.angularTreeGridService.expandAll(this.expand_tracker);
   }
 
 }
