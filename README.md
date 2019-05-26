@@ -3,7 +3,7 @@ Angular Tree Grid to show hierarchical data. If data needs to be grouped by fiel
 
 ## Demo
 
-Click <a href="https://angular-tree-grid.stackblitz.io/" target="_blank">here</a> for demo.
+Click <a href="https://angular-tree-grid.stackblitz.io/" target="_blank">here</a> for demo. Visit my <a href="https://debabratapatra.github.io" target="_blank">Website</a> to know more.
 <div>
 <img src="https://debabratapatra.github.io/resources/images/cards/angular-tree-grid.png" alt="Loading" />
 </div>
