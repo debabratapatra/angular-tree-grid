@@ -9,6 +9,7 @@ export interface Configs {
     parent_id_field?: string;
     parent_display_field?: string;
     id_field?: string;
+    action_column_width?: string;
     actions: Actions;
     filter: boolean;
     row_class_function: Function;

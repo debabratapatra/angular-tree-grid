@@ -14,13 +14,13 @@ tr {
         vertical-align: middle;
         position: relative;
         padding: 0.5rem 0.5rem;
+        box-sizing: border-box;
 
         &.column-hide {
             display: none;
         }
 
-        &.action-header {
-            width: 50px;
+        &.action-column {
         }
 
         i.plus {

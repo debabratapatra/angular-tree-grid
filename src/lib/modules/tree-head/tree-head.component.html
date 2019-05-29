@@ -1,6 +1,9 @@
 <ng-container *ngIf="configs">
 <tr [ngClass]="configs.css.header_class">
-  <th *ngIf="configs.actions.add || configs.actions.edit || configs.actions.delete" class="action-header" 
+  <th 
+    *ngIf="configs.actions.add || configs.actions.edit || configs.actions.delete" 
+    class="action-column"
+    width="{{configs.action_column_width}}"
     (click)="addRow()">
     <i *ngIf="!internal_configs.show_add_row && configs.actions.add" [ngClass]="configs.css.add_class" aria-hidden="true" title="Add a row"></i>
     <span *ngIf="internal_configs.show_add_row || !configs.actions.add">Actions</span>
