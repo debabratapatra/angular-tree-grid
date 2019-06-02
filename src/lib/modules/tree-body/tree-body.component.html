@@ -55,7 +55,7 @@
       >
       </db-tree-cell>
     </td>
-    <td *ngIf="internal_configs.show_parent_col">
+    <td *ngIf="configs.show_parent_on_edit && internal_configs.show_parent_col">
       <select *ngIf="edit_tracker[row_data[configs.id_field]]" 
         [(ngModel)]="row_data[configs.parent_id_field]">
         <option *ngFor="let parent of parents" [value]="parent.id">{{parent.value}}</option>
@@ -63,7 +63,7 @@
     </td>    
 
     <!-- Add column to fix UI issue when add row is enabled but don't show when edit is enabled for the row -->
-    <td *ngIf="internal_configs.show_add_row && !internal_configs.show_parent_col"></td>
+    <td *ngIf="internal_configs.show_add_row && !(internal_configs.show_parent_col && configs.show_parent_on_edit)"></td>
   </ng-container>
 </tr>
 </ng-container>

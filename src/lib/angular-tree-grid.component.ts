@@ -51,6 +51,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     data_loading_text: 'Loading...',
     filter: false,
     multi_select: false,
+    show_parent_on_edit: true,
     action_column_width: '60px',
     row_class_function: () => true,
     row_edit_function: () => true,

@@ -13,6 +13,7 @@ export interface Configs {
     actions: Actions;
     filter: boolean;
     multi_select: boolean;
+    show_parent_on_edit: boolean;
     row_class_function: Function;
     row_edit_function: Function;
     row_delete_function: Function;
