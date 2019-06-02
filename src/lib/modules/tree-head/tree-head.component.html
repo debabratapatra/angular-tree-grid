@@ -1,6 +1,6 @@
 <ng-container *ngIf="configs">
 <tr [ngClass]="configs.css.header_class">
-  <th *ngIf="configs.multi_select">
+  <th *ngIf="configs.multi_select" class="checkbox_column">
     <input type="checkbox" (click)="selectAll($event)" [checked]="this.internal_configs.all_selected">
   </th>
   <th 
