@@ -53,6 +53,9 @@ export class TreeBodyComponent implements OnInit {
   @Input()
   rowselect: EventEmitter<any>;
 
+  @Input()
+  rowdeselect: EventEmitter<any>;
+
   constructor(private angularTreeGridService: AngularTreeGridService) {
     this.angularTreeGridService.display_data_observable$.subscribe((display_data) => {
       this.display_data = display_data;
@@ -177,8 +180,10 @@ export class TreeBodyComponent implements OnInit {
   selectRowOnCheck(row_data, event) {
     if (event.target.checked) {
       row_data.row_selected = true;
+      this.rowselect.emit({data: row_data, event: event});
     } else {
       row_data.row_selected = false;
+      this.rowdeselect.emit({data: row_data, event: event});
     }
 
     this.setSelectAllConfig();

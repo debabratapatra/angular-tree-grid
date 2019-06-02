@@ -70,6 +70,9 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
    @Output() expand: EventEmitter<any> = new EventEmitter();
    @Output() collapse: EventEmitter<any> = new EventEmitter();
    @Output() rowselect: EventEmitter<any> = new EventEmitter();
+   @Output() rowdeselect: EventEmitter<any> = new EventEmitter();
+   @Output() rowselectall: EventEmitter<any> = new EventEmitter();
+   @Output() rowdeselectall: EventEmitter<any> = new EventEmitter();
    @Output() rowadd: EventEmitter<any> = new EventEmitter();
    @Output() rowsave: EventEmitter<any> = new EventEmitter();
    @Output() rowdelete: EventEmitter<any> = new EventEmitter();

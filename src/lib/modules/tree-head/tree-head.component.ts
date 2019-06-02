@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Configs } from '../../models/Configs.model';
 import { Column } from '../../models/Column.model';
 import { Store } from '../../store/store';
@@ -28,6 +28,12 @@ export class TreeHeadComponent implements OnInit {
   @Input()
   columns: Column[];
 
+  @Input()
+  rowselectall: EventEmitter<any>;
+
+  @Input()
+  rowdeselectall: EventEmitter<any>;
+
   constructor() { }
 
   ngOnInit() {}
@@ -39,8 +45,10 @@ export class TreeHeadComponent implements OnInit {
   selectAll(e) {
     if (e.target.checked) {
       this.store.selectAll();
+      this.rowselectall.emit(e);
     } else {
       this.store.deSelectAll();
+      this.rowdeselectall.emit(e);
     }
   }
 
