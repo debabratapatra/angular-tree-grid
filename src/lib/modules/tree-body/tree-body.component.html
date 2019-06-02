@@ -26,7 +26,7 @@
   (click)="selectRow(row_data, $event)" 
   >  
   <ng-container *ngIf="expand_tracker[row_data.parent_pathx]">
-    <td *ngIf="configs.multi_select">
+    <td *ngIf="configs.multi_select" class="checkbox_column">
       <input type="checkbox" [checked]="row_data.row_selected" (click)="selectRowOnCheck(row_data, $event)">
     </td>
     <td db-tree-cell-actions 

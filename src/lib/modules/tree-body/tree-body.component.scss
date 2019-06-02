@@ -25,6 +25,10 @@ tr {
         padding: 0.5rem 0.5rem;
         box-sizing: border-box;
 
+        &.checkbox_column {
+            text-align: center;
+        }
+
         &:nth-child(1) {
             padding: 0.3rem;
         }
