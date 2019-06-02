@@ -50,6 +50,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     },
     data_loading_text: 'Loading...',
     filter: false,
+    multi_select: false,
     action_column_width: '60px',
     row_class_function: () => true,
     row_edit_function: () => true,
@@ -172,6 +173,16 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
 
   expandAll() {
     this.angularTreeGridService.expandAll(this.expand_tracker);
+  }
+
+  selectAll() {
+    this.store.selectAll();
+    this.internal_configs.all_selected = true;
+  }
+
+  deSelectAll() {
+    this.store.deSelectAll();
+    this.internal_configs.all_selected = false;
   }
 
 }

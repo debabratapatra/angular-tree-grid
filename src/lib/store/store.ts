@@ -67,6 +67,18 @@ export class Store {
         this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
     }
 
+    selectAll() {
+        this.display_data.forEach(data => {
+            data.row_selected = true;
+        });
+    }
+
+    deSelectAll() {
+        this.display_data.forEach(data => {
+            data.row_selected = false;
+        });
+    }
+
     findTopParentNode(data, configs) {
         const ids = data.map(element => element[configs.id_field]);
         let top_parents = [];

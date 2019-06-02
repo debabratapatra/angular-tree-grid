@@ -160,12 +160,45 @@ export class TreeBodyComponent implements OnInit {
     this.internal_configs.show_parent_col = false;
   }
 
-  rowSelect(row_data, event) {
+  selectRow(row_data, event) {
+
+    // Don't run if Multi select is enabled.
+    if (this.configs.multi_select) {
+      return;
+    }
+
     this.store.getDisplayData().forEach(data => {
       data.row_selected = false;
     });
     row_data.row_selected = true;
     this.rowselect.emit({data: row_data, event: event});
+  }
+
+  selectRowOnCheck(row_data, event) {
+    if (event.target.checked) {
+      row_data.row_selected = true;
+    } else {
+      row_data.row_selected = false;
+    }
+
+    this.setSelectAllConfig();
+  }
+
+  /**
+   * Set Select All config on Select change.
+   *
+   */
+  setSelectAllConfig() {
+    let select_all = true;
+
+    this.store.getDisplayData().forEach(data => {
+      if (!data.row_selected) {
+        select_all = false;
+      }
+    });
+
+    this.internal_configs.all_selected = select_all;
+
   }
 
 }

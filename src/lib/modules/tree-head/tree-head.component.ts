@@ -36,4 +36,12 @@ export class TreeHeadComponent implements OnInit {
     this.internal_configs.show_add_row = true;
   }
 
+  selectAll(e) {
+    if (e.target.checked) {
+      this.store.selectAll();
+    } else {
+      this.store.deSelectAll();
+    }
+  }
+
 }

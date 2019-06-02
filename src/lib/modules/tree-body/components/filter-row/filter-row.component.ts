@@ -24,6 +24,9 @@ export class FilterRowComponent implements OnInit {
   @Input()
   configs: Configs;
 
+  @Input()
+  internal_configs: any;
+
   constructor(private angularTreeGridService: AngularTreeGridService) { }
 
   ngOnInit() {

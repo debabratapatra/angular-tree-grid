@@ -6,6 +6,7 @@
   [columns]="columns" 
   [configs]="configs"
   [store]="store"
+  [internal_configs]="internal_configs" 
   *ngIf="configs.filter"
   [expand_tracker]="expand_tracker"
   [ngClass]="configs.css.row_filter_class">
@@ -22,20 +23,23 @@
 <tr 
   *ngFor="let row_data of display_data"
   [attr.class]="configs.row_class_function(raw_data) + ' ' + (row_data.row_selected ? configs.css.row_selection_class : '')"
-  (click)="rowSelect(row_data, $event)" 
-  >
-  <td db-tree-cell-actions 
-    *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add) && expand_tracker[row_data.parent_pathx]" 
-    [row_data]="row_data"
-    [configs]="configs"
-    [store]="store"
-    [edit_tracker]="edit_tracker"
-    [internal_configs]="internal_configs"
-    [rowdelete]="rowdelete"
-    (canceledit)="cancelEdit($event)" 
-    (editcomplete)="saveRecord($event)">
-  </td>
+  (click)="selectRow(row_data, $event)" 
+  >  
   <ng-container *ngIf="expand_tracker[row_data.parent_pathx]">
+    <td *ngIf="configs.multi_select">
+      <input type="checkbox" [checked]="row_data.row_selected" (click)="selectRowOnCheck(row_data, $event)">
+    </td>
+    <td db-tree-cell-actions 
+      *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add)" 
+      [row_data]="row_data"
+      [configs]="configs"
+      [store]="store"
+      [edit_tracker]="edit_tracker"
+      [internal_configs]="internal_configs"
+      [rowdelete]="rowdelete"
+      (canceledit)="cancelEdit($event)" 
+      (editcomplete)="saveRecord($event)">
+    </td>
     <td *ngFor="let column of columns; index as i" [ngClass]="{'column-hide': column.hidden}">
       <db-tree-cell
         [configs]="configs"
@@ -56,7 +60,10 @@
         [(ngModel)]="row_data[configs.parent_id_field]">
         <option *ngFor="let parent of parents" [value]="parent.id">{{parent.value}}</option>
       </select>
-    </td>
+    </td>    
+
+    <!-- Add column to fix UI issue when add row is enabled but don't show when edit is enabled for the row -->
+    <td *ngIf="internal_configs.show_add_row && !internal_configs.show_parent_col"></td>
   </ng-container>
 </tr>
 </ng-container>

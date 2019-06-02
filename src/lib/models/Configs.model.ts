@@ -12,6 +12,7 @@ export interface Configs {
     action_column_width?: string;
     actions: Actions;
     filter: boolean;
+    multi_select: boolean;
     row_class_function: Function;
     row_edit_function: Function;
     row_delete_function: Function;
