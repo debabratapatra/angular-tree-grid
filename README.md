@@ -136,7 +136,10 @@ Below are configs that can be set
 | expand  | **row_data:** Expanded Row | Event fires when parent is expanded.  |
 | collapse  | **row_data:** Collapsed Row | Event fires when parent is collapsed.  |
 | cellclick  | **event** Consist of: <ul><li> **row:** Selected Row </li><li> **column:** Selected Column</li></ul> | Event fires when a child cell is clicked.  |
-| rowselect  | **row:** Selected Row | Event fires when a row is selected.  |
+| rowselect  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is selected.  |
+| rowdeselect  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is deselected.  |
+| rowselectall  | **event:** Event Object | Event fires when select-all checkbox is checked.  |
+| rowdeselectall  | **event:** Event Object | Event fires when select-all checkbox is unchecked.  |
 | rowsave  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is saved.  |
 | rowdelete  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is deleted.  |
 | rowadd  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is added.  |
