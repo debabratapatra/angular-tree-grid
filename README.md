@@ -150,8 +150,8 @@ Add below node to your html.
   <db-angular-tree-grid [data]="data" [configs]="configs"></db-angular-tree-grid>
 ```
 
-### Can I hire you?
-Yes. Please contact me at <a href="mailto:debabratapatra12@gmail.com">debabratapatra12@gmail.com</a>.
+### Can I hire you guys?
+Yes. Please contact us at <a href="mailto:debabratapatra12@gmail.com">debabratapatra12@gmail.com</a>. We will be happy to work with you!
 
 ## License
 This project is licensed under the MIT license.
