@@ -5,9 +5,10 @@ import { TreeCellModule } from '../tree-cell/tree-cell.module';
 import { FormsModule } from '@angular/forms';
 import { AddRowComponent } from './components/add-row/add-row.component';
 import { FilterRowComponent } from './components/filter-row/filter-row.component';
+import { SubgridComponent } from './components/subgrid/subgrid.component';
 
 @NgModule({
-  declarations: [TreeBodyComponent, AddRowComponent, FilterRowComponent],
+  declarations: [TreeBodyComponent, AddRowComponent, FilterRowComponent, SubgridComponent],
   imports: [
     CommonModule,
     TreeCellModule,

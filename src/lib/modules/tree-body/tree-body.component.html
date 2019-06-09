@@ -20,7 +20,22 @@
   *ngIf="internal_configs.show_add_row"
   class="{{configs.row_class_function(raw_data)}}">
 </tr>
-<tr 
+<ng-container *ngIf="configs.subgrid">
+  <tr db-subgrid
+  *ngFor="let row_data of display_data"
+  [configs]="configs" 
+  [internal_configs]="internal_configs" 
+  [expand_tracker]="expand_tracker" 
+  [edit_tracker]="edit_tracker" 
+  [store]="store"
+  [row_data]="row_data"
+  [cellclick]="cellclick"
+  >
+
+  </tr>
+</ng-container>
+<ng-container *ngIf="!configs.subgrid">
+  <tr 
   *ngFor="let row_data of display_data"
   [attr.class]="configs.row_class_function(raw_data) + ' ' + (row_data.row_selected ? configs.css.row_selection_class : '')"
   (click)="selectRow(row_data, $event)" 
@@ -66,4 +81,6 @@
     <td *ngIf="internal_configs.show_add_row && !(internal_configs.show_parent_col && configs.show_parent_on_edit)"></td>
   </ng-container>
 </tr>
+</ng-container>
+
 </ng-container>

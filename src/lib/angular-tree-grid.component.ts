@@ -53,6 +53,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     filter: false,
     multi_select: false,
     show_parent_on_edit: true,
+    subgrid: false,
     action_column_width: '60px',
     row_class_function: () => true,
     row_edit_function: () => true,
@@ -120,7 +121,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
       window.console.error('id field is mandatory!');
     }
 
-    if (!this.configs.parent_id_field) {
+    if (!this.configs.parent_id_field && !this.configs.subgrid) {
       isValidated = false;
       window.console.error('parent_id field is mandatory!');
     }
@@ -130,14 +131,29 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
       console.error('id_field doesn\'t exist!');
     }
 
-    if (!element.hasOwnProperty(this.configs.parent_id_field)) {
+    if (!element.hasOwnProperty(this.configs.parent_id_field) && !this.configs.subgrid) {
       isValidated = false;
       console.error('parent_id_field doesn\'t exist!');
     }
 
     if (!element.hasOwnProperty(this.configs.parent_display_field)) {
       isValidated = false;
-      console.error('parent_display_field doesn\'t exist!');
+      console.error('parent_display_field doesn\'t exist! Basically this field will be expanded.');
+    }
+
+    if (this.configs.subgrid && !this.configs.subgrid_config) {
+      isValidated = false;
+      console.error('subgrid_config doesn\'t exist!');
+    }
+
+    if (this.configs.subgrid && this.configs.subgrid_config && !this.configs.subgrid_config.id_field) {
+      isValidated = false;
+      console.error('id_field of subgrid doesn\'t exist!');
+    }
+
+    if (this.configs.subgrid && this.configs.subgrid_config && !this.configs.subgrid_config.columns) {
+      isValidated = false;
+      console.error('columns of subgrid doesn\'t exist!');
     }
 
     return isValidated;
