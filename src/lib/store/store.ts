@@ -35,6 +35,15 @@ export class Store {
         this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
     }
 
+    updateProcessedData(row_data) {
+        const blank_row = {
+            leaf: true,
+            parent_pathx: row_data[this.configs.id_field]
+        };
+        this.display_data.splice(row_data.row_index + 1, 0, blank_row);
+        return blank_row;
+    }
+
     filterBy(fields, search_values) {
         this.display_data = this.processed_data.filter((record) => {
             let found = true;
@@ -98,7 +107,7 @@ export class Store {
         return top_parents;
     }
 
-    processData(data, expand_tracker, configs, edit_tracker, internal_configs) {
+    processData(data, expand_tracker, configs: Configs, edit_tracker, internal_configs) {
         const top_parents = this.findTopParentNode(data, configs);
         const processed_data = [];
         internal_configs.top_parents = top_parents;
@@ -114,6 +123,8 @@ export class Store {
             this.orderData(data, processed_data, configs, children, [], 0);
         });
 
+        let index = 0;
+
         processed_data.map(rec => {
             const parent_pathx = rec.parent_pathx;
             rec.parent_pathx = parent_pathx.join('.');
@@ -123,6 +134,14 @@ export class Store {
             rec.pathx = parent_pathx.join('.');
             expand_tracker[rec.pathx] = false;
             edit_tracker[rec[configs.id_field]] = false;
+            rec.row_index = index;
+
+            index = index  + 1;
+
+            // For Subgrid feature, expect all rows are expandable.
+            if (configs.subgrid) {
+                rec.leaf = false;
+            }
         });
 
         // Expand root.

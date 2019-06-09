@@ -166,6 +166,14 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     // Deep clone.
     this.configs.actions = Object.assign({}, this.default_configs.actions, this.configs.actions);
     this.configs.css = Object.assign({}, this.default_configs.css, this.configs.css);
+
+    if (this.configs.subgrid) {
+      this.configs.multi_select = false;
+      this.configs.filter = false;
+      this.configs.actions.add = false;
+      this.configs.actions.edit = false;
+      this.configs.actions.delete = false;
+    }
   }
 
   setColumnNames() {

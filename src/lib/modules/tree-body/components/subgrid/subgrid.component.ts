@@ -30,10 +30,39 @@ export class SubgridComponent implements OnInit {
   @Input()
   cellclick: EventEmitter<any>;
 
+  @Input()
+  expand: EventEmitter<any>;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onRowExpand(event) {
+    const row_data = event.data;
+
+    const promise = new Promise((resolve, reject) => {
+      this.expand.emit({
+        data: row_data,
+        resolve: resolve
+      });
+    });
+
+    promise.then((child_rows: any) => {
+      this.expand_tracker[row_data.pathx] = true;
+      const blank_row: any = this.store.updateProcessedData(row_data);
+
+      child_rows.map(child => {
+        child.leaf = true;
+      });
+      blank_row.children = child_rows;
+
+    }).catch((err) => {});
+  }
+
+  onRowCollapse(event) {
+    const row_data = event.data;
+    this.expand_tracker[row_data.pathx] = false;
   }
 
 }
