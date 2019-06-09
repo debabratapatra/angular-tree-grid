@@ -57,19 +57,21 @@ Below are configs that can be set
 #### Grid Configurations
 | Field  |Type   |Default |  Description |
 |---|---|---|---|
-| *id_field  | string  |  n/a | It's a mandatory field. It is a column key.  |
-|  *parent_id_field |  string | n/a  | It's a mandatory field. It is a column key.  |
-|  *parent_display_field |  string | n/a  |  It's a mandatory field. It is the display field of id/parent_id. |
+| *id_field  | string  |  n/a | It's a mandatory field. It is the primary key.  |
+|  *parent_id_field |  string | n/a  | It's a mandatory field. It is the foreign key.  |
+|  *parent_display_field |  string | n/a  |  It's a mandatory field. It is the display field of the row that will be expanded. |
 |  data_loading_text |  string | 'Loading...'  |  Loading place holder. This will be displayed when data is empty. |
 |  filter |  boolean | false  |  It enables filter toolbar. Filter is customizable at column level. |
 |  multi_select |  boolean | false  |  It enables checkbox selection. |
+|  subgrid |  boolean | false  |  It enables subgrid feature. parent_id_field is not mandatory for subgrid. Add, Edit, Delete, Sort features are disabled when it is true. See this <a href="https://angular-tree-grid.stackblitz.io/subgrid">Example</a> for more information|
+|  subgrid_config |  Object | n/a  |  Configs for subgrid. See below table for this. |
 |  show_parent_on_edit |  boolean | true  |  Show Parent column On Edit. It is true by default. |
 |  row_class_function |  Function | n/a  |  Callback function for row class. A custom class can be returned which will be added to the row. |
 |  row_edit_function |  Function | n/a  |  Callback function for edit feature. Based on the return type(Boolean) of this function, edit can be enabled/disabled for a specific row. See <a href="https://angular-tree-grid.stackblitz.io/cond_row_edit">Example</a> for more information. |
 |  row_delete_function |  Function | n/a  |  Callback function for delete feature. Based on the return type(Boolean) of this function, delete can be enabled/disabled for a specific row. See <a href="https://angular-tree-grid.stackblitz.io/cond_row_edit">Example</a> for more information. |
 | actions  | Object  |  n/a | Settings for Action column. See Below  |
 | css  | Object  |  n/a | Css class for icons. See Below  |
-| columns  | Object  |  n/a | It is an Array. If not provided all keys of the data Array will be used as Column Headers. Please find the description below  |
+| columns  | Array  |  n/a | It is an Array. If not provided all keys of the data Array will be used as Column Headers. Please find the description below  |
 
 ##### actions
 | Field  |Type   |Default |  Description |
@@ -107,6 +109,14 @@ Below are configs that can be set
 | component  | Object  |  n/a | Custom View Component. Mandatory if type is custom.See this <a href="https://angular-tree-grid.stackblitz.io/custom_view_component">Example</a>.|
 | editor  | Object  |  n/a | Custom Editor Component. If given custom editor component will be used instead of default editor. See this <a href="https://angular-tree-grid.stackblitz.io/custom_edit_component">Example</a>.  |
 | onComponentInit  | Function  |  n/a | Callback function for the column on component init.  |
+| summary_renderer  | Function  |  n/a | Renderer for summary. It's only available for subgrid. See <a href="https://angular-tree-grid.stackblitz.io/cond_row_edit">Example</a> for more information. |
+
+##### subgrid_config
+| Field  |Type   |Default |  Description |
+|---|---|---|---|
+| *id_field  | string  |  n/a | It’s a mandatory field. It is the primary key of child data.  |
+| show_summary_row  | boolean  |  false | To show summary row. It defaults to false. Use summary_renderer at the column level. |
+| Column  | Array  |  n/a | See above columns table.  |
 
 #### Example
 ```
@@ -133,7 +143,7 @@ Below are configs that can be set
 
 | Event  |Arguments   | Description |
 |---|---|---|
-| expand  | **row_data:** Expanded Row | Event fires when parent is expanded.  |
+| expand  | **row_data:** Expanded Row <br> For Subgrid: **event** Consist of: <ul><li> **data:** Selected Row </li><li> **resolve:** Promise Object</li></ul> | Event fires when parent is expanded.  |
 | collapse  | **row_data:** Collapsed Row | Event fires when parent is collapsed.  |
 | cellclick  | **event** Consist of: <ul><li> **row:** Selected Row </li><li> **column:** Selected Column</li></ul> | Event fires when a child cell is clicked.  |
 | rowselect  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is selected.  |
