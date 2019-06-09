@@ -110,6 +110,7 @@ Below are configs that can be set
 | editor  | Object  |  n/a | Custom Editor Component. If given custom editor component will be used instead of default editor. See this <a href="https://angular-tree-grid.stackblitz.io/custom_edit_component">Example</a>.  |
 | onComponentInit  | Function  |  n/a | Callback function for the column on component init.  |
 | summary_renderer  | Function  |  n/a | Renderer for summary. It's only available for subgrid. See <a href="https://angular-tree-grid.stackblitz.io/cond_row_edit">Example</a> for more information. |
+| sortable  | boolean  |  false | Sort Column. Only available for subgrid feature.  |
 
 ##### subgrid_config
 | Field  |Type   |Default |  Description |
