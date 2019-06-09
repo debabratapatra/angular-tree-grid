@@ -57,7 +57,10 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     action_column_width: '60px',
     row_class_function: () => true,
     row_edit_function: () => true,
-    row_delete_function: () => true
+    row_delete_function: () => true,
+    subgrid_config: {
+      show_summary_row: false
+    }
   };
   default_column_config: Column = {
     sorted: 0,
