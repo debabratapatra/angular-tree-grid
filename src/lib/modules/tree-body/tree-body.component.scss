@@ -17,6 +17,9 @@ tr {
     &.parent {
         background: #fafbff;
     }
+    &.subgrid-row {
+        background: #f3f3f3;
+    }
 
     td {
         border: 1px solid #cdd5dc;
@@ -29,7 +32,7 @@ tr {
             text-align: center;
         }
 
-        &:nth-child(1) {
+        &.expand-column {
             padding: 0.3rem;
         }
     

@@ -35,12 +35,26 @@ export class Store {
         this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
     }
 
-    updateProcessedData(row_data) {
-        const blank_row = {
-            leaf: true,
-            parent_pathx: row_data[this.configs.id_field]
-        };
-        this.display_data.splice(row_data.row_index + 1, 0, blank_row);
+    /**
+     * Show Blank row for subgrid.
+     *
+     * @param  row_data Row Data
+     * @returns blank_row
+     */
+    showBlankRow(row_data) {
+        const row_index = this.display_data.map(row => row[this.configs.id_field]).
+                        indexOf(row_data[this.configs.id_field]);
+
+        let blank_row = this.display_data[row_index + 1];
+        if (!blank_row || blank_row.parent_pathx !== row_data[this.configs.id_field]) {
+            blank_row = {
+                leaf: true,
+                parent_pathx: row_data[this.configs.id_field]
+            };
+            blank_row[this.configs.id_field] = -1;
+            this.display_data.splice(row_index + 1, 0, blank_row);
+        }
+
         return blank_row;
     }
 
@@ -123,8 +137,6 @@ export class Store {
             this.orderData(data, processed_data, configs, children, [], 0);
         });
 
-        let index = 0;
-
         processed_data.map(rec => {
             const parent_pathx = rec.parent_pathx;
             rec.parent_pathx = parent_pathx.join('.');
@@ -134,9 +146,6 @@ export class Store {
             rec.pathx = parent_pathx.join('.');
             expand_tracker[rec.pathx] = false;
             edit_tracker[rec[configs.id_field]] = false;
-            rec.row_index = index;
-
-            index = index  + 1;
 
             // For Subgrid feature, expect all rows are expandable.
             if (configs.subgrid) {

@@ -1,6 +1,7 @@
 <ng-container *ngIf="expand_tracker[row_data.parent_pathx]">
   <ng-container *ngIf="!row_data.leaf">
-    <td *ngFor="let column of configs.columns; index as i" [ngClass]="{'column-hide': column.hidden}">
+    <td *ngFor="let column of configs.columns; index as i" 
+      [ngClass]="{'column-hide': column.hidden, 'expand-column': i == 0}">
       <db-tree-cell
         [configs]="configs"
         [column]="column"
@@ -17,7 +18,7 @@
     </td>
   </ng-container>
   <ng-container *ngIf="row_data.leaf">
-    <td colspan="2">
+    <td colspan="2" class="subgrid-column">
         <table width="100%">
             <thead>
               <tr>

@@ -50,7 +50,7 @@ export class SubgridComponent implements OnInit {
 
     promise.then((child_rows: any) => {
       this.expand_tracker[row_data.pathx] = true;
-      const blank_row: any = this.store.updateProcessedData(row_data);
+      const blank_row: any = this.store.showBlankRow(row_data);
 
       child_rows.map(child => {
         child.leaf = true;
