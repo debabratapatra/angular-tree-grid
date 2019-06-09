@@ -16,7 +16,8 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
   edit_tracker: Object = {}; // Track Edit options.
   internal_configs: any = {
     show_add_row: false,
-    show_parent_col: false
+    show_parent_col: false,
+    all_selected: false
   };
   store = new Store(this.angularTreeGridService);
 
