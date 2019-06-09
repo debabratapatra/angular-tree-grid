@@ -17,8 +17,8 @@
     </td>
   </ng-container>
   <ng-container *ngIf="row_data.leaf">
-    <td colspan="2" class="subgrid-column">
-        <table width="100%">
+    <td [attr.colspan]="configs.columns.length" class="subgrid-column">
+        <table class="subgrid-table">
             <thead>
               <tr>
                 <th *ngFor="let column of configs.subgrid_config.columns">

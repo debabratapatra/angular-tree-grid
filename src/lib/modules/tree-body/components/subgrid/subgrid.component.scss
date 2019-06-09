@@ -32,8 +32,9 @@ td {
         border-right: 0 !important;
     }
 
-    table {
+    table.subgrid-table {
         border-collapse: collapse;
+        width: 100%;
     }
 }
 
