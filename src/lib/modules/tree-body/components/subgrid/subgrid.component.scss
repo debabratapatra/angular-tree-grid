@@ -35,6 +35,50 @@ td {
     table.subgrid-table {
         border-collapse: collapse;
         width: 100%;
+
+        th {
+    
+            &.sortable {
+                cursor: pointer;
+                &:hover {
+                    span.arrow-up {
+                        border-bottom: 6px solid $sort-hover-color;
+                    }
+                    span.arrow-down {
+                        border-top: 6px solid $sort-hover-color;
+                    }
+                }
+            }
+    
+            span.arrow-up {
+                width: 0; 
+                height: 0; 
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;                
+                border-bottom: 6px solid $sort-color;
+                position: relative;
+                top: -16px;
+    
+                &.active {
+                    border-bottom: 6px solid $sort-active-color !important;
+                }
+            }
+              
+            span.arrow-down {
+                width: 0; 
+                height: 0; 
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 6px solid $sort-color;
+                position: relative;
+                left: 10px;
+                top: 16px;
+    
+                &.active {
+                    border-top: 6px solid $sort-active-color !important;
+                }
+            }
+        }
     }
 }
 
