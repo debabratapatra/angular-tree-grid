@@ -48,6 +48,7 @@
             [cell_value]="cell_value" 
             [row_data]="row_data" 
             [column]="column"
+            [expandable_column]=true
             (canceledit)="canceledit.emit(row_data['idx'])"
             (editcomplete)="onEditComplete($event)"
             >
@@ -83,6 +84,7 @@
           [cell_value]="cell_value" 
           [row_data]="row_data" 
           [column]="column"
+          [expandable_column]=false
           (canceledit)="canceledit.emit(row_data['idx'])"
           (editcomplete)="onEditComplete($event)"
           >

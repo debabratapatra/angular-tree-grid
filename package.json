@@ -1,6 +1,6 @@
 {
   "name": "angular-tree-grid",
-  "version": "2.5.3",
+  "version": "2.5.4",
   "homepage": "https://github.com/debabratapatra/angular-tree-grid#readme",
   "license" : "MIT",
   "peerDependencies": {
@@ -22,5 +22,5 @@
   },
   "keywords": ["Angular", "Tree View", "Tree", "Grid", "Angular Tree view", 
     "Angular Tree Component", "Angular Tree grid Directive", "Angular 4", "Angular 5", "Angular 6", "Angular 7",
-    "Opensource", "Angular Tree Grid", "Angular Sub-grid", "Sub-grid"]
+    "Opensource", "Angular Tree Grid", "Angular Sub-grid", "Sub-grid", "Angular nested-grid", "Nested grid"]
 }
