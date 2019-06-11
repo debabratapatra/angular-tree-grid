@@ -3,7 +3,7 @@ Angular Tree Grid to show hierarchical data. Basically if data has Parent-Child 
 
 ## Demo
 
-Click <a href="https://angular-tree-grid.stackblitz.io/" target="_blank">here</a> for demo. Visit my <a href="https://debabratapatra.github.io" target="_blank">Website</a> to know more.
+Click <a href="https://angular-tree-grid.stackblitz.io/" target="_blank">here</a> for demo. This readme is the documentation. Visit my <a href="https://debabratapatra.github.io" target="_blank">Website</a> to know other packages.
 <div>
 <img src="https://debabratapatra.github.io/resources/images/cards/angular-tree-grid.png" alt="Loading" />
 </div>
@@ -109,7 +109,7 @@ Below are configs that can be set
 | component  | Object  |  n/a | Custom View Component. Mandatory if type is custom.See this <a href="https://angular-tree-grid.stackblitz.io/custom_view_component">Example</a>.|
 | editor  | Object  |  n/a | Custom Editor Component. If given custom editor component will be used instead of default editor. See this <a href="https://angular-tree-grid.stackblitz.io/custom_edit_component">Example</a>.  |
 | onComponentInit  | Function  |  n/a | Callback function for the column on component init.  |
-| summary_renderer  | Function  |  n/a | Renderer for summary. It's only available for subgrid. See <a href="https://angular-tree-grid.stackblitz.io/cond_row_edit">Example</a> for more information. |
+| summary_renderer  | Function  |  n/a | Renderer for summary. It's only available for subgrid. See <a href="https://angular-tree-grid.stackblitz.io/subgrid">Example</a> for more information. |
 | sortable  | boolean  |  false | Sort Column. Only available for subgrid feature.  |
 
 ##### subgrid_config
@@ -144,7 +144,7 @@ Below are configs that can be set
 
 | Event  |Arguments   | Description |
 |---|---|---|
-| expand  | **row_data:** Expanded Row <br> For Subgrid: **event** Consist of: <ul><li> **data:** Selected Row </li><li> **resolve:** Promise Object</li></ul> | Event fires when parent is expanded.  |
+| expand  | **row_data:** Expanded Row <br> For Subgrid: **event** Consist of: <ul><li> **data:** Selected Row </li><li> **resolve:** Promise Object</li></ul> | Event fires when parent is expanded. For Subgrid, see this <a href="https://angular-tree-grid.stackblitz.io/subgrid">Example</a>. |
 | collapse  | **row_data:** Collapsed Row | Event fires when parent is collapsed.  |
 | cellclick  | **event** Consist of: <ul><li> **row:** Selected Row </li><li> **column:** Selected Column</li></ul> | Event fires when a child cell is clicked.  |
 | rowselect  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is selected.  |
