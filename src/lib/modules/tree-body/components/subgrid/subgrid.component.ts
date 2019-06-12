@@ -36,6 +36,7 @@ export class SubgridComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.configs.subgrid_config);
   }
 
   onRowExpand(event) {
@@ -48,14 +49,26 @@ export class SubgridComponent implements OnInit {
       });
     });
 
-    promise.then((child_rows: any) => {
-      this.expand_tracker[row_data.pathx] = true;
-      const blank_row: any = this.store.showBlankRow(row_data);
+    this.expand_tracker[row_data.pathx] = true;
+    const blank_row: any = this.store.showBlankRow(row_data);
+    blank_row.loading_children = true;
 
-      child_rows.map(child => {
-        child.leaf = true;
-      });
-      blank_row.children = child_rows;
+    // Add Child rows to the table.
+    promise.then((child_rows: any) => {
+      blank_row.loading_children = false;
+
+      if (child_rows) {
+        child_rows.map(child => {
+          child.leaf = true;
+        });
+        blank_row.children = child_rows;
+      } else {
+
+        // Persist old children. If didn't exist then assign blank array.
+        if (!blank_row.children) {
+          blank_row.children = [];
+        }
+      }
 
     }).catch((err) => {});
   }

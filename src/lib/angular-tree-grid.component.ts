@@ -59,7 +59,8 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     row_edit_function: () => true,
     row_delete_function: () => true,
     subgrid_config: {
-      show_summary_row: false
+      show_summary_row: false,
+      data_loading_text: 'Loading...'
     }
   };
   default_column_config: Column = {
@@ -169,6 +170,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     // Deep clone.
     this.configs.actions = Object.assign({}, this.default_configs.actions, this.configs.actions);
     this.configs.css = Object.assign({}, this.default_configs.css, this.configs.css);
+    this.configs.subgrid_config = Object.assign({}, this.default_configs.subgrid_config, this.configs.subgrid_config);
 
     if (this.configs.subgrid) {
       this.configs.multi_select = false;
