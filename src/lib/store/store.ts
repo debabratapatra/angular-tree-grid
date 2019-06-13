@@ -58,6 +58,16 @@ export class Store {
         return blank_row;
     }
 
+    add_children_to_processed_data(row_data, children) {
+        const row_index = this.display_data.map(row => row[this.configs.id_field]).
+                        indexOf(row_data[this.configs.id_field]);
+        const top_rows = this.processed_data.slice(0, row_index + 1);
+        const bottom_rows = this.processed_data.slice(row_index + 1);
+        this.processed_data = top_rows.concat(children).concat(bottom_rows);
+        this.setDisplayData([...this.processed_data]);
+        this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
+    }
+
     filterBy(fields, search_values) {
         this.display_data = this.processed_data.filter((record) => {
             let found = true;
@@ -158,6 +168,8 @@ export class Store {
         this.setProcessedData(processed_data);
         this.setRawData(data);
         this.configs = configs;
+        console.log(processed_data);
+        console.log(expand_tracker);
     }
 
     findChildren(data, id, configs) {

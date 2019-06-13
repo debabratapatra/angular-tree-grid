@@ -98,8 +98,35 @@ export class TreeBodyComponent implements OnInit {
 
   onRowExpand(event) {
     const row_data = event.data;
-    this.expand_tracker[row_data.pathx] = true;
-    this.expand.emit(event);
+
+    if (!this.configs.load_children_on_expand) {
+      this.expand_tracker[row_data.pathx] = true;
+      this.expand.emit(event);
+    } else {
+      const promise = new Promise((resolve, reject) => {
+        this.expand.emit({
+          data: row_data,
+          resolve: resolve
+        });
+      });
+
+      // Add Child rows to the table.
+      promise.then((child_rows: any) => {
+        this.expand_tracker[row_data.pathx] = true;
+
+        if (child_rows) {
+          child_rows.map(child => {
+            child.leaf = true;
+            child.levelx = row_data.levelx + 1;
+            child.pathx = row_data.pathx + '.' + child[this.configs.id_field];
+            child.parent_pathx = row_data.pathx;
+            child[this.configs.parent_id_field] = row_data[this.configs.id_field];
+          });
+
+          this.store.add_children_to_processed_data(row_data, child_rows);
+        }
+      }).catch((err) => {});
+    }
   }
 
   onRowCollapse(event) {

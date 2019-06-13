@@ -54,6 +54,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     multi_select: false,
     show_parent_on_edit: true,
     subgrid: false,
+    load_children_on_expand: false,
     action_column_width: '60px',
     row_class_function: () => true,
     row_edit_function: () => true,
@@ -135,7 +136,9 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
       console.error('id_field doesn\'t exist!');
     }
 
-    if (!element.hasOwnProperty(this.configs.parent_id_field) && !this.configs.subgrid) {
+    if (!element.hasOwnProperty(this.configs.parent_id_field)
+        && !this.configs.subgrid
+        && !this.configs.load_children_on_expand) {
       isValidated = false;
       console.error('parent_id_field doesn\'t exist!');
     }
