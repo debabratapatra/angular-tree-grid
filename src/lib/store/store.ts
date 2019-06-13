@@ -58,12 +58,27 @@ export class Store {
         return blank_row;
     }
 
-    add_children_to_processed_data(row_data, children) {
-        const row_index = this.display_data.map(row => row[this.configs.id_field]).
+    remove_children(row_data) {
+        const new_processed_data: any = [];
+
+        for (let index = 0; index < this.processed_data.length; index++) {
+            const element = this.processed_data[index];
+            if (element[this.configs.parent_id_field] !== row_data[this.configs.id_field]) {
+                new_processed_data.push(element);
+            }
+        }
+
+        this.setProcessedData(new_processed_data);
+    }
+
+    add_children(row_data, children) {
+
+        const row_index = this.processed_data.map(row => row[this.configs.id_field]).
                         indexOf(row_data[this.configs.id_field]);
         const top_rows = this.processed_data.slice(0, row_index + 1);
         const bottom_rows = this.processed_data.slice(row_index + 1);
         this.processed_data = top_rows.concat(children).concat(bottom_rows);
+
         this.setDisplayData([...this.processed_data]);
         this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
     }

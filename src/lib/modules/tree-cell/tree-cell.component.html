@@ -12,7 +12,8 @@
         </span>
       </ng-container>
       <ng-container *ngIf="expand_tracker[row_data.pathx]">
-        <span (click)="collapseRow($event)">
+        <span *ngIf="row_data.is_loading" class="childred-loader"></span>
+        <span (click)="collapseRow($event)" *ngIf="!row_data.is_loading">
           <i 
             [ngClass]="configs.css.collapse_class" 
             class="expand-icon" 

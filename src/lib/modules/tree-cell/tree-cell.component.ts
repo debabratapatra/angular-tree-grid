@@ -53,7 +53,7 @@ export class TreeCellComponent implements OnInit {
   }
 
   collapseRow(event) {
-    if (this.index === 0 && !this.row_data.leaf) {
+    if (this.index === 0 && (!this.row_data.leaf || this.configs.load_children_on_expand)) {
       this.rowcollapse.emit({event: event, data: this.row_data});
       event.stopPropagation();
     }

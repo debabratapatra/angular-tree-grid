@@ -110,10 +110,14 @@ export class TreeBodyComponent implements OnInit {
         });
       });
 
+      this.expand_tracker[row_data.pathx] = true;
+      this.store.remove_children(row_data);
+      row_data.is_loading = true;
+
       // Add Child rows to the table.
       promise.then((child_rows: any) => {
-        this.expand_tracker[row_data.pathx] = true;
-
+        row_data.is_loading = false;
+        this.store.remove_children(row_data);
         if (child_rows) {
           child_rows.map(child => {
             child.leaf = true;
@@ -123,7 +127,7 @@ export class TreeBodyComponent implements OnInit {
             child[this.configs.parent_id_field] = row_data[this.configs.id_field];
           });
 
-          this.store.add_children_to_processed_data(row_data, child_rows);
+          this.store.add_children(row_data, child_rows);
         }
       }).catch((err) => {});
     }
