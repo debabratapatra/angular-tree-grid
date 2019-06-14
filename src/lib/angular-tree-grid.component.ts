@@ -222,4 +222,8 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     this.internal_configs.all_selected = false;
   }
 
+  expandRow(row_id, suppress_event?: false) {
+    this.store.expandRow(row_id, this.expand_tracker, this.expand, suppress_event);
+  }
+
 }

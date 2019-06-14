@@ -103,33 +103,7 @@ export class TreeBodyComponent implements OnInit {
       this.expand_tracker[row_data.pathx] = true;
       this.expand.emit(event);
     } else {
-      const promise = new Promise((resolve, reject) => {
-        this.expand.emit({
-          data: row_data,
-          resolve: resolve
-        });
-      });
-
-      this.expand_tracker[row_data.pathx] = true;
-      this.store.remove_children(row_data);
-      row_data.is_loading = true;
-
-      // Add Child rows to the table.
-      promise.then((child_rows: any) => {
-        row_data.is_loading = false;
-        this.store.remove_children(row_data);
-        if (child_rows) {
-          child_rows.map(child => {
-            child.leaf = true;
-            child.levelx = row_data.levelx + 1;
-            child.pathx = row_data.pathx + '.' + child[this.configs.id_field];
-            child.parent_pathx = row_data.pathx;
-            child[this.configs.parent_id_field] = row_data[this.configs.id_field];
-          });
-
-          this.store.add_children(row_data, child_rows);
-        }
-      }).catch((err) => {});
+      this.angularTreeGridService.emitExpandRowEvent(this.expand_tracker, this.expand, this.store, row_data, this.configs);
     }
   }
 
