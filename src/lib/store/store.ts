@@ -154,14 +154,25 @@ export class Store {
                 }
             }
         });
+    }
 
-        // const keys = Object.keys(expand_tracker);
-        // keys.forEach(key => {
-        //     const key_parts = key.split('.');
-        //     if (key_parts[0] === parts[0] && key_parts.length <= parts.length) {
-        //         expand_tracker[key] = 1;
-        //     }
-        // });
+    collapseRow(row_id, expand_tracker, collapse_event, suppress_event) {
+        const row_index = this.display_data.map(row => row[this.configs.id_field]).
+                        indexOf(row_id);
+
+        const row_data = this.display_data[row_index];
+        const pathx = row_data.pathx;
+        expand_tracker[pathx] = false;
+
+        // Collapse children rows as well
+        this.display_data.forEach(record => {
+            if (record.pathx.includes(pathx)) {
+                expand_tracker[record.pathx] = 0;
+                if (!suppress_event) {
+                    collapse_event.emit({event: null, data: row_data});
+                }
+            }
+        });
     }
 
     findTopParentNode(data, configs) {
