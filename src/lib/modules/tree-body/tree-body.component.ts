@@ -57,9 +57,6 @@ export class TreeBodyComponent implements OnInit {
   rowdeselect: EventEmitter<any>;
 
   constructor(private angularTreeGridService: AngularTreeGridService) {
-    this.angularTreeGridService.display_data_observable$.subscribe((display_data) => {
-      this.display_data = display_data;
-    });
   }
 
   ngOnInit() {
@@ -76,6 +73,10 @@ export class TreeBodyComponent implements OnInit {
         }
       );
     }
+    this.display_data = this.store.getDisplayData();
+    this.angularTreeGridService.display_data_observable$.subscribe((store) => {
+      this.display_data = this.store.getDisplayData();
+    });
 
   }
 
