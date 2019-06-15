@@ -52,14 +52,22 @@ export class AngularTreeGridService {
     const pathx = row_data.pathx;
     const parts = pathx.split('.');
     expand_tracker[row_data.pathx] = true;
+    let expanded_count = 0;
 
     // Expand parent rows as well
     display_data.forEach(record => {
-        const key_parts = record.pathx.split('.');
 
-        // First id must be equal and lenght should be less than or equal to the expanded row. We don't want
-        // to expand it's children here.
-        if (key_parts[0] === parts[0] && key_parts.length <= parts.length) {
+        // Stop when all rows are expanded.
+        if (expanded_count > parts.length) {
+          return;
+        }
+
+        // Join paths as we expand.
+        const key = parts.slice(0, expanded_count + 1).join('.');
+
+        // We don't want to expand it's children here.
+        if (record.pathx.includes(key)) {
+            expanded_count += 1;
             expand_tracker[record.pathx] = true;
 
             if (!suppress_event) {
