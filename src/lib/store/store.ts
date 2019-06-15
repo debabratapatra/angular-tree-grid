@@ -114,67 +114,6 @@ export class Store {
         this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
     }
 
-    selectAll() {
-        this.display_data.forEach(data => {
-            data.row_selected = true;
-        });
-    }
-
-    deSelectAll() {
-        this.display_data.forEach(data => {
-            data.row_selected = false;
-        });
-    }
-
-    expandRow(row_id, expand_tracker, expand_event, suppress_event) {
-        const row_index = this.display_data.map(row => row[this.configs.id_field]).
-                        indexOf(row_id);
-
-        const row_data = this.display_data[row_index];
-        const pathx = row_data.pathx;
-        const parts = pathx.split('.');
-        expand_tracker[row_data.pathx] = true;
-
-        // Expand parent rows as well
-        this.display_data.forEach(record => {
-            const key_parts = record.pathx.split('.');
-
-            // First id must be equal and lenght should be less than or equal to the expanded row. We don't want
-            // to expand it's children here.
-            if (key_parts[0] === parts[0] && key_parts.length <= parts.length) {
-                expand_tracker[record.pathx] = true;
-
-                if (!suppress_event) {
-                    if (this.configs.load_children_on_expand) {
-                        this.angularTreeGridService.emitExpandRowEvent(expand_tracker, expand_event,
-                            this, row_data, this.configs);
-                    } else {
-                        expand_event.emit({event: null, data: row_data});
-                    }
-                }
-            }
-        });
-    }
-
-    collapseRow(row_id, expand_tracker, collapse_event, suppress_event) {
-        const row_index = this.display_data.map(row => row[this.configs.id_field]).
-                        indexOf(row_id);
-
-        const row_data = this.display_data[row_index];
-        const pathx = row_data.pathx;
-        expand_tracker[pathx] = false;
-
-        // Collapse children rows as well
-        this.display_data.forEach(record => {
-            if (record.pathx.includes(pathx)) {
-                expand_tracker[record.pathx] = 0;
-                if (!suppress_event) {
-                    collapse_event.emit({event: null, data: row_data});
-                }
-            }
-        });
-    }
-
     findTopParentNode(data, configs) {
         const ids = data.map(element => element[configs.id_field]);
         let top_parents = [];

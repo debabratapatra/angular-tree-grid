@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Configs } from '../../models/Configs.model';
 import { Column } from '../../models/Column.model';
 import { Store } from '../../store/store';
+import { AngularTreeGridService } from '../../angular-tree-grid.service';
 
 @Component({
   selector: '[db-tree-head]',
@@ -34,7 +35,7 @@ export class TreeHeadComponent implements OnInit {
   @Input()
   rowdeselectall: EventEmitter<any>;
 
-  constructor() { }
+  constructor(private angularTreeGridService: AngularTreeGridService) { }
 
   ngOnInit() {}
 
@@ -44,10 +45,10 @@ export class TreeHeadComponent implements OnInit {
 
   selectAll(e) {
     if (e.target.checked) {
-      this.store.selectAll();
+      this.angularTreeGridService.selectAll(this.store.getDisplayData());
       this.rowselectall.emit(e);
     } else {
-      this.store.deSelectAll();
+      this.angularTreeGridService.deSelectAll(this.store.getDisplayData());
       this.rowdeselectall.emit(e);
     }
   }

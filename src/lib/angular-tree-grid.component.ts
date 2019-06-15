@@ -213,21 +213,23 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
   }
 
   selectAll() {
-    this.store.selectAll();
+    this.angularTreeGridService.selectAll(this.store.getDisplayData());
     this.internal_configs.all_selected = true;
   }
 
   deSelectAll() {
-    this.store.deSelectAll();
+    this.angularTreeGridService.deSelectAll(this.store.getDisplayData());
     this.internal_configs.all_selected = false;
   }
 
   expandRow(row_id, suppress_event?: false) {
-    this.store.expandRow(row_id, this.expand_tracker, this.expand, suppress_event);
+    this.angularTreeGridService.expandRow(row_id, this.expand_tracker, this.expand, suppress_event,
+         this.configs, this.store.getDisplayData());
   }
 
   collapseRow(row_id, suppress_event?: false) {
-    this.store.collapseRow(row_id, this.expand_tracker, this.collapse, suppress_event);
+    this.angularTreeGridService.collapseRow(row_id, this.expand_tracker, this.collapse, suppress_event,
+      this.configs, this.store.getDisplayData());
   }
 
 }
