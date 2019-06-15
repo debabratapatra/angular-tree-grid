@@ -1,4 +1,4 @@
-<ng-container *ngIf="configs">
+<ng-container *ngIf="configs && raw_data">
 <tr *ngIf="raw_data.length==0">
   <td [innerHTML]="configs.data_loading_text" [attr.colspan]="columns.length + 1" style="text-align: center"></td>
 </tr>
@@ -20,7 +20,24 @@
   *ngIf="internal_configs.show_add_row"
   class="{{configs.row_class_function(raw_data)}}">
 </tr>
-<tr 
+<ng-container *ngIf="configs.subgrid">
+  <tr db-subgrid
+  *ngFor="let row_data of display_data"
+  class="subgrid-row"
+  [configs]="configs" 
+  [internal_configs]="internal_configs" 
+  [expand_tracker]="expand_tracker" 
+  [edit_tracker]="edit_tracker" 
+  [store]="store"
+  [row_data]="row_data"
+  [cellclick]="cellclick"
+  [expand]="expand"
+  >
+
+  </tr>
+</ng-container>
+<ng-container *ngIf="!configs.subgrid">
+  <tr 
   *ngFor="let row_data of display_data"
   [attr.class]="configs.row_class_function(raw_data) + ' ' + (row_data.row_selected ? configs.css.row_selection_class : '')"
   (click)="selectRow(row_data, $event)" 
@@ -30,7 +47,7 @@
       <input type="checkbox" [checked]="row_data.row_selected" (click)="selectRowOnCheck(row_data, $event)">
     </td>
     <td db-tree-cell-actions 
-      *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add)" 
+      *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add)"
       [row_data]="row_data"
       [configs]="configs"
       [store]="store"
@@ -40,7 +57,8 @@
       (canceledit)="cancelEdit($event)" 
       (editcomplete)="saveRecord($event)">
     </td>
-    <td *ngFor="let column of columns; index as i" [ngClass]="{'column-hide': column.hidden}">
+    <td *ngFor="let column of columns; index as i" 
+    [ngClass]="{'column-hide': column.hidden, 'expand-column': i == 0}">
       <db-tree-cell
         [configs]="configs"
         [column]="column"
@@ -66,4 +84,6 @@
     <td *ngIf="internal_configs.show_add_row && !(internal_configs.show_parent_col && configs.show_parent_on_edit)"></td>
   </ng-container>
 </tr>
+</ng-container>
+
 </ng-container>

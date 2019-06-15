@@ -31,4 +31,34 @@ export class AngularTreeGridService {
     }
     expand_tracker[''] = true;
   }
+
+  emitExpandRowEvent(expand_tracker, expand, store, row_data, configs) {
+    const promise = new Promise((resolve, reject) => {
+      expand.emit({
+        data: row_data,
+        resolve: resolve
+      });
+    });
+
+    expand_tracker[row_data.pathx] = true;
+    store.remove_children(row_data);
+    row_data.is_loading = true;
+
+    // Add Child rows to the table.
+    promise.then((child_rows: any) => {
+      row_data.is_loading = false;
+      store.remove_children(row_data);
+      if (child_rows) {
+        child_rows.map(child => {
+          child.leaf = true;
+          child.levelx = row_data.levelx + 1;
+          child.pathx = row_data.pathx + '.' + child[configs.id_field];
+          child.parent_pathx = row_data.pathx;
+          child[configs.parent_id_field] = row_data[configs.id_field];
+        });
+
+        store.add_children(row_data, child_rows);
+      }
+    }).catch((err) => {});
+  }
 }

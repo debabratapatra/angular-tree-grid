@@ -1,0 +1,88 @@
+@import '../../tree-body.component.scss';
+@import '../../../tree-head/tree-head.component.scss';
+
+td {
+    border: 1px solid #cdd5dc;
+    vertical-align: middle;
+    position: relative;
+    padding: 0.5rem 0.5rem;
+    box-sizing: border-box;
+
+    &.checkbox_column {
+        text-align: center;
+    }
+
+    &.expand-column {
+        padding: 0.3rem;
+    }
+
+    &.subgrid-column {
+        padding: 0 0 0 0;
+    }
+
+    &.column-hide {
+        display: none;
+    }
+
+    &.clear-left-border {
+        border-left: 0 !important;
+    }
+
+    &.clear-right-border {
+        border-right: 0 !important;
+    }
+
+    table.subgrid-table {
+        border-collapse: collapse;
+        width: 100%;
+
+        th {
+    
+            &.sortable {
+                cursor: pointer;
+                &:hover {
+                    span.arrow-up {
+                        border-bottom: 6px solid $sort-hover-color;
+                    }
+                    span.arrow-down {
+                        border-top: 6px solid $sort-hover-color;
+                    }
+                }
+            }
+    
+            span.arrow-up {
+                width: 0; 
+                height: 0; 
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;                
+                border-bottom: 6px solid $sort-color;
+                position: relative;
+                top: -18px;
+    
+                &.active {
+                    border-bottom: 6px solid $sort-active-color !important;
+                }
+            }
+              
+            span.arrow-down {
+                width: 0; 
+                height: 0; 
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 6px solid $sort-color;
+                position: relative;
+                left: 10px;
+                top: 17px;
+    
+                &.active {
+                    border-top: 6px solid $sort-active-color !important;
+                }
+            }
+        }
+
+        td.subgrid-loading-text {
+            text-align: center;
+        }
+    }
+}
+

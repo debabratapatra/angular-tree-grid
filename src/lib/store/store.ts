@@ -35,6 +35,53 @@ export class Store {
         this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
     }
 
+    /**
+     * Show Blank row for subgrid.
+     *
+     * @param  row_data Row Data
+     * @returns blank_row
+     */
+    showBlankRow(row_data) {
+        const row_index = this.display_data.map(row => row[this.configs.id_field]).
+                        indexOf(row_data[this.configs.id_field]);
+
+        let blank_row = this.display_data[row_index + 1];
+        if (!blank_row || blank_row.parent_pathx !== row_data[this.configs.id_field]) {
+            blank_row = {
+                leaf: true,
+                parent_pathx: row_data[this.configs.id_field]
+            };
+            blank_row[this.configs.id_field] = -1;
+            this.display_data.splice(row_index + 1, 0, blank_row);
+        }
+
+        return blank_row;
+    }
+
+    remove_children(row_data) {
+        const new_processed_data: any = [];
+
+        for (let index = 0; index < this.processed_data.length; index++) {
+            const element = this.processed_data[index];
+            if (element[this.configs.parent_id_field] !== row_data[this.configs.id_field]) {
+                new_processed_data.push(element);
+            }
+        }
+
+        this.setProcessedData(new_processed_data);
+    }
+
+    add_children(row_data, children) {
+        const row_index = this.processed_data.map(row => row[this.configs.id_field]).
+                        indexOf(row_data[this.configs.id_field]);
+        const top_rows = this.processed_data.slice(0, row_index + 1);
+        const bottom_rows = this.processed_data.slice(row_index + 1);
+        this.processed_data = top_rows.concat(children).concat(bottom_rows);
+
+        this.setDisplayData([...this.processed_data]);
+        this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
+    }
+
     filterBy(fields, search_values) {
         this.display_data = this.processed_data.filter((record) => {
             let found = true;
@@ -79,6 +126,55 @@ export class Store {
         });
     }
 
+    expandRow(row_id, expand_tracker, expand_event, suppress_event) {
+        const row_index = this.display_data.map(row => row[this.configs.id_field]).
+                        indexOf(row_id);
+
+        const row_data = this.display_data[row_index];
+        const pathx = row_data.pathx;
+        const parts = pathx.split('.');
+        expand_tracker[row_data.pathx] = true;
+
+        // Expand parent rows as well
+        this.display_data.forEach(record => {
+            const key_parts = record.pathx.split('.');
+
+            // First id must be equal and lenght should be less than or equal to the expanded row. We don't want
+            // to expand it's children here.
+            if (key_parts[0] === parts[0] && key_parts.length <= parts.length) {
+                expand_tracker[record.pathx] = true;
+
+                if (!suppress_event) {
+                    if (this.configs.load_children_on_expand) {
+                        this.angularTreeGridService.emitExpandRowEvent(expand_tracker, expand_event,
+                            this, row_data, this.configs);
+                    } else {
+                        expand_event.emit({event: null, data: row_data});
+                    }
+                }
+            }
+        });
+    }
+
+    collapseRow(row_id, expand_tracker, collapse_event, suppress_event) {
+        const row_index = this.display_data.map(row => row[this.configs.id_field]).
+                        indexOf(row_id);
+
+        const row_data = this.display_data[row_index];
+        const pathx = row_data.pathx;
+        expand_tracker[pathx] = false;
+
+        // Collapse children rows as well
+        this.display_data.forEach(record => {
+            if (record.pathx.includes(pathx)) {
+                expand_tracker[record.pathx] = 0;
+                if (!suppress_event) {
+                    collapse_event.emit({event: null, data: row_data});
+                }
+            }
+        });
+    }
+
     findTopParentNode(data, configs) {
         const ids = data.map(element => element[configs.id_field]);
         let top_parents = [];
@@ -98,7 +194,7 @@ export class Store {
         return top_parents;
     }
 
-    processData(data, expand_tracker, configs, edit_tracker, internal_configs) {
+    processData(data, expand_tracker, configs: Configs, edit_tracker, internal_configs) {
         const top_parents = this.findTopParentNode(data, configs);
         const processed_data = [];
         internal_configs.top_parents = top_parents;
@@ -123,6 +219,11 @@ export class Store {
             rec.pathx = parent_pathx.join('.');
             expand_tracker[rec.pathx] = false;
             edit_tracker[rec[configs.id_field]] = false;
+
+            // For Subgrid feature, expect all rows are expandable.
+            if (configs.subgrid) {
+                rec.leaf = false;
+            }
         });
 
         // Expand root.
@@ -130,6 +231,8 @@ export class Store {
         this.setProcessedData(processed_data);
         this.setRawData(data);
         this.configs = configs;
+        console.log(processed_data);
+        console.log(expand_tracker);
     }
 
     findChildren(data, id, configs) {

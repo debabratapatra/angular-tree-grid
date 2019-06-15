@@ -57,9 +57,6 @@ export class TreeBodyComponent implements OnInit {
   rowdeselect: EventEmitter<any>;
 
   constructor(private angularTreeGridService: AngularTreeGridService) {
-    this.angularTreeGridService.display_data_observable$.subscribe((display_data) => {
-      this.display_data = display_data;
-    });
   }
 
   ngOnInit() {
@@ -76,6 +73,10 @@ export class TreeBodyComponent implements OnInit {
         }
       );
     }
+    this.display_data = this.store.getDisplayData();
+    this.angularTreeGridService.display_data_observable$.subscribe((store) => {
+      this.display_data = this.store.getDisplayData();
+    });
 
   }
 
@@ -98,8 +99,13 @@ export class TreeBodyComponent implements OnInit {
 
   onRowExpand(event) {
     const row_data = event.data;
-    this.expand_tracker[row_data.pathx] = true;
-    this.expand.emit(event);
+
+    if (!this.configs.load_children_on_expand) {
+      this.expand_tracker[row_data.pathx] = true;
+      this.expand.emit(event);
+    } else {
+      this.angularTreeGridService.emitExpandRowEvent(this.expand_tracker, this.expand, this.store, row_data, this.configs);
+    }
   }
 
   onRowCollapse(event) {

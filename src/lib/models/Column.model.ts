@@ -13,4 +13,5 @@ export interface Column {
     editor?: any;
     onComponentInit?: any;
     case_sensitive_filter: Boolean;
+    summary_renderer?: any;
 }

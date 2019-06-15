@@ -5,7 +5,7 @@ import { DefaultEditor } from '../default-editor.component';
 @Component({
   selector: 'db-tree-cell-editor',
   templateUrl: './tree-cell-editor.component.html',
-  styleUrls: ['./tree-cell-editor.component.css']
+  styleUrls: ['./tree-cell-editor.component.scss']
 })
 export class TreeCellEditorComponent extends DefaultEditor implements OnInit {
   @Input()
@@ -16,6 +16,9 @@ export class TreeCellEditorComponent extends DefaultEditor implements OnInit {
 
   @Input()
   column: Column;
+
+  @Input()
+  expandable_column: boolean;
 
   constructor() {
     super();

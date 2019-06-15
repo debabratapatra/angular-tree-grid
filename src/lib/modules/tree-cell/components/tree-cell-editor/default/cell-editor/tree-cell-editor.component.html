@@ -1,7 +1,8 @@
 <input type="text" 
     [(ngModel)]="row_data[column.name]" 
-    class="cell-default" 
+    [ngClass]="{'cell-default': true, 'expandable-editor': expandable_column}"
     (click)="cellclick.emit($event)"
     (keydown.enter)="editcomplete.emit($event)"
     (keydown.esc)="canceledit.emit()"
+    size="1"
     >

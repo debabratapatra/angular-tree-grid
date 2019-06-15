@@ -41,26 +41,26 @@ export class TreeCellComponent implements OnInit {
 
   ngOnInit() {
     this.is_expand_column = this.index === 0;
-    this.show_expand_icon = !this.row_data.leaf;
+    this.show_expand_icon = !this.row_data.leaf || this.configs.load_children_on_expand;
     this.cell_value = this.row_data[this.column.name];
   }
 
   expandRow(event) {
-    if (this.index === 0 && !this.row_data.leaf) {
+    if (this.index === 0 && (!this.row_data.leaf || this.configs.load_children_on_expand)) {
       this.rowexpand.emit({event: event, data: this.row_data});
       event.stopPropagation();
     }
   }
 
   collapseRow(event) {
-    if (this.index === 0 && !this.row_data.leaf) {
+    if (this.index === 0 && (!this.row_data.leaf || this.configs.load_children_on_expand)) {
       this.rowcollapse.emit({event: event, data: this.row_data});
       event.stopPropagation();
     }
   }
 
   onCellClick(event) {
-    this.cellclick.emit({event: event, data: this.row_data});
+    this.cellclick.emit({column: this.column, row: this.row_data, event: event});
   }
 
   onEditComplete($event) {
