@@ -1,5 +1,5 @@
 # Angular Tree Grid
-Angular Tree Grid to show hierarchical data. Basically if data has Parent-Child relationship. If data needs to be grouped by fields then check out this <a href="https://github.com/debabratapatra/ngtreegrid" target="_blank">Package</a>.
+Angular Tree Grid to show hierarchical data. Basically if data has Parent-Child relationship. It also supports sub-grid/nested-grid. If data needs to be grouped by fields then check out this <a href="https://github.com/debabratapatra/ngtreegrid" target="_blank">Package</a>.
 
 ## Demo
 
@@ -63,6 +63,7 @@ Below are configs that can be set
 |  data_loading_text |  string | 'Loading...'  |  Loading place holder. This will be displayed when data is empty. |
 |  filter |  boolean | false  |  It enables filter toolbar. Filter is customizable at column level. |
 |  multi_select |  boolean | false  |  It enables checkbox selection. |
+|  load_children_on_expand |  boolean | false  |  It enables dynamic children loading. It means children will be loaded on row-expand. See <a href="https://angular-tree-grid.stackblitz.io/dynamic_children">Example</a> for more information.|
 |  subgrid |  boolean | false  |  It enables subgrid feature. parent_id_field is not mandatory for subgrid. Add, Edit, Delete, Sort features are disabled when it is true. See this <a href="https://angular-tree-grid.stackblitz.io/subgrid">Example</a> for more information|
 |  subgrid_config |  Object | n/a  |  Configs for subgrid. See below table for this. |
 |  show_parent_on_edit |  boolean | true  |  Show Parent column On Edit. It is true by default. |
@@ -145,9 +146,9 @@ Below are configs that can be set
 
 | Event  |Arguments   | Description |
 |---|---|---|
-| expand  | **row_data:** Expanded Row <br> For Subgrid: **event** Consist of: <ul><li> **data:** Selected Row </li><li> **resolve:** Promise Object</li></ul> | Event fires when parent is expanded. For Subgrid, see this <a href="https://angular-tree-grid.stackblitz.io/subgrid">Example</a>. |
+| expand  | **row_data:** Expanded Row <br/> For Subgrid and Dynamic-Children-Loading:<br/> **event** Consist of: <ul><li> **data:** Selected Row </li><li> **resolve:** Promise Object</li></ul> | Event fires when parent is expanded. For Subgrid, see this <a href="https://angular-tree-grid.stackblitz.io/subgrid">Example</a>. For Dynamic-Children-Loading, see this <a href="https://angular-tree-grid.stackblitz.io/dynamic_children">Example</a> |
 | collapse  | **row_data:** Collapsed Row | Event fires when parent is collapsed.  |
-| cellclick  | **event** Consist of: <ul><li> **row:** Selected Row </li><li> **column:** Selected Column</li></ul> | Event fires when a child cell is clicked.  |
+| cellclick  | **event** Consist of: <ul><li> **row:** Selected Row </li><li> **column:** Selected Column</li><li> **event:** Selected Column</li></ul> | Event fires when a child cell is clicked.  |
 | rowselect  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is selected.  |
 | rowdeselect  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is deselected.  |
 | rowselectall  | **event:** Event Object | Event fires when select-all checkbox is checked.  |
@@ -161,6 +162,37 @@ Add below node to your html.
 ```
   <db-angular-tree-grid [data]="data" [configs]="configs"></db-angular-tree-grid>
 ```
+
+#### Functions
+AngularTreeGridComponent has some very useful functions. Below is an example how to call.
+```
+    @Component({
+      selector: 'app-basic-tree-grid',
+      template: `
+        <button (click)="collapseAll()">Collapse All</button><button (click)="expandAll()">Expand All</button>
+        <p></p>
+        <db-angular-tree-grid #angularGrid [data]="data" [configs]="configs"></db-angular-tree-grid>
+      `
+    })
+    export class BasicTreeGridComponent {
+      @ViewChild('angularGrid') angularGrid: AngularTreeGridComponent;
+    
+      expandAll() {
+        this.angularGrid.expandAll();
+      }
+      collapseAll() {
+        this.angularGrid.collapseAll();
+      }
+    }
+```
+| Function  |Arguments   | Description |
+|---|---|---|
+| expandAll  | None | Expands all rows  |
+| collapseAll  | None | Collapses all rows  |
+| selectAll  | None | Selects all rows  |
+| deSelectAll  | None | DeSelects all rows  |
+| expandRow  | <ul><li> id: Row id(Primary Key) </li><li> suppress_event: Suppress expand event. It defaults to false.</li></ul> | Expands a specific row. see this <a href="https://angular-tree-grid.stackblitz.io/specific_expand_collapse">Example</a>. |
+| collapseRow  | <ul><li> id: Row id(Primary Key) </li><li> suppress_event: Suppress expand event. It defaults to false.</li></ul> | Collapses a specific row. see this <a href="https://angular-tree-grid.stackblitz.io/specific_expand_collapse">Example</a>. |
 
 ### Can I hire you guys?
 Yes. Please contact us at <a href="mailto:debabratapatra12@gmail.com">debabratapatra12@gmail.com</a>. We will be happy to work with you!
