@@ -63,6 +63,7 @@ Below are configs that can be set
 |  data_loading_text |  string | 'Loading...'  |  Loading place holder. This will be displayed when data is empty. |
 |  filter |  boolean | false  |  It enables filter toolbar. Filter is customizable at column level. |
 |  multi_select |  boolean | false  |  It enables checkbox selection. |
+|  show_summary_row |  boolean | false  |  It enables summary or footer row. Use summary_renderer at the column level |
 |  load_children_on_expand |  boolean | false  |  It enables dynamic children loading. It means children will be loaded on row-expand. See <a href="https://angular-tree-grid.stackblitz.io/dynamic_children">Example</a> for more information.|
 |  subgrid |  boolean | false  |  It enables subgrid feature. parent_id_field is not mandatory for subgrid. Add, Edit, Delete, Sort features are disabled when it is true. See this <a href="https://angular-tree-grid.stackblitz.io/subgrid">Example</a> for more information|
 |  subgrid_config |  Object | n/a  |  Configs for subgrid. See below table for this. |
@@ -110,7 +111,7 @@ Below are configs that can be set
 | component  | Object  |  n/a | Custom View Component. Mandatory if type is custom.See this <a href="https://angular-tree-grid.stackblitz.io/custom_view_component">Example</a>.|
 | editor  | Object  |  n/a | Custom Editor Component. If given custom editor component will be used instead of default editor. See this <a href="https://angular-tree-grid.stackblitz.io/custom_edit_component">Example</a>.  |
 | onComponentInit  | Function  |  n/a | Callback function for the column on component init.  |
-| summary_renderer  | Function  |  n/a | Renderer for summary. It's only available for subgrid. See <a href="https://angular-tree-grid.stackblitz.io/subgrid">Example</a> for more information. |
+| summary_renderer  | Function  |  n/a | Renderer for summary. See <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/#/summary_row">Example</a> for more information. |
 | sortable  | boolean  |  false | Sort Column. Only available for subgrid feature.  |
 
 ##### subgrid_config
