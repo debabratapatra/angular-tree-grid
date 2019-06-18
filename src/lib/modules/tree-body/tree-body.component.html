@@ -58,6 +58,7 @@
       (editcomplete)="saveRecord($event)">
     </td>
     <td *ngFor="let column of columns; index as i" 
+    class="{{column.css_class}}"
     [ngClass]="{'column-hide': column.hidden, 'expand-column': i == 0}">
       <db-tree-cell
         [configs]="configs"
