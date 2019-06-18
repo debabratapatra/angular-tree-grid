@@ -102,6 +102,7 @@ Below are configs that can be set
 | name  | string  |  n/a | key of the column.  |
 | header  | string  |  n/a | Header of the column that will be displayed in the table.  |
 | width  | string  |  n/a | Width of the column with unit(px/rem).  |
+| css_class  | string  |  n/a | Custom css class for the column.  |
 | hidden  | boolean  |  false | Show/Hide column.  |
 | filter  | boolean  |  true | Enable/Disable filter.  |
 | case_sensitive_filter  | boolean  |  false | Case Sensitive/Insensitive Filter.  |
