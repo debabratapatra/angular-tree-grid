@@ -15,6 +15,7 @@ export interface Configs {
     filter: boolean;
     multi_select: boolean;
     load_children_on_expand: boolean;
+    show_summary_row: boolean;
     subgrid: boolean;
     subgrid_config?: Subgrid;
     show_parent_on_edit: boolean;

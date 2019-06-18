@@ -84,6 +84,13 @@
     <td *ngIf="internal_configs.show_add_row && !(internal_configs.show_parent_col && configs.show_parent_on_edit)"></td>
   </ng-container>
 </tr>
+<tr *ngIf="configs.show_summary_row">
+  <td *ngIf="configs.multi_select"></td>
+  <td *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add)"></td>
+  <td *ngFor="let column of configs.columns">
+    <div [innerHTML]="column.summary_renderer && column.summary_renderer(display_data)"></div>
+  </td>
+</tr>
 </ng-container>
 
 </ng-container>

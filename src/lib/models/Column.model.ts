@@ -1,6 +1,7 @@
 export interface Column {
     header?: string;
     name?: string;
+    css_class?: string;
     sorted: number;
     sort_type: string;
     editable: Boolean;

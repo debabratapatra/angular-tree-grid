@@ -53,6 +53,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     filter: false,
     multi_select: false,
     show_parent_on_edit: true,
+    show_summary_row: false,
     subgrid: false,
     load_children_on_expand: false,
     action_column_width: '60px',
