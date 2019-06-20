@@ -10,7 +10,7 @@ import { Store } from '../../store/store';
   styleUrls: ['./tree-body.component.scss']
 })
 export class TreeBodyComponent implements OnInit {
-  parents: Object[];
+  parents: Object[] = [];
   raw_data: any[];
   display_data: any[];
 
@@ -60,11 +60,10 @@ export class TreeBodyComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    // Add check as we are running library on changes.
-    this.raw_data = this.store.getRawData();
-    if (this.raw_data) {
-      this.parents = this.raw_data.map(
+    this.display_data = this.store.getDisplayData();
+    this.angularTreeGridService.display_data_observable$.subscribe((store) => {
+      this.display_data = this.store.getDisplayData();
+      this.parents = this.store.raw_data.map(
         element => {
           return {
             'id': element[this.configs.id_field],
@@ -72,10 +71,6 @@ export class TreeBodyComponent implements OnInit {
           };
         }
       );
-    }
-    this.display_data = this.store.getDisplayData();
-    this.angularTreeGridService.display_data_observable$.subscribe((store) => {
-      this.display_data = this.store.getDisplayData();
     });
 
   }

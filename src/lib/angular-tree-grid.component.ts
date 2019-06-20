@@ -111,7 +111,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
   }
 
   validateConfigs() {
-    if (!this.data || this.data.length === 0) {
+    if (!this.data) {
       window.console.warn('data can\'t be empty!');
       return;
     }
@@ -132,19 +132,19 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
       window.console.error('parent_id field is mandatory!');
     }
 
-    if (!element.hasOwnProperty(this.configs.id_field)) {
+    if (element && !element.hasOwnProperty(this.configs.id_field)) {
       isValidated = false;
       console.error('id_field doesn\'t exist!');
     }
 
-    if (!element.hasOwnProperty(this.configs.parent_id_field)
+    if (element && !element.hasOwnProperty(this.configs.parent_id_field)
         && !this.configs.subgrid
         && !this.configs.load_children_on_expand) {
       isValidated = false;
       console.error('parent_id_field doesn\'t exist!');
     }
 
-    if (!element.hasOwnProperty(this.configs.parent_display_field)) {
+    if (element && !element.hasOwnProperty(this.configs.parent_display_field)) {
       isValidated = false;
       console.error('parent_display_field doesn\'t exist! Basically this field will be expanded.');
     }

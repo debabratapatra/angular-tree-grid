@@ -170,8 +170,6 @@ export class Store {
         this.setProcessedData(processed_data);
         this.setRawData(data);
         this.configs = configs;
-        console.log(processed_data);
-        console.log(expand_tracker);
     }
 
     findChildren(data, id, configs) {

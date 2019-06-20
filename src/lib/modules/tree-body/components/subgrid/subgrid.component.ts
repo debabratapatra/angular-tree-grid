@@ -35,9 +35,7 @@ export class SubgridComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.configs.subgrid_config);
-  }
+  ngOnInit() {}
 
   onRowExpand(event) {
     const row_data = event.data;

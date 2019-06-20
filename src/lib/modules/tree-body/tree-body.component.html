@@ -1,5 +1,5 @@
-<ng-container *ngIf="configs && raw_data">
-<tr *ngIf="raw_data.length==0">
+<ng-container *ngIf="configs">
+<tr *ngIf="store.raw_data.length==0">
   <td [innerHTML]="configs.data_loading_text" [attr.colspan]="columns.length + 1" style="text-align: center"></td>
 </tr>
 <tr db-filter-row 
