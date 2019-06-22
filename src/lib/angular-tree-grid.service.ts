@@ -15,6 +15,11 @@ export class AngularTreeGridService {
     this.display_data_observable.next(display_data);
   }
 
+  findRowIndex(display_data, configs, row_id) {
+    return display_data.map(row => row[configs.id_field]).
+                    indexOf(row_id);
+  }
+
   selectAll(display_data) {
     display_data.forEach(data => {
         data.row_selected = true;
@@ -45,8 +50,7 @@ export class AngularTreeGridService {
   }
 
   expandRow(row_id, expand_tracker, expand_event, suppress_event, configs, display_data) {
-    const row_index = display_data.map(row => row[configs.id_field]).
-                    indexOf(row_id);
+    const row_index = this.findRowIndex(display_data, configs, row_id);
 
     const row_data = display_data[row_index];
     const pathx = row_data.pathx;
@@ -83,8 +87,7 @@ export class AngularTreeGridService {
   }
 
   collapseRow(row_id, expand_tracker, collapse_event, suppress_event, configs, display_data) {
-      const row_index = display_data.map(row => row[configs.id_field]).
-                      indexOf(row_id);
+      const row_index = this.findRowIndex(display_data, configs, row_id);
 
       const row_data = display_data[row_index];
       const pathx = row_data.pathx;
@@ -129,5 +132,25 @@ export class AngularTreeGridService {
         store.add_children(row_data, child_rows);
       }
     }).catch((err) => {});
+  }
+
+  disableRowSelection(display_data, configs, row_id) {
+    const row_index = this.findRowIndex(display_data, configs, row_id);
+    display_data[row_index].selection_disabled = true;
+  }
+
+  enableRowSelection(display_data, configs, row_id) {
+    const row_index = this.findRowIndex(display_data, configs, row_id);
+    display_data[row_index].selection_disabled = false;
+  }
+
+  disableRowExpand(display_data, configs, row_id) {
+    const row_index = this.findRowIndex(display_data, configs, row_id);
+    display_data[row_index].expand_disabled = true;
+  }
+
+  enableRowExpand(display_data, configs, row_id) {
+    const row_index = this.findRowIndex(display_data, configs, row_id);
+    display_data[row_index].expand_disabled = false;
   }
 }

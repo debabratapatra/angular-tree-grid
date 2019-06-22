@@ -46,7 +46,7 @@ export class TreeHeadComponent implements OnInit {
   selectAll(e) {
     if (e.target.checked) {
       this.angularTreeGridService.selectAll(this.store.getDisplayData());
-      this.rowselectall.emit(e);
+      this.rowselectall.emit(this.store.getDisplayData());
     } else {
       this.angularTreeGridService.deSelectAll(this.store.getDisplayData());
       this.rowdeselectall.emit(e);

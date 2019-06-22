@@ -7,6 +7,7 @@
             [ngClass]="configs.css.expand_class" 
             class="expand-icon" 
             aria-hidden="true"
+            [ngStyle]="{'visibility': row_data.expand_disabled ? 'hidden' : 'visible'}"
             *ngIf="show_expand_icon"
           ></i>
         </span>
@@ -18,7 +19,7 @@
             [ngClass]="configs.css.collapse_class" 
             class="expand-icon" 
             aria-hidden="true"
-            
+            [ngStyle]="{'visibility': row_data.expand_disabled ? 'hidden' : 'visible'}"            
             *ngIf="show_expand_icon"
           ></i>
         </span>          

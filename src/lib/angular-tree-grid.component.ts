@@ -233,4 +233,20 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
       this.configs, this.store.getDisplayData());
   }
 
+  disableRowSelection(row_id) {
+    this.angularTreeGridService.disableRowSelection(this.store.getDisplayData(), this.configs, row_id);
+  }
+
+  enableRowSelection(row_id) {
+    this.angularTreeGridService.enableRowSelection(this.store.getDisplayData(), this.configs, row_id);
+  }
+
+  disableRowExpand(row_id) {
+    this.angularTreeGridService.disableRowExpand(this.store.getDisplayData(), this.configs, row_id);
+  }
+
+  enableRowExpand(row_id) {
+    this.angularTreeGridService.enableRowExpand(this.store.getDisplayData(), this.configs, row_id);
+  }
+
 }

@@ -44,7 +44,8 @@
   >  
   <ng-container *ngIf="expand_tracker[row_data.parent_pathx]">
     <td *ngIf="configs.multi_select" class="checkbox_column">
-      <input type="checkbox" [checked]="row_data.row_selected" (click)="selectRowOnCheck(row_data, $event)">
+      <input type="checkbox" [checked]="row_data.row_selected" (click)="selectRowOnCheck(row_data, $event)" 
+        [attr.disabled]="row_data.selection_disabled">
     </td>
     <td db-tree-cell-actions 
       *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add)"
