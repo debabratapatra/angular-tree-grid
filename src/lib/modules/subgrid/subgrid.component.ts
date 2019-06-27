@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { Store } from '../../../../store/store';
-import { Configs } from '../../../../models/Configs.model';
+import { Store } from '../../store/store';
+import { Configs } from '../../models/Configs.model';
 
 @Component({
   selector: '[db-subgrid]',

@@ -1,0 +1,34 @@
+<ng-container *ngIf="expand_tracker[row_data.parent_pathx]">
+  <ng-container *ngIf="!row_data.leaf">
+    <td *ngFor="let column of configs.columns; index as i" 
+      [ngClass]="{'column-hide': column.hidden, 'expand-column': i == 0}">
+      <db-tree-cell
+        [configs]="configs"
+        [column]="column"
+        [index]="i"
+        [row_data]="row_data"
+        [expand_tracker]="expand_tracker"
+        [edit_on]="edit_tracker[row_data[configs.id_field]]"
+        [cellclick]="cellclick"
+        (rowexpand)="onRowExpand($event)"
+        (rowcollapse)="onRowCollapse($event)"
+      >
+      </db-tree-cell>
+    </td>
+  </ng-container>
+  <ng-container *ngIf="row_data.leaf">
+    <td [attr.colspan]="configs.columns.length" class="subgrid-column">
+        <table class="subgrid-table">
+            <thead db-subgrid-head
+              [configs]="configs">
+              
+            </thead>
+            <tbody db-subgrid-body
+              [configs]="configs"
+              [expand_tracker]="expand_tracker"
+              [row_data]="row_data">
+            </tbody>            
+          </table>
+    </td>    
+  </ng-container>  
+</ng-container>

@@ -1,0 +1,9 @@
+<tr>
+  <th *ngFor="let column of configs.subgrid_config.columns"
+    (click)="sortColumn(row_data, column)" width="{{column.width ? column.width : 'auto'}}"
+    [ngClass]="{'sorted': column.sorted,'sortable': column.sortable, 'column-hide': column.hidden}">
+    {{column.header}}
+    <span *ngIf="column.sortable" [ngClass]="column.sorted && column.sort_type == 0?'arrow-down active':'arrow-down'"></span>
+    <span *ngIf="column.sortable" [ngClass]="column.sorted && column.sort_type == 1?'arrow-up active':'arrow-up'"></span>
+  </th>
+</tr>
