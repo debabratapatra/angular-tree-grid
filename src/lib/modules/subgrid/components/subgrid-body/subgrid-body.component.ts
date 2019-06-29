@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Configs } from '../../../../models/Configs.model';
 
 @Component({
@@ -14,7 +14,10 @@ export class SubgridBodyComponent implements OnInit {
   expand_tracker: Object;
 
   @Input()
-  row_data: Object;
+  row_data: any;
+
+  @Input()
+  cellclick: EventEmitter<any>;
 
   constructor() { }
 

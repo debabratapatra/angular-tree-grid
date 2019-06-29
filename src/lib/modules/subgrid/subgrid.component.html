@@ -13,9 +13,7 @@
       [store]="store"
       [edit_tracker]="edit_tracker"
       [internal_configs]="internal_configs"
-      [rowdelete]="rowdelete"
-      (canceledit)="cancelEdit($event)" 
-      (editcomplete)="saveRecord($event)">
+      >
     </td>
     <td *ngFor="let column of configs.columns; index as i" 
       [ngClass]="{'column-hide': column.hidden, 'expand-column': i == 0}">
@@ -40,12 +38,14 @@
     <td [attr.colspan]="configs.columns.length" class="subgrid-column">
         <table class="subgrid-table">
           <thead db-subgrid-head
+            [row_data]="row_data"
             [configs]="configs">
             
           </thead>
           <tbody db-subgrid-body
             [configs]="configs"
             [expand_tracker]="expand_tracker"
+            [cellclick]="cellclick"
             [row_data]="row_data">
           </tbody>            
         </table>

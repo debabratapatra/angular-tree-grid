@@ -82,17 +82,6 @@ export class SubgridComponent implements OnInit {
     this.expand_tracker[row_data.pathx] = false;
   }
 
-  sortColumn(row_data, column) {
-    const sort_by = column.name;
-
-    // If already sorted then reverse.
-    column.sort_type = column.sorted ? !column.sort_type : 1;
-    column.sorted = 1;
-
-    column.sort_type ? row_data.children.sort((a, b) => (a[sort_by] > b[sort_by]) ? 1 : ((b[sort_by] > a[sort_by]) ? -1 : 0)) :
-      row_data.children.sort((a, b) => (a[sort_by] < b[sort_by]) ? 1 : ((b[sort_by] < a[sort_by]) ? -1 : 0));
-  }
-
   selectRowOnCheck(row_data, event) {
     if (event.target.checked) {
       row_data.row_selected = true;
