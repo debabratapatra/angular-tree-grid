@@ -39,9 +39,73 @@ export class SubgridComponent implements OnInit {
   @Input()
   rowdeselect: EventEmitter<any>;
 
+  @Input()
+  rowsave: EventEmitter<any>;
+
+  @Input()
+  rowdelete: EventEmitter<any>;
+
   constructor() { }
 
   ngOnInit() {}
+
+  saveRecord($event) {
+    const element = $event.data;
+
+    if (this.configs.actions.resolve_edit) {
+      const promise = new Promise((resolve, reject) => {
+        this.rowsave.emit({
+          data: element,
+          resolve: resolve
+        });
+      });
+
+      promise.then(() => {
+        this.checkAndRefreshData(element);
+      }).catch((err) => {});
+    } else {
+      this.checkAndRefreshData(element);
+      this.rowsave.emit(element);
+    }
+  }
+
+  checkAndRefreshData(element) {
+    this.edit_tracker[element[this.configs.id_field]] = false;
+    this.internal_configs.show_parent_col = false;
+
+    // Only refresh if Parent has been changed.
+    if (this.internal_configs.current_edited_row[this.configs.parent_id_field]
+      !== element[this.configs.parent_id_field]) {
+        this.refreshData(element);
+    }
+  }
+
+  refreshData(element) {
+    // If edit parent is not true then don't refresh.
+    if (!this.configs.actions.edit_parent) {
+      return;
+    }
+    element[this.configs.parent_id_field] = parseInt(element[this.configs.parent_id_field], 10);
+    this.expand_tracker = {};
+    this.edit_tracker = {};
+    this.store.processData(
+      this.store.getRawData(),
+      this.expand_tracker,
+      this.configs,
+      this.edit_tracker,
+      this.internal_configs
+    );
+  }
+
+  cancelEdit(row_data) {
+    const index = row_data[this.configs.id_field];
+
+    // Cancel all changes ie copy from back up.
+    Object.assign(row_data, this.internal_configs.current_edited_row);
+
+    this.edit_tracker[index] = false;
+    this.internal_configs.show_parent_col = false;
+  }
 
   onRowExpand(event) {
     const row_data = event.data;

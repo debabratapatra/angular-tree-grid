@@ -13,6 +13,9 @@
       [store]="store"
       [edit_tracker]="edit_tracker"
       [internal_configs]="internal_configs"
+      [rowdelete]="rowdelete"
+      (canceledit)="cancelEdit($event)" 
+      (editcomplete)="saveRecord($event)"
       >
     </td>
     <td *ngFor="let column of configs.columns; index as i" 
@@ -27,6 +30,7 @@
         [cellclick]="cellclick"
         (rowexpand)="onRowExpand($event)"
         (rowcollapse)="onRowCollapse($event)"
+        (editcomplete)="saveRecord($event)"
       >
       </db-tree-cell>
     </td>
@@ -35,6 +39,7 @@
   <!-- Subgrid Rows -->
   <ng-container *ngIf="row_data.leaf">    
     <td *ngIf="configs.multi_select"></td>
+    <td *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add)"></td>
     <td [attr.colspan]="configs.columns.length" class="subgrid-column">
         <table class="subgrid-table">
           <thead db-subgrid-head
