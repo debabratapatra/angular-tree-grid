@@ -178,7 +178,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
 
     if (this.configs.subgrid) {
       // this.configs.multi_select = false;
-      this.configs.filter = false;
+      // this.configs.filter = false;
       this.configs.actions.add = false;
       this.configs.actions.edit = false;
       this.configs.actions.delete = false;

@@ -39,16 +39,16 @@
     <td *ngIf="configs.multi_select"></td>
     <td [attr.colspan]="configs.columns.length" class="subgrid-column">
         <table class="subgrid-table">
-            <thead db-subgrid-head
-              [configs]="configs">
-              
-            </thead>
-            <tbody db-subgrid-body
-              [configs]="configs"
-              [expand_tracker]="expand_tracker"
-              [row_data]="row_data">
-            </tbody>            
-          </table>
+          <thead db-subgrid-head
+            [configs]="configs">
+            
+          </thead>
+          <tbody db-subgrid-body
+            [configs]="configs"
+            [expand_tracker]="expand_tracker"
+            [row_data]="row_data">
+          </tbody>            
+        </table>
     </td>    
   </ng-container>  
 </ng-container>

@@ -37,7 +37,11 @@ export class FilterRowComponent implements OnInit {
 
   filter() {
     this.store.filterBy(this.columns.map(column => column.name), Object.values(this.search_values));
-    this.angularTreeGridService.expandAll(this.expand_tracker);
+
+    // Don't expand for subgrid.
+    if (!this.configs.subgrid) {
+      this.angularTreeGridService.expandAll(this.expand_tracker);
+    }
   }
 
 }
