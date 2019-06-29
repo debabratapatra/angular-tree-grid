@@ -49,6 +49,7 @@ export class Store {
         if (!blank_row || blank_row.parent_pathx !== row_data[this.configs.id_field]) {
             blank_row = {
                 leaf: true,
+                row_selected: true, // By default make it selected as it's never going to be selected manually.
                 parent_pathx: row_data[this.configs.id_field]
             };
             blank_row[this.configs.id_field] = -1;

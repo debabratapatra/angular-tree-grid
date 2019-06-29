@@ -33,6 +33,12 @@ export class SubgridComponent implements OnInit {
   @Input()
   expand: EventEmitter<any>;
 
+  @Input()
+  rowselect: EventEmitter<any>;
+
+  @Input()
+  rowdeselect: EventEmitter<any>;
+
   constructor() { }
 
   ngOnInit() {}
@@ -85,6 +91,35 @@ export class SubgridComponent implements OnInit {
 
     column.sort_type ? row_data.children.sort((a, b) => (a[sort_by] > b[sort_by]) ? 1 : ((b[sort_by] > a[sort_by]) ? -1 : 0)) :
       row_data.children.sort((a, b) => (a[sort_by] < b[sort_by]) ? 1 : ((b[sort_by] < a[sort_by]) ? -1 : 0));
+  }
+
+  selectRowOnCheck(row_data, event) {
+    if (event.target.checked) {
+      row_data.row_selected = true;
+      this.rowselect.emit({data: row_data, event: event});
+    } else {
+      row_data.row_selected = false;
+      this.rowdeselect.emit({data: row_data, event: event});
+    }
+
+    this.setSelectAllConfig();
+  }
+
+  /**
+   * Set Select All config on Select change.
+   *
+   */
+  setSelectAllConfig() {
+    let select_all = true;
+
+    this.store.getDisplayData().forEach(data => {
+      if (!data.row_selected) {
+        select_all = false;
+      }
+    });
+
+    this.internal_configs.all_selected = select_all;
+
   }
 
 }
