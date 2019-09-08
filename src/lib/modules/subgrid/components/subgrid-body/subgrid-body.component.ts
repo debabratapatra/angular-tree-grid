@@ -11,7 +11,7 @@ export class SubgridBodyComponent implements OnInit {
   configs: Configs;
 
   @Input()
-  expand_tracker: Object;
+  expand_tracker: any;
 
   @Input()
   row_data: any;

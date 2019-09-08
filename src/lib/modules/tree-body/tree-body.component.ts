@@ -10,7 +10,7 @@ import { Store } from '../../store/store';
   styleUrls: ['./tree-body.component.scss']
 })
 export class TreeBodyComponent implements OnInit {
-  parents: Object[] = [];
+  parents: any[] = [];
   raw_data: any[];
   display_data: any[];
 
@@ -21,10 +21,10 @@ export class TreeBodyComponent implements OnInit {
   configs: Configs;
 
   @Input()
-  expand_tracker: Object;
+  expand_tracker: any;
 
   @Input()
-  edit_tracker: Object;
+  edit_tracker: any;
 
   @Input()
   internal_configs: any;

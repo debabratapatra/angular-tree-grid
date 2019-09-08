@@ -10,7 +10,7 @@ import { AngularTreeGridService } from '../../../../angular-tree-grid.service';
   styleUrls: ['./filter-row.component.scss']
 })
 export class FilterRowComponent implements OnInit {
-  search_values: Object = {};
+  search_values: any = {};
 
   @Input()
   store: Store;

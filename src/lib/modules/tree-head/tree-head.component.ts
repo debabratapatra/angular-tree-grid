@@ -18,7 +18,7 @@ export class TreeHeadComponent implements OnInit {
   configs: Configs;
 
   @Input()
-  expand_tracker: Object;
+  expand_tracker: any;
 
   @Input()
   edit_tracker: any;

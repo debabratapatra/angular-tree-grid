@@ -16,10 +16,10 @@ export class SubgridComponent implements OnInit {
   configs: Configs;
 
   @Input()
-  expand_tracker: Object;
+  expand_tracker: any;
 
   @Input()
-  edit_tracker: Object;
+  edit_tracker: any;
 
   @Input()
   internal_configs: any;

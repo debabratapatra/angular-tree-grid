@@ -11,8 +11,8 @@ import { Store } from '../../../../store/store';
 })
 export class AddRowComponent implements OnInit {
   raw_data: any[];
-  row_data: Object = {};
-  parents: Object[] = [];
+  row_data: any = {};
+  parents: any[] = [];
   show_add_row: boolean;
 
   @Input()
