@@ -42,6 +42,8 @@ export class TreeCellComponent implements OnInit {
   ngOnInit() {
     this.is_expand_column = this.index === 0;
     this.show_expand_icon = !this.row_data.leaf;
+
+    // If user mentions a node as leaf.
     if (this.configs.load_children_on_expand) {
       this.show_expand_icon = !this.row_data.dynamic_node_leaf;
     }
