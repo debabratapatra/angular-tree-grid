@@ -221,7 +221,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
 
   expandRow(row_id, suppress_event?: false) {
     this.angularTreeGridService.expandRow(row_id, this.expand_tracker, this.expand, suppress_event,
-         this.configs, this.store.getDisplayData());
+         this.configs, this.store.getDisplayData(), this.store);
   }
 
   collapseRow(row_id, suppress_event?: false) {

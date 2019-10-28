@@ -49,7 +49,7 @@ export class AngularTreeGridService {
     expand_tracker[''] = true;
   }
 
-  expandRow(row_id, expand_tracker, expand_event, suppress_event, configs, display_data) {
+  expandRow(row_id, expand_tracker, expand_event, suppress_event, configs, display_data, store) {
     const row_index = this.findRowIndex(display_data, configs, row_id);
 
     const row_data = display_data[row_index];
@@ -77,7 +77,7 @@ export class AngularTreeGridService {
             if (!suppress_event) {
                 if (configs.load_children_on_expand) {
                     this.emitExpandRowEvent(expand_tracker, expand_event,
-                        this, row_data, configs);
+                        store, row_data, configs);
                 } else {
                     expand_event.emit({event: null, data: row_data});
                 }
