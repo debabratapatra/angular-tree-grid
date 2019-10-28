@@ -109,6 +109,7 @@ Below are configs that can be set
 | css_class  | string  |  n/a | Custom css class for the column.  |
 | hidden  | boolean  |  false | Show/Hide column.  |
 | filter  | boolean  |  true | Enable/Disable filter.  |
+| filterFunction  | Function  |  n/a | Custom function for the filter. filter must be enabled for this. See this <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/#/filter_function">Example</a> for more information. |
 | case_sensitive_filter  | boolean  |  false | Case Sensitive/Insensitive Filter.  |
 | editable  | boolean  |  false | To make a specific column editable. By default columns are not editable. edit option needs to be true at **grid** level.  |
 | renderer  | Function  |  n/a | It is a method to render customized value for the column. See this <a href="https://angular-tree-grid.stackblitz.io/basic_tree_grid">Example</a>.  |
@@ -116,7 +117,7 @@ Below are configs that can be set
 | component  | Object  |  n/a | Custom View Component. Mandatory if type is custom.See this <a href="https://angular-tree-grid.stackblitz.io/custom_view_component">Example</a>.|
 | editor  | Object  |  n/a | Custom Editor Component. If given custom editor component will be used instead of default editor. See this <a href="https://angular-tree-grid.stackblitz.io/custom_edit_component">Example</a>.  |
 | onComponentInit  | Function  |  n/a | Callback function for the column on component init.  |
-| summary_renderer  | Function  |  n/a | Renderer for summary. See <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/#/summary_row">Example</a> for more information. |
+| summary_renderer  | Function  |  n/a | Renderer for summary. See this <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/#/summary_row">Example</a> for more information. |
 | sortable  | boolean  |  false | Sort Column. Only available for subgrid feature.  |
 
 ##### subgrid_config
