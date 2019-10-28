@@ -83,11 +83,12 @@ export class Store {
         this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
     }
 
-    filterBy(fields, search_values) {
+    filterBy(columns, search_values) {
         this.display_data = this.processed_data.filter((record) => {
             let found = true;
-            for (let index = 0; index < fields.length; index++) {
-                let field_value = record[fields[index]];
+            for (let index = 0; index < columns.length; index++) {
+                const column = columns[index];
+                let column_value = record[column.name];
                 let search_value = search_values[index];
 
                 // If blank then continue.
@@ -95,18 +96,25 @@ export class Store {
                     continue;
                 }
 
-                if (typeof(field_value) === 'number') {
-                    if (field_value !== parseInt(search_value, 10)) {
+                // Call custom filter function.
+                if (column.filterFunction) {
+                    const response = column.filterFunction(record, column, column_value, search_value);
+                    if (response === false) {
                         found = false;
                     }
                 } else {
-                    const column = this.configs.columns[index];
-                    if (!column.case_sensitive_filter) {
-                        field_value = field_value.toLowerCase();
-                        search_value = search_value.toLowerCase();
-                    }
-                    if (field_value.indexOf(search_value) === -1) {
-                        found = false;
+                    if (typeof(column_value) === 'number') {
+                        if (column_value !== parseInt(search_value, 10)) {
+                            found = false;
+                        }
+                    } else {
+                        if (!column.case_sensitive_filter) {
+                            column_value = column_value.toLowerCase();
+                            search_value = search_value.toLowerCase();
+                        }
+                        if (column_value.indexOf(search_value) === -1) {
+                            found = false;
+                        }
                     }
                 }
             }

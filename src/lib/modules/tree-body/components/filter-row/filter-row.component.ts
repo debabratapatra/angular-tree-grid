@@ -36,7 +36,7 @@ export class FilterRowComponent implements OnInit {
   }
 
   filter() {
-    this.store.filterBy(this.columns.map(column => column.name), Object.values(this.search_values));
+    this.store.filterBy(this.columns, Object.values(this.search_values));
 
     // Don't expand for subgrid.
     if (!this.configs.subgrid) {
