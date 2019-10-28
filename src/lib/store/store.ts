@@ -97,8 +97,8 @@ export class Store {
                 }
 
                 // Call custom filter function.
-                if (column.filterFunction) {
-                    const response = column.filterFunction(record, column, column_value, search_value);
+                if (column.filter_function) {
+                    const response = column.filter_function(record, column, column_value, search_value);
                     if (response === false) {
                         found = false;
                     }
