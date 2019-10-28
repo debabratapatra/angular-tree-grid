@@ -109,7 +109,7 @@ Below are configs that can be set
 | css_class  | string  |  n/a | Custom css class for the column.  |
 | hidden  | boolean  |  false | Show/Hide column.  |
 | filter  | boolean  |  true | Enable/Disable filter.  |
-| filterFunction  | Function  |  n/a | Custom function for the filter. filter must be enabled for this. See this <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/#/filter_column">Example</a> for more information. |
+| filter_function  | Function  |  n/a | Custom filter function. filter must be enabled for this. See this <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/#/filter_column">Example</a> for more information. |
 | case_sensitive_filter  | boolean  |  false | Case Sensitive/Insensitive Filter.  |
 | editable  | boolean  |  false | To make a specific column editable. By default columns are not editable. edit option needs to be true at **grid** level.  |
 | renderer  | Function  |  n/a | It is a method to render customized value for the column. See this <a href="https://angular-tree-grid.stackblitz.io/basic_tree_grid">Example</a>.  |
