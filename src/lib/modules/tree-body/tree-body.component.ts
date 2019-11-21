@@ -63,16 +63,21 @@ export class TreeBodyComponent implements OnInit {
     this.display_data = this.store.getDisplayData();
     this.angularTreeGridService.display_data_observable$.subscribe((store) => {
       this.display_data = this.store.getDisplayData();
-      this.parents = this.store.raw_data.map(
-        element => {
-          return {
-            'id': element[this.configs.id_field],
-            'value': element[this.configs.parent_display_field]
-          };
-        }
-      );
+      this.setParents();
     });
+    this.setParents();
 
+  }
+
+  setParents() {
+    this.parents = this.store.raw_data.map(
+      element => {
+        return {
+          'id': element[this.configs.id_field],
+          'value': element[this.configs.parent_display_field]
+        };
+      }
+    );
   }
 
   refreshData(element) {
