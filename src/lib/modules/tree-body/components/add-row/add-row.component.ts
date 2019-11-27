@@ -49,8 +49,6 @@ export class AddRowComponent implements OnInit {
 
   saveAddRecord(e) {
     this.raw_data.push(this.row_data);
-    this.internal_configs.show_add_row = false;
-
     this.rowadd.emit(this.row_data);
   }
 

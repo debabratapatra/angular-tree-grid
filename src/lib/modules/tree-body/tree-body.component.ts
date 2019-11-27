@@ -155,8 +155,23 @@ export class TreeBodyComponent implements OnInit {
   }
 
   addRow(element) {
-    this.refreshData(element);
-    this.rowadd.emit(element);
+    if (this.configs.actions.resolve_add) {
+      const promise = new Promise((resolve, reject) => {
+        this.rowadd.emit({
+          data: element,
+          resolve: resolve
+        });
+      });
+
+      promise.then(() => {
+        this.internal_configs.show_add_row = false;
+        this.refreshData(element);
+      }).catch((err) => {});
+    } else {
+      this.refreshData(element);
+      this.internal_configs.show_add_row = false;
+      this.rowadd.emit(element);
+    }
   }
 
   cancelEdit(row_data) {
