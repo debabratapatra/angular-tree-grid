@@ -50,6 +50,10 @@ export class AngularTreeGridService {
   }
 
   expandRow(row_id, expand_tracker, expand_event, suppress_event, configs, display_data, store) {
+    if (configs.subgrid) {
+      this.expandSubgridRow(row_id, expand_tracker, expand_event, suppress_event, configs, display_data, store);
+      return;
+    }
     const row_index = this.findRowIndex(display_data, configs, row_id);
 
     const row_data = display_data[row_index];
@@ -153,4 +157,47 @@ export class AngularTreeGridService {
     const row_index = this.findRowIndex(display_data, configs, row_id);
     display_data[row_index].expand_disabled = false;
   }
+
+  expandSubgridRow(row_id, expand_tracker, expand_event, suppress_event, configs, display_data, store) {
+    const row_index = this.findRowIndex(display_data, configs, row_id);
+    const row_data = display_data[row_index];
+    expand_tracker[row_data.pathx] = true;
+
+    if (!suppress_event) {
+      this.emitSubgridExpandRowEvent(expand_tracker, expand_event, store, row_data);
+    }
+  }
+
+  emitSubgridExpandRowEvent(expand_tracker, expand, store, row_data) {
+    const promise = new Promise((resolve, reject) => {
+      expand.emit({
+        data: row_data,
+        resolve: resolve
+      });
+    });
+
+    expand_tracker[row_data.pathx] = true;
+    const blank_row: any = store.showBlankRow(row_data);
+    blank_row.loading_children = true;
+
+    // Add Child rows to the table.
+    promise.then((child_rows: any) => {
+      blank_row.loading_children = false;
+
+      if (child_rows) {
+        child_rows.map(child => {
+          child.leaf = true;
+        });
+        blank_row.children = child_rows;
+      } else {
+
+        // Persist old children. If didn't exist then assign blank array.
+        if (!blank_row.children) {
+          blank_row.children = [];
+        }
+      }
+
+    }).catch((err) => {});
+  }
+
 }

@@ -1,6 +1,6 @@
 {
   "name": "angular-tree-grid",
-  "version": "2.7.5",
+  "version": "2.7.6",
   "homepage": "https://github.com/debabratapatra/angular-tree-grid#readme",
   "license" : "MIT",
   "peerDependencies": {
