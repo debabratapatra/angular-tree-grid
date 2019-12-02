@@ -1,4 +1,4 @@
-# Angular Tree Grid
+# Angular Tree Component
 Angular Tree Grid to show hierarchical data. Basically if data has Parent-Child relationship. It also supports sub-grid/nested-grid. If data needs to be grouped by fields then check out this <a href="https://github.com/debabratapatra/ngtreegrid" target="_blank">Package</a>.
 
 ## Demo
