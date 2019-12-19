@@ -60,34 +60,34 @@ export class AngularTreeGridService {
     const pathx = row_data.pathx;
     const parts = pathx.split('.');
     expand_tracker[row_data.pathx] = true;
-    let expanded_count = 0;
+    let expanded_count = 1;
 
-    // Expand parent rows as well
-    display_data.forEach(record => {
+    for (let index = 0; index < display_data.length; index++) {
+      const record = display_data[index];
 
-        // Stop when all rows are expanded.
-        if (expanded_count > parts.length) {
-          return;
-        }
+      // Stop when all rows are expanded.
+      if (expanded_count >= parts.length) {
+        return;
+      }
 
-        // Join paths as we expand.
-        const key = parts.slice(0, expanded_count + 1).join('.');
+      // Join paths as we expand.
+      const key = parts.slice(0, expanded_count).join('.');
 
-        // We don't want to expand it's children here.
-        if (record.pathx.includes(key)) {
-            expanded_count += 1;
-            expand_tracker[record.pathx] = true;
+      // We don't want to expand it's children here.
+      if (record.pathx.includes(key)) {
+          expanded_count += 1;
+          expand_tracker[record.pathx] = true;
 
-            if (!suppress_event) {
-                if (configs.load_children_on_expand) {
-                    this.emitExpandRowEvent(expand_tracker, expand_event,
-                        store, row_data, configs);
-                } else {
-                    expand_event.emit({event: null, data: row_data});
-                }
-            }
-        }
-    });
+          if (!suppress_event) {
+              if (configs.load_children_on_expand) {
+                  this.emitExpandRowEvent(expand_tracker, expand_event,
+                      store, row_data, configs);
+              } else {
+                  expand_event.emit({event: null, data: row_data});
+              }
+          }
+      }
+    }
   }
 
   collapseRow(row_id, expand_tracker, collapse_event, suppress_event, configs, display_data) {
