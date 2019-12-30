@@ -116,7 +116,7 @@ Below are configs that can be set
 | type  | string  |  '' | Set to 'custom' to have custom component for the column. Otherwise leave blank.  |
 | component  | Object  |  n/a | Custom View Component. Mandatory if type is custom.See this <a href="https://angular-tree-grid.stackblitz.io/custom_view_component">Example</a>.|
 | editor  | Object  |  n/a | Custom Editor Component. If given custom editor component will be used instead of default editor. See this <a href="https://angular-tree-grid.stackblitz.io/custom_edit_component">Example</a>.  |
-| onComponentInit  | Function  |  n/a | Callback function for the column on component init.  |
+| on_component_init  | Function  |  n/a | Callback function for the column on component init.  |
 | summary_renderer  | Function  |  n/a | Renderer for summary. See this <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/#/summary_row">Example</a> for more information. |
 | sortable  | boolean  |  false | Sort Column. Only available for subgrid feature.  |
 

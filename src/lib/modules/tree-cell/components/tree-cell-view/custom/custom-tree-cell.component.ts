@@ -12,40 +12,40 @@ import { Column } from '../../../../../models/Column.model';
 @Component({
     selector: 'db-custom-cell-component',
     template: `
-      <ng-template #dynamicTarget></ng-template>
+      <ng-template #customView></ng-template>
     `,
 })
 export class CustomCellViewComponent implements OnInit, OnDestroy {
-    customComponent: any;
+    custom_component: any;
     @Input() column: Column;
     @Input() row_data;
-    @ViewChild('dynamicTarget', { read: ViewContainerRef }) dynamicTarget: any;
+    @ViewChild('customView', { read: ViewContainerRef }) custom_view: any;
 
     constructor(private resolver: ComponentFactoryResolver) {
     }
 
     ngOnInit() {
-      if (this.column.component && !this.customComponent) {
+      if (this.column.component && !this.custom_component) {
         this.createCustomComponent();
         this.callOnComponentInit();
       }
     }
 
     ngOnDestroy() {
-      if (this.customComponent) {
-        this.customComponent.destroy();
+      if (this.custom_component) {
+        this.custom_component.destroy();
       }
     }
 
     protected createCustomComponent() {
       const componentFactory = this.resolver.resolveComponentFactory(this.column.component);
-      this.customComponent = this.dynamicTarget.createComponent(componentFactory);
+      this.custom_component = this.custom_view.createComponent(componentFactory);
     }
 
     protected callOnComponentInit() {
-      this.column.onComponentInit && this.column.onComponentInit(this.customComponent.instance);
+      this.column.on_component_init && this.column.on_component_init(this.custom_component.instance);
 
-      this.customComponent.instance.cell_value = this.row_data[this.column.name];
-      this.customComponent.instance.row_data = this.row_data;
+      this.custom_component.instance.cell_value = this.row_data[this.column.name];
+      this.custom_component.instance.row_data = this.row_data;
     }
 }

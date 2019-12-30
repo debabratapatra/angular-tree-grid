@@ -12,7 +12,7 @@ export interface Column {
     type?: string;
     component?: any;
     editor?: any;
-    onComponentInit?: any;
+    on_component_init?: any;
     case_sensitive_filter: Boolean;
     summary_renderer?: any;
 }

@@ -13,47 +13,47 @@ import { DefaultEditor } from '../default/default-editor.component';
 @Component({
     selector: 'db-custom-cell-editor-component',
     template: `
-      <ng-template #dynamicTarget></ng-template>
+      <ng-template #customView></ng-template>
     `,
 })
 export class CustomCellEditorComponent extends DefaultEditor implements OnInit, OnDestroy {
-    customComponent: any;
+    custom_component: any;
     @Input() column: Column;
     @Input() cell_value;
     @Input() row_data;
-    @ViewChild('dynamicTarget', { read: ViewContainerRef }) dynamicTarget: any;
+    @ViewChild('customView', { read: ViewContainerRef }) custom_view: any;
 
     constructor(private resolver: ComponentFactoryResolver) {
       super();
     }
 
     ngOnInit() {
-      if (this.column.editor && !this.customComponent) {
+      if (this.column.editor && !this.custom_component) {
         this.createCustomComponent();
         this.callOnComponentInit();
       }
     }
 
     ngOnDestroy() {
-      if (this.customComponent) {
-        this.customComponent.destroy();
+      if (this.custom_component) {
+        this.custom_component.destroy();
       }
     }
 
     protected createCustomComponent() {
       const componentFactory = this.resolver.resolveComponentFactory(this.column.editor);
-      this.customComponent = this.dynamicTarget.createComponent(componentFactory);
+      this.custom_component = this.custom_view.createComponent(componentFactory);
     }
 
     protected callOnComponentInit() {
-      this.column.onComponentInit && this.column.onComponentInit(this.customComponent.instance);
+      this.column.on_component_init && this.column.on_component_init(this.custom_component.instance);
 
-      this.customComponent.instance.cell_value = this.cell_value;
-      this.customComponent.instance.row_data = this.row_data;
-      this.customComponent.instance.column = this.column;
+      this.custom_component.instance.cell_value = this.cell_value;
+      this.custom_component.instance.row_data = this.row_data;
+      this.custom_component.instance.column = this.column;
 
-      this.customComponent.instance.editcomplete.subscribe((event) => this.editcomplete.emit(event));
-      this.customComponent.instance.canceledit.subscribe((event) => this.canceledit.emit(event));
-      this.customComponent.instance.cellclick.subscribe((event) => this.cellclick.emit(event));
+      this.custom_component.instance.editcomplete.subscribe((event) => this.editcomplete.emit(event));
+      this.custom_component.instance.canceledit.subscribe((event) => this.canceledit.emit(event));
+      this.custom_component.instance.cellclick.subscribe((event) => this.cellclick.emit(event));
     }
 }
