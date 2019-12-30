@@ -126,7 +126,7 @@ Below are configs that can be set
 | *id_field  | string  |  n/a | It’s a mandatory field. It is the primary key of child data.  |
 |  data_loading_text |  string | 'Loading...'  |  Loading place holder. This will be displayed when data is getting loaded. |
 | show_summary_row  | boolean  |  false | To show summary row. It defaults to false. Use summary_renderer at the column level. |
-| Column  | Array  |  n/a | See above columns table.  |
+| columns  | Array  |  n/a | See above columns table.  |
 
 #### Example
 ```
