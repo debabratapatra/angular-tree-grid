@@ -45,7 +45,7 @@ export class TreeCellComponent implements OnInit {
 
     // If user mentions a node as leaf.
     if (this.configs.load_children_on_expand) {
-      this.show_expand_icon = !this.row_data.dynamic_node_leaf;
+      this.show_expand_icon = !this.row_data.leaf_node;
     }
     this.cell_value = this.row_data[this.column.name];
   }
