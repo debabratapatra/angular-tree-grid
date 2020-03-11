@@ -1,4 +1,4 @@
-<table class="db-tree-view">
+<table [attr.class]="'db-tree-view ' + configs.css.table_class" >
     <thead 
         db-tree-head
         [store]="store"
