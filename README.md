@@ -100,6 +100,7 @@ Below are configs that can be set
 | cancel_class  | string  |  cancel | Icon class for Cancel icon. Font Awesome class can be given.  |
 | row_selection_class  | string  |  n/a | CSS Class for selected row.  |
 | header_class  | string  |  n/a | CSS Class for header.  |
+| table_class  | string  |  n/a | CSS Class for Table.  |
 ##### columns
 | Field  |Type   |Default |  Description |
 |---|---|---|---|
