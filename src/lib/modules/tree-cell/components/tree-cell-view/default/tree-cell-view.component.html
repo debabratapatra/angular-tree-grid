@@ -1,1 +1,1 @@
-<span>{{column.renderer ? column.renderer(row_data[column.name], row_data) : row_data[column.name]}}</span>
+<span [innerHTML]="column.renderer ? column.renderer(row_data[column.name], row_data) : row_data[column.name]"></span>
