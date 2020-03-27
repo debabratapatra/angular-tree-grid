@@ -4,7 +4,6 @@ tr {
     background: #fff;
 
     th {
-        padding: 0.5rem 0.5rem;
         font-size: 1rem;
         font-weight: 600;
         line-height: 1.25;
@@ -12,8 +11,11 @@ tr {
         border: 1px solid #cdd5dc;
         vertical-align: middle;
         position: relative;
-        padding: 0.5rem 0.5rem;
         box-sizing: border-box;
+
+        div {
+            padding: 0.5rem 0.5rem;
+        }
 
         &.column-hide {
             display: none;

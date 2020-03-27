@@ -9,6 +9,7 @@ export interface Column {
     hidden: Boolean;
     width?: string;
     renderer?: any;
+    header_renderer?: any;
     type?: string;
     component?: any;
     editor?: any;
