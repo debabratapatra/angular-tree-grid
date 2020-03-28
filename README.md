@@ -3,7 +3,7 @@ Angular Tree Grid to show hierarchical data. Basically if data has Parent-Child 
 
 ## Demo
 
-Click <a href="https://angular-tree-grid.stackblitz.io/" target="_blank">here</a> for demo. This readme is the documentation. Visit my <a href="https://debabratapatra.github.io" target="_blank">Website</a> to know other packages.
+Click <a href="https://angular-tree-grid.stackblitz.io/" target="_blank">here</a> for demo. This readme is the documentation. Visit my <a href="https://debabratapatra.github.io" target="_blank">Website</a> to know other packages. Try <a href="https://debabratapatra.github.io/pages/angular-tree-grid-pro/demo" target="_blank">Pro</a> Version. It has some beautiful features!
 <div>
 <img src="https://debabratapatra.github.io/resources/images/cards/angular-tree-grid.png" alt="Loading" />
 </div>
@@ -68,9 +68,6 @@ Below are configs that can be set
 |  filter |  boolean | false  |  It enables filter toolbar. Filter is customizable at column level. |
 |  multi_select |  boolean | false  |  It enables checkbox selection. |
 |  show_summary_row |  boolean | false  |  It enables summary or footer row. Use summary_renderer at the column level |
-|  load_children_on_expand |  boolean | false  |  It enables dynamic children loading. It means children will be loaded on row-expand. See <a href="https://angular-tree-grid.stackblitz.io/dynamic_children">Example</a> for more information.|
-|  subgrid |  boolean | false  |  It enables subgrid feature. parent_id_field is not mandatory for subgrid. Add feature is disabled when it is true. See this <a href="https://angular-tree-grid.stackblitz.io/subgrid">Example</a> for more information|
-|  subgrid_config |  Object | n/a  |  Configs for subgrid. See below table for this. |
 |  show_parent_on_edit |  boolean | true  |  Show Parent column On Edit. It is true by default. |
 |  row_class_function |  Function | n/a  |  Callback function for row class. A custom class can be returned which will be added to the row. |
 |  row_edit_function |  Function | n/a  |  Callback function for edit feature. Based on the return type(Boolean) of this function, edit can be enabled/disabled for a specific row. See <a href="https://angular-tree-grid.stackblitz.io/cond_row_edit">Example</a> for more information. |
