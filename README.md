@@ -67,6 +67,9 @@ Below are configs that can be set
 |  data_loading_text |  string | 'Loading...'  |  Loading place holder. This will be displayed when data is empty. |
 |  filter |  boolean | false  |  It enables filter toolbar. Filter is customizable at column level. |
 |  multi_select |  boolean | false  |  It enables checkbox selection. |
+|  load_children_on_expand |  boolean | false  |  It enables dynamic children loading. It means children will be loaded on row-expand. See <a href="https://angular-tree-grid.stackblitz.io/dynamic_children">Example</a> for more information.|	
+|  subgrid |  boolean | false  |  It enables subgrid feature. parent_id_field is not mandatory for subgrid. Add feature is disabled when it is true. See this <a href="https://angular-tree-grid.stackblitz.io/subgrid">Example</a> for more information|	
+|  subgrid_config |  Object | n/a  |  Configs for subgrid. See below table for this. |
 |  show_summary_row |  boolean | false  |  It enables summary or footer row. Use summary_renderer at the column level |
 |  show_parent_on_edit |  boolean | true  |  Show Parent column On Edit. It is true by default. |
 |  row_class_function |  Function | n/a  |  Callback function for row class. A custom class can be returned which will be added to the row. |
