@@ -47,5 +47,6 @@ export class CustomCellViewComponent implements OnInit, OnDestroy {
 
       this.custom_component.instance.cell_value = this.row_data[this.column.name];
       this.custom_component.instance.row_data = this.row_data;
+      this.custom_component.instance.column = this.column;
     }
 }
