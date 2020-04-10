@@ -3,14 +3,10 @@ Angular Tree Grid to show hierarchical data. Basically if data has Parent-Child 
 
 ## Demo
 
-Click <a href="https://angular-tree-grid.stackblitz.io/" target="_blank">here</a> for demo. This readme is the documentation. Visit my <a href="https://debabratapatra.github.io" target="_blank">Website</a> to know other packages. Try <a href="https://debabratapatra.github.io/pages/angular-tree-grid-pro/demo" target="_blank">Pro</a> Version. It has some beautiful features!
+Click <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo" target="_blank">here</a> for demo. This readme is the documentation. Visit my <a href="https://debabratapatra.github.io" target="_blank">Website</a> to know other packages. 
 <div>
 <img src="https://debabratapatra.github.io/resources/images/cards/angular-tree-grid.png" alt="Loading" />
 </div>
-
-## Donate :hearts:
-
-Please consider a <a href="https://paypal.me/debpatra" target="_blank">donation</a> if it is useful to you.
 
 ## Installation
 
