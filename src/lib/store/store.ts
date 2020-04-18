@@ -7,7 +7,7 @@ export class Store {
     display_data: any[];
     configs: Configs;
 
-    constructor(private angularTreeGridService: AngularTreeGridService) {}
+    constructor(private angularTreeGridService: AngularTreeGridService) { }
 
     getRawData() {
         return this.raw_data;
@@ -43,7 +43,7 @@ export class Store {
      */
     showBlankRow(row_data) {
         const row_index = this.display_data.map(row => row[this.configs.id_field]).
-                        indexOf(row_data[this.configs.id_field]);
+            indexOf(row_data[this.configs.id_field]);
 
         let blank_row = this.display_data[row_index + 1];
         if (!blank_row || blank_row.parent_pathx !== row_data[this.configs.id_field]) {
@@ -74,7 +74,7 @@ export class Store {
 
     add_children(row_data, children) {
         const row_index = this.processed_data.map(row => row[this.configs.id_field]).
-                        indexOf(row_data[this.configs.id_field]);
+            indexOf(row_data[this.configs.id_field]);
         const top_rows = this.processed_data.slice(0, row_index + 1);
         const bottom_rows = this.processed_data.slice(row_index + 1);
         this.processed_data = top_rows.concat(children).concat(bottom_rows);
@@ -103,7 +103,7 @@ export class Store {
                         found = false;
                     }
                 } else {
-                    if (typeof(column_value) === 'number') {
+                    if (typeof (column_value) === 'number') {
                         if (column_value !== parseInt(search_value, 10)) {
                             found = false;
                         }
@@ -129,13 +129,13 @@ export class Store {
 
         // Find parents ie if parent_id is not present in ids.
         data.forEach(element => {
-            if (!ids.includes(element[configs.parent_id_field])) {
-            top_parents.push(element[configs.parent_id_field]);
+            if (ids.indexOf(element[configs.parent_id_field]) === -1) {
+                top_parents.push(element[configs.parent_id_field]);
             }
         });
 
         // Remove duplicates
-        top_parents = top_parents.filter(function(item, pos, self) {
+        top_parents = top_parents.filter(function (item, pos, self) {
             return self.indexOf(item) === pos;
         });
 

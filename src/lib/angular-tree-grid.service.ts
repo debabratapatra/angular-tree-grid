@@ -74,7 +74,7 @@ export class AngularTreeGridService {
       const key = parts.slice(0, expanded_count).join('.');
 
       // We don't want to expand it's children here.
-      if (record.pathx.includes(key)) {
+      if (record.pathx.indexOf(key) !== -1) {
           expanded_count += 1;
           expand_tracker[record.pathx] = true;
 
@@ -99,7 +99,7 @@ export class AngularTreeGridService {
 
       // Collapse children rows as well
       display_data.forEach(record => {
-          if (record.pathx.includes(pathx)) {
+          if (record.pathx.indexOf(pathx) !== -1) {
               expand_tracker[record.pathx] = 0;
               if (!suppress_event) {
                   collapse_event.emit({event: null, data: row_data});
