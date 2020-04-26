@@ -205,4 +205,9 @@ export class Store {
 
         });
     }
+
+    refreshDisplayData() {
+        this.display_data = this.processed_data;
+        this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
+    }
 }

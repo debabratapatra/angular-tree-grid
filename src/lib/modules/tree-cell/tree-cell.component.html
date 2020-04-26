@@ -42,7 +42,7 @@
             [cell_value]="cell_value" 
             [column]="column" 
             [row_data]="row_data"
-            (canceledit)="canceledit.emit(row_data['idx'])"
+            (canceledit)="canceledit.emit(row_data['pathx'])"
             (editcomplete)="onEditComplete($event)">
         </db-custom-cell-editor-component>
         <db-tree-cell-editor 
@@ -51,7 +51,7 @@
             [row_data]="row_data" 
             [column]="column"
             [expandable_column]=true
-            (canceledit)="canceledit.emit(row_data['idx'])"
+            (canceledit)="canceledit.emit(row_data['pathx'])"
             (editcomplete)="onEditComplete($event)"
             >
         </db-tree-cell-editor>
@@ -78,7 +78,7 @@
           [cell_value]="cell_value" 
           [column]="column" 
           [row_data]="row_data"
-          (canceledit)="canceledit.emit(row_data['idx'])"
+          (canceledit)="canceledit.emit(row_data['pathx'])"
           (editcomplete)="onEditComplete($event)">
       </db-custom-cell-editor-component>
       <db-tree-cell-editor 
@@ -87,7 +87,7 @@
           [row_data]="row_data" 
           [column]="column"
           [expandable_column]=false
-          (canceledit)="canceledit.emit(row_data['idx'])"
+          (canceledit)="canceledit.emit(row_data['pathx'])"
           (editcomplete)="onEditComplete($event)"
           >
       </db-tree-cell-editor>

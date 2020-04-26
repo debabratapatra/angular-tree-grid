@@ -47,15 +47,16 @@ export class TreeCellActionsComponent implements OnInit {
     }
   }
 
-  findRecordIndex(idx: number) {
-    for (const index in this.display_data) {
-      if (this.display_data[index].idx === idx) {
-        return index;
+  findRecordIndex(pathx: number) {
+    for (const index in this.store.processed_data) {
+      if (this.store.processed_data[index].pathx === pathx) {
+        return Number(index);
       }
     }
   }
 
   deleteRecord(rec) {
+    const index: number = this.findRecordIndex(rec.pathx);
     if (this.configs.actions.resolve_delete) {
       const promise = new Promise((resolve, reject) => {
         this.rowdelete.emit({
@@ -65,10 +66,11 @@ export class TreeCellActionsComponent implements OnInit {
       });
 
       promise.then(() => {
-        this.display_data.splice(this.findRecordIndex(rec.idx), 1);
+        this.store.processed_data.splice(index, 1);
       }).catch((err) => {});
     } else {
-      this.display_data.splice(this.findRecordIndex(rec.idx), 1);
+      this.store.processed_data.splice(index, 1);
+      this.store.refreshDisplayData();
       this.rowdelete.emit(rec);
     }
   }
