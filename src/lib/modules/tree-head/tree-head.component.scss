@@ -22,6 +22,9 @@ tr {
         }
 
         &.action-column {
+            span.icon-container {
+                cursor: pointer;
+            }
         }
 
         i.plus {
