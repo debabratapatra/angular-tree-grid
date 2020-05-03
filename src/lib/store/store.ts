@@ -17,7 +17,7 @@ export class Store {
         this.raw_data = raw_data;
     }
 
-    getProcessedData(processed_data) {
+    getProcessedData() {
         return this.processed_data;
     }
 
