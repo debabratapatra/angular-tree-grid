@@ -10,7 +10,7 @@ Click <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo" ta
 
 ## Donate :hearts:
 
-Please consider a <a href="https://paypal.me/debpatra" target="_blank">donation</a> if it is useful to you.
+Please consider a <a href="https://debabratapatra.github.io/donate.html" target="_blank">donation</a> if it is useful to you.
 
 ## Installation
 
