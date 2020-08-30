@@ -8,6 +8,10 @@ Click <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo" ta
 <img src="https://debabratapatra.github.io/resources/images/cards/angular-tree-grid.png" alt="Loading" />
 </div>
 
+## Donate :hearts:
+
+Please consider a <a href="https://debabratapatra.github.io/donate.html" target="_blank">donation</a> if it is useful to you.
+
 ## Installation
 
 ```bash
