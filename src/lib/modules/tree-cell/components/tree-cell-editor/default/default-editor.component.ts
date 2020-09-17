@@ -1,5 +1,9 @@
-import { Output, EventEmitter } from '@angular/core';
+import { Output, EventEmitter, Component } from '@angular/core';
 
+@Component({
+    selector: '',
+    template: '',
+})
 export class DefaultEditor implements Editor {
     @Output() canceledit = new EventEmitter<any>();
     @Output() editcomplete = new EventEmitter<any>();
