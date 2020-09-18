@@ -12,6 +12,14 @@ Click <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo" ta
 
 Please consider a <a href="https://debabratapatra.github.io/donate.html" target="_blank">donation</a> if it is useful to you.
 
+## Version
+Choose the correct version for your application.
+
+| Angular  |angular-tree-grid |
+|---|---|
+| <= 8  | 2.8.7  |
+| >= 9  | 3.0.0  |
+
 ## Installation
 
 ```bash
