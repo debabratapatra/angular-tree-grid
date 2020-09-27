@@ -29,7 +29,7 @@ Choose the correct version for your application.
 ## Usage
 
 ### Import
-Import NgtreegridModule Module in your application module.
+Import AngularTreeGridModule Module in your application module.
 
 ```javascript
   import {AngularTreeGridModule} from 'angular-tree-grid';
