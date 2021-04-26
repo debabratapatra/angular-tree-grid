@@ -58,6 +58,8 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     subgrid: false,
     load_children_on_expand: false,
     action_column_width: '60px',
+    action_column_position: 'first',
+    action_column_text: 'Actions',
     row_class_function: () => true,
     row_edit_function: () => true,
     row_delete_function: () => true,
@@ -75,16 +77,16 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     case_sensitive_filter: false
   };
 
-   @Output() cellclick: EventEmitter<any> = new EventEmitter();
-   @Output() expand: EventEmitter<any> = new EventEmitter();
-   @Output() collapse: EventEmitter<any> = new EventEmitter();
-   @Output() rowselect: EventEmitter<any> = new EventEmitter();
-   @Output() rowdeselect: EventEmitter<any> = new EventEmitter();
-   @Output() rowselectall: EventEmitter<any> = new EventEmitter();
-   @Output() rowdeselectall: EventEmitter<any> = new EventEmitter();
-   @Output() rowadd: EventEmitter<any> = new EventEmitter();
-   @Output() rowsave: EventEmitter<any> = new EventEmitter();
-   @Output() rowdelete: EventEmitter<any> = new EventEmitter();
+  @Output() cellclick: EventEmitter<any> = new EventEmitter();
+  @Output() expand: EventEmitter<any> = new EventEmitter();
+  @Output() collapse: EventEmitter<any> = new EventEmitter();
+  @Output() rowselect: EventEmitter<any> = new EventEmitter();
+  @Output() rowdeselect: EventEmitter<any> = new EventEmitter();
+  @Output() rowselectall: EventEmitter<any> = new EventEmitter();
+  @Output() rowdeselectall: EventEmitter<any> = new EventEmitter();
+  @Output() rowadd: EventEmitter<any> = new EventEmitter();
+  @Output() rowsave: EventEmitter<any> = new EventEmitter();
+  @Output() rowdelete: EventEmitter<any> = new EventEmitter();
 
   constructor(private angularTreeGridService: AngularTreeGridService) { }
 
@@ -139,8 +141,8 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     }
 
     if (element && !element.hasOwnProperty(this.configs.parent_id_field)
-        && !this.configs.subgrid
-        && !this.configs.load_children_on_expand) {
+      && !this.configs.subgrid
+      && !this.configs.load_children_on_expand) {
       isValidated = false;
       console.error('parent_id_field doesn\'t exist!');
     }
@@ -191,7 +193,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
 
       // Insert Header and default configuration.
       column_keys.forEach(key => {
-        this.columns.push(Object.assign({'header': key, 'name': key}, this.default_column_config));
+        this.columns.push(Object.assign({ 'header': key, 'name': key }, this.default_column_config));
       });
     } else {
 
@@ -222,7 +224,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
 
   expandRow(row_id, suppress_event?: false) {
     this.angularTreeGridService.expandRow(row_id, this.expand_tracker, this.expand, suppress_event,
-         this.configs, this.store.getDisplayData(), this.store);
+      this.configs, this.store.getDisplayData(), this.store);
   }
 
   collapseRow(row_id, suppress_event?: false) {

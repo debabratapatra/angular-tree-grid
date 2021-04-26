@@ -67,12 +67,28 @@ export class TreeCellActionsComponent implements OnInit {
 
       promise.then(() => {
         this.store.processed_data.splice(index, 1);
+        this.deleteChildren(rec);
         this.store.refreshDisplayData();
       }).catch((err) => {});
     } else {
       this.store.processed_data.splice(index, 1);
+      this.deleteChildren(rec);
       this.store.refreshDisplayData();
       this.rowdelete.emit(rec);
+    }
+  }
+
+  deleteChildren(parent) {
+    const display_data = [...this.store.processed_data];
+    const pathx = parent.pathx;
+
+    for (let index = 0; index < display_data.length; index++) {
+      const record = display_data[index];
+
+      if (record.pathx.includes(pathx)) {
+        const index: number = this.findRecordIndex(record.pathx);
+        this.store.processed_data.splice(index, 1);
+      }
     }
   }
 

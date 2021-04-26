@@ -11,6 +11,8 @@ export interface Configs {
     parent_display_field?: string;
     id_field?: string;
     action_column_width?: string;
+    action_column_position?: string;
+    action_column_text?: string;
     actions: Actions;
     filter: boolean;
     multi_select: boolean;

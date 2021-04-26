@@ -1,23 +1,31 @@
 <ng-container *ngIf="configs">
-<tr [ngClass]="configs.css.header_class">
-  <th *ngIf="configs.multi_select" class="checkbox_column">
-    <input type="checkbox" (click)="selectAll($event)" [checked]="this.internal_configs.all_selected">
-  </th>
-  <th 
-    *ngIf="configs.actions.add || configs.actions.edit || configs.actions.delete" 
-    class="action-column"
-    width="{{configs.action_column_width}}"
-    (click)="addRow()">
-    <span class="icon-container">
-      <i *ngIf="!internal_configs.show_add_row && configs.actions.add" [ngClass]="configs.css.add_class" aria-hidden="true" title="Add a row"></i>
-    </span>
-    <span *ngIf="internal_configs.show_add_row || !configs.actions.add">Actions</span>
-  </th>
-  <th *ngFor="let column of columns" [ngClass]="{'column-hide': column.hidden}" [attr.width]="column.width">
-    <div [innerHTML]="column.header_renderer ? column.header_renderer(column.header) : column.header"></div>    
-  </th>
-  <th *ngIf="(configs.show_parent_on_edit && internal_configs.show_parent_col) || internal_configs.show_add_row">
-    Parent
-  </th>
-</tr>
+  <tr [ngClass]="configs.css.header_class">
+    <th *ngIf="configs.multi_select" class="checkbox_column">
+      <input type="checkbox" (click)="selectAll($event)" [checked]="this.internal_configs.all_selected">
+    </th>
+    <th
+      *ngIf="(configs.actions.add || configs.actions.edit || configs.actions.delete) && (configs.action_column_position =='first')"
+      class="action-column" width="{{configs.action_column_width}}">
+      <span class="icon-container" (click)="addRow()">
+        <i *ngIf="!internal_configs.show_add_row && configs.actions.add" [ngClass]="configs.css.add_class"
+          aria-hidden="true" title="Add a row"></i>
+      </span>
+      <span *ngIf="internal_configs.show_add_row || !configs.actions.add">{{configs.action_column_text}}</span>
+    </th>
+    <th *ngFor="let column of columns" [ngClass]="{'column-hide': column.hidden}" [attr.width]="column.width">
+      <div [innerHTML]="column.header_renderer ? column.header_renderer(column.header) : column.header"></div>
+    </th>
+    <th *ngIf="(configs.show_parent_on_edit && internal_configs.show_parent_col) || internal_configs.show_add_row">
+      Parent
+    </th>
+    <th
+      *ngIf="(configs.actions.add || configs.actions.edit || configs.actions.delete) && (configs.action_column_position =='last')"
+      class="action-column" width="{{configs.action_column_width}}">
+      <span class="icon-container" (click)="addRow()">
+        <i *ngIf="!internal_configs.show_add_row && configs.actions.add" [ngClass]="configs.css.add_class"
+          aria-hidden="true" title="Add a row"></i>
+      </span>
+      <span *ngIf="internal_configs.show_add_row || !configs.actions.add">{{configs.action_column_text}}</span>
+    </th>
+  </tr>
 </ng-container>

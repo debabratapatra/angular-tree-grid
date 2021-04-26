@@ -21,7 +21,7 @@ export class CustomCellEditorComponent extends DefaultEditor implements OnInit, 
     @Input() column: Column;
     @Input() cell_value;
     @Input() row_data;
-    @ViewChild('customView', { read: ViewContainerRef, static: true }) custom_view: any;
+    @ViewChild('customView', { read: ViewContainerRef }) custom_view: any;
 
     constructor(private resolver: ComponentFactoryResolver) {
       super();

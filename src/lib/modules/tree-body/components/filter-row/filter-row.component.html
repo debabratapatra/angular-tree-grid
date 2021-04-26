@@ -1,5 +1,7 @@
 <td *ngIf="configs.multi_select"></td>
-<td *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add)"></td>
+<td
+  *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add) && (configs.action_column_position =='first')">
+</td>
 <td *ngFor="let column of columns">
   <div *ngIf="column.filter">
     <input type="text" (keyup)="filter()" [(ngModel)]="search_values[column.name]">
@@ -7,3 +9,6 @@
 </td>
 <!-- Add column to fix UI issue when add row is enabled or Edit is enabled -->
 <td *ngIf="internal_configs.show_add_row || (internal_configs.show_parent_col && configs.show_parent_on_edit)"></td>
+<td
+  *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add) && (configs.action_column_position =='last')">
+</td>
