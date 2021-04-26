@@ -1,65 +1,75 @@
 @import '../../angular-tree-grid.component.scss';
 
 i.expand-icon {
-    margin-right: 8px;
+  margin-right: 8px;
+}
+
+span.no-expand-icon {
+  display: inline-block;
+  width: 14px;
 }
 
 i.plus {
-    border: 1px solid rgba(0, 0, 0, 0);
-    margin-right: 32px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  margin-right: 32px;
 
-    &:before {
-        content: '';
-        width: 18px;
-        height: 1px;
-        border-top: 2px solid $icon-border-color;
-        display: block;
-        position: absolute;
-        margin-top: -15px;
-        margin-left: 6px;
-    }
+  &:before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    border-top: 2px solid $icon-border-color;
+    display: block;
+    position: absolute;
+    margin-top: -15px;
+    margin-left: 6px;
+  }
 
-    &:after {
-        content: '';
-        width: 1px;
-        height: 18px;
-        border-right: 2px solid $icon-border-color;
-        display: block;
-        position: absolute;
-        margin-top: -23px;
-        margin-left: 14px;
-    }
+  &:after {
+    content: '';
+    width: 1px;
+    height: 18px;
+    border-right: 2px solid $icon-border-color;
+    display: block;
+    position: absolute;
+    margin-top: -23px;
+    margin-left: 14px;
+  }
 }
 
 i.minus {
-    border: 1px solid rgba(0, 0, 0, 0);
-    margin-right: 32px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  margin-right: 32px;
 
-    &:before {
-        content: '';  
-        width: 18px;
-        height: 1px;
-        border-top: 2px solid $icon-border-color;
-        display: block;
-        position: absolute;
-        margin-top: -15px;
-        margin-left: 6px;
-    }
+  &:before {
+    content: '';
+    width: 18px;
+    height: 1px;
+    border-top: 2px solid $icon-border-color;
+    display: block;
+    position: absolute;
+    margin-top: -15px;
+    margin-left: 6px;
+  }
 }
 
-span.childred-loader{
-    border: 3px solid #f3f3f3;
-    -webkit-animation: spin 1s linear infinite;
-    animation: spin 1s linear infinite;
-    border-top: 3px solid #555;
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    display: inline-block;
-    margin-right: 5px;
+span.childred-loader {
+  border: 3px solid #f3f3f3;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  border-top: 3px solid #555;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
