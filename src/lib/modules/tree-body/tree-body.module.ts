@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AddRowComponent } from './components/add-row/add-row.component';
 import { FilterRowComponent } from './components/filter-row/filter-row.component';
 import { SubgridModule } from '../subgrid/subgrid.module';
+import { AngularTreeGridService } from '../../angular-tree-grid.service';
 
 @NgModule({
   declarations: [TreeBodyComponent, AddRowComponent, FilterRowComponent],
@@ -15,6 +16,7 @@ import { SubgridModule } from '../subgrid/subgrid.module';
     FormsModule,
     SubgridModule
   ],
-  exports: [TreeBodyComponent]
+  exports: [TreeBodyComponent],
+  providers: [AngularTreeGridService]
 })
 export class TreeBodyModule { }

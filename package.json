@@ -1,13 +1,13 @@
 {
   "name": "angular-tree-grid",
-  "version": "2.8.7",
+  "version": "2.8.8",
   "homepage": "https://github.com/debabratapatra/angular-tree-grid#readme",
   "license" : "MIT",
   "peerDependencies": {
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0"
   },
-  "author": { 
+  "author": {
     "name" : "Debabrata Patra",
     "email" : "debabratapatra12@gmail.com",
     "url" : "https://debabratapatra.github.io/"
@@ -20,7 +20,7 @@
     "url" : "https://github.com/debabratapatra/angular-tree-grid/issues",
     "email" : "debabratapatra12@gmail.com"
   },
-  "keywords": ["Angular", "Tree View", "Tree", "Grid", "Angular Tree view", 
+  "keywords": ["Angular", "Tree View", "Tree", "Grid", "Angular Tree view",
     "Angular Tree Component", "Angular Tree grid Directive", "Angular 4", "Angular 5", "Angular 6", "Angular 7",
     "Opensource", "Angular Tree Grid", "Angular Sub-grid", "Sub-grid", "Angular nested-grid", "Nested grid"]
 }

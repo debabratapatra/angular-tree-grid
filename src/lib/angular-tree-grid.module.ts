@@ -3,6 +3,7 @@ import { AngularTreeGridComponent } from './angular-tree-grid.component';
 import { CommonModule } from '@angular/common';
 import { TreeBodyModule } from './modules/tree-body/tree-body.module';
 import { TreeHeadModule } from './modules/tree-head/tree-head.module';
+import { AngularTreeGridService } from './angular-tree-grid.service';
 
 @NgModule({
   declarations: [AngularTreeGridComponent],
@@ -11,7 +12,8 @@ import { TreeHeadModule } from './modules/tree-head/tree-head.module';
     TreeBodyModule,
     TreeHeadModule
   ],
-  exports: [AngularTreeGridComponent]
+  exports: [AngularTreeGridComponent],
+  providers: [AngularTreeGridService]
 })
 export class AngularTreeGridModule { }
 

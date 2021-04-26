@@ -3,7 +3,7 @@ Angular Tree Grid to show hierarchical data. Basically if data has Parent-Child 
 
 ## Demo
 
-Click <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo" target="_blank">here</a> for demo. This readme is the documentation. Visit my <a href="https://debabratapatra.github.io" target="_blank">Website</a> to know other packages. 
+Click <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo" target="_blank">here</a> for demo. This readme is the documentation. Visit my <a href="https://debabratapatra.github.io" target="_blank">Website</a> to know other packages.
 <div>
 <img src="https://debabratapatra.github.io/resources/images/cards/angular-tree-grid.png" alt="Loading" />
 </div>
@@ -11,6 +11,14 @@ Click <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo" ta
 ## Donate :hearts:
 
 Please consider a <a href="https://debabratapatra.github.io/donate.html" target="_blank">donation</a> if it is useful to you.
+
+## Version
+Choose the correct version for your application.
+
+| Angular  |angular-tree-grid |
+|---|---|
+| <= 8  | 2.8.7  |
+| >= 9  | 3.0.0  |
 
 ## Installation
 
@@ -21,7 +29,7 @@ Please consider a <a href="https://debabratapatra.github.io/donate.html" target=
 ## Usage
 
 ### Import
-Import NgtreegridModule Module in your application module.
+Import AngularTreeGridModule Module in your application module.
 
 ```javascript
   import {AngularTreeGridModule} from 'angular-tree-grid';
@@ -68,8 +76,8 @@ Below are configs that can be set
 |  filter |  boolean | false  |  It enables filter toolbar. Filter is customizable at column level. |
 |  multi_select |  boolean | false  |  It enables checkbox selection. |
 |  show_summary_row |  boolean | false  |  It enables summary or footer row. Use summary_renderer at the column level |
-|  load_children_on_expand |  boolean | false  |  It enables dynamic children loading. It means children will be loaded on row-expand. See <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/dynamic_children">Example</a> for more information.|	
-|  subgrid |  boolean | false  |  It enables subgrid feature. parent_id_field is not mandatory for subgrid. Add feature is disabled when it is true. See this <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/subgrid">Example</a> for more information|	
+|  load_children_on_expand |  boolean | false  |  It enables dynamic children loading. It means children will be loaded on row-expand. See <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/dynamic_children">Example</a> for more information.|
+|  subgrid |  boolean | false  |  It enables subgrid feature. parent_id_field is not mandatory for subgrid. Add feature is disabled when it is true. See this <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/subgrid">Example</a> for more information|
 |  subgrid_config |  Object | n/a  |  Configs for subgrid. See below table for this. |
 |  show_parent_on_edit |  boolean | true  |  Show Parent column On Edit. It is true by default. |
 |  row_class_function |  Function | n/a  |  Callback function for row class. A custom class can be returned which will be added to the row. |
@@ -185,7 +193,7 @@ AngularTreeGridComponent has some very useful functions. Below is an example how
     })
     export class BasicTreeGridComponent {
       @ViewChild('angularGrid') angularGrid: AngularTreeGridComponent;
-    
+
       expandAll() {
         this.angularGrid.expandAll();
       }

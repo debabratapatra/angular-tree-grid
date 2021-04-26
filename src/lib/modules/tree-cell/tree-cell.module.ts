@@ -7,6 +7,7 @@ import { TreeCellActionsComponent } from './components/tree-cell-actions/tree-ce
 import { CustomCellEditorComponent } from './components/tree-cell-editor/custom/custom-tree-cell-Editor.component';
 import { TreeCellEditorComponent } from './components/tree-cell-editor/default/cell-editor/tree-cell-editor.component';
 import { FormsModule } from '@angular/forms';
+import { AngularTreeGridService } from '../../angular-tree-grid.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FormsModule } from '@angular/forms';
     CustomCellEditorComponent,
     TreeCellEditorComponent,
     TreeCellActionsComponent
-  ]
+  ],
+  providers: [AngularTreeGridService]
 })
 export class TreeCellModule { }
