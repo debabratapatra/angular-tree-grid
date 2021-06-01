@@ -165,7 +165,6 @@ export class Store {
 
             // Add current id to create current path.
             rec.pathx = parent_pathx.join('.');
-            expand_tracker[rec.pathx] = false;
             edit_tracker[rec[configs.id_field]] = false;
 
             // For Subgrid feature, expect all rows are expandable.

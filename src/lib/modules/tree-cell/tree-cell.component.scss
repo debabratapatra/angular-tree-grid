@@ -1,7 +1,12 @@
 @import '../../angular-tree-grid.component.scss';
 
 i.expand-icon {
-    margin-right: 8px;
+    margin-right: 5px;
+}
+
+span.no-expand-icon {
+    display: inline-block;
+    width: 14px;
 }
 
 i.plus {

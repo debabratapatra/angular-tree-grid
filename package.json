@@ -1,26 +1,42 @@
 {
   "name": "angular-tree-grid",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "homepage": "https://github.com/debabratapatra/angular-tree-grid#readme",
-  "license" : "MIT",
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0"
   },
-  "author": { 
-    "name" : "Debabrata Patra",
-    "email" : "debabratapatra12@gmail.com",
-    "url" : "https://debabratapatra.github.io/"
+  "author": {
+    "name": "Debabrata Patra",
+    "email": "debabratapatra12@gmail.com",
+    "url": "https://debabratapatra.github.io/"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/debabratapatra/angular-tree-grid.git"
+    "type": "git",
+    "url": "https://github.com/debabratapatra/angular-tree-grid.git"
   },
   "bugs": {
-    "url" : "https://github.com/debabratapatra/angular-tree-grid/issues",
-    "email" : "debabratapatra12@gmail.com"
+    "url": "https://github.com/debabratapatra/angular-tree-grid/issues",
+    "email": "debabratapatra12@gmail.com"
   },
-  "keywords": ["Angular", "Tree View", "Tree", "Grid", "Angular Tree view", 
-    "Angular Tree Component", "Angular Tree grid Directive", "Angular 4", "Angular 5", "Angular 6", "Angular 7",
-    "Opensource", "Angular Tree Grid", "Angular Sub-grid", "Sub-grid", "Angular nested-grid", "Nested grid"]
+  "keywords": [
+    "Angular",
+    "Tree View",
+    "Tree",
+    "Grid",
+    "Angular Tree view",
+    "Angular Tree Component",
+    "Angular Tree grid Directive",
+    "Angular 4",
+    "Angular 5",
+    "Angular 6",
+    "Angular 7",
+    "Opensource",
+    "Angular Tree Grid",
+    "Angular Sub-grid",
+    "Sub-grid",
+    "Angular nested-grid",
+    "Nested grid"
+  ]
 }
