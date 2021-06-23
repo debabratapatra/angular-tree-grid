@@ -124,7 +124,7 @@ Below are configs that can be set
 | renderer  | Function  |  n/a | It is a method to render customized value for the column. See this <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/basic_tree_grid">Example</a>.  |
 | header_renderer  | Function  |  n/a | It is a method to customize column header. |
 | type  | string  |  '' | Set to 'custom' to have custom component for the column. Otherwise leave blank.  |
-| component  | Object  |  n/a | Custom View Component. Mandatory if type is custom.See this <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/custom_view_component">Example</a>.|
+| component  | Object  |  n/a | Custom View Component. Mandatory if type is custom.See this <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/#/custom_view_component">Example</a>.|
 | editor  | Object  |  n/a | Custom Editor Component. If given custom editor component will be used instead of default editor. See this <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/custom_edit_component">Example</a>.  |
 | on_component_init  | Function  |  n/a | Callback function for the column on component init.  |
 | summary_renderer  | Function  |  n/a | Renderer for summary. See this <a href="https://debabratapatra.github.io/pages/angular-tree-grid/demo/#/summary_row">Example</a> for more information. |
