@@ -7,6 +7,7 @@ export interface Configs {
     css: CssClass;
     columns?: Column[];
     data_loading_text: string;
+    rtl_direction: boolean;
     parent_id_field?: string;
     parent_display_field?: string;
     id_field?: string;
