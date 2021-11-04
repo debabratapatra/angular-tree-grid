@@ -1,6 +1,6 @@
 <div (click)="onCellClick($event)">
   <ng-container *ngIf="is_expand_column">
-    <div [ngStyle]="{'padding-left': row_data.leaf ? row_data.levelx * 20 + 'px' : row_data.levelx * 10 + 'px'}">
+    <div [ngStyle]="{configs.rtl_direction ? 'padding-right' : 'padding-left' : row_data.leaf ? row_data.levelx * 20 + 'px' : row_data.levelx * 10 + 'px'}">
       <span class="no-expand-icon" *ngIf=" row_data.levelx == 0 && row_data.leaf"></span>
       <ng-container *ngIf="!expand_tracker[row_data.pathx]">
         <span (click)="expandRow($event)">
