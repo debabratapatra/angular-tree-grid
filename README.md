@@ -76,13 +76,13 @@ Below are configs that can be set
 |  filter |  boolean | false  |  It enables filter toolbar. Filter is customizable at column level. |
 |  multi_select |  boolean | false  |  It enables checkbox selection. |
 |  show_summary_row |  boolean | false  |  It enables summary or footer row. Use summary_renderer at the column level |
-|  load_children_on_expand |  boolean | false  |  It enables dynamic children loading. It means children will be loaded on row-expand. See <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/dynamic_children">Example</a> for more information.|	
-|  subgrid |  boolean | false  |  It enables subgrid feature. parent_id_field is not mandatory for subgrid. Add feature is disabled when it is true. See this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/subgrid">Example</a> for more information|	
+|  load_children_on_expand |  boolean | false  |  It enables dynamic children loading. It means children will be loaded on row-expand. See <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/dynamic_children">Example</a> for more information.|	
+|  subgrid |  boolean | false  |  It enables subgrid feature. parent_id_field is not mandatory for subgrid. Add feature is disabled when it is true. See this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/subgrid">Example</a> for more information|	
 |  subgrid_config |  Object | n/a  |  Configs for subgrid. See below table for this. |
 |  show_parent_on_edit |  boolean | true  |  Show Parent column On Edit. It is true by default. |
 |  row_class_function |  Function | n/a  |  Callback function for row class. A custom class can be returned which will be added to the row. |
-|  row_edit_function |  Function | n/a  |  Callback function for edit feature. Based on the return type(Boolean) of this function, edit can be enabled/disabled for a specific row. See <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/cond_row_edit">Example</a> for more information. |
-|  row_delete_function |  Function | n/a  |  Callback function for delete feature. Based on the return type(Boolean) of this function, delete can be enabled/disabled for a specific row. See <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/cond_row_edit">Example</a> for more information. |
+|  row_edit_function |  Function | n/a  |  Callback function for edit feature. Based on the return type(Boolean) of this function, edit can be enabled/disabled for a specific row. See <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/cond_row_edit">Example</a> for more information. |
+|  row_delete_function |  Function | n/a  |  Callback function for delete feature. Based on the return type(Boolean) of this function, delete can be enabled/disabled for a specific row. See <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/cond_row_edit">Example</a> for more information. |
 | actions  | Object  |  n/a | Settings for Action column. See Below  |
 | css  | Object  |  n/a | Css class for icons. See Below  |
 | columns  | Array  |  n/a | It is an Array. If not provided all keys of the data Array will be used as Column Headers. Please find the description below  |
@@ -93,7 +93,7 @@ Below are configs that can be set
 | add  | boolean  |  false | It enables add feature.  |
 | edit  | boolean  |  false | It enables edit feature.  |
 | delete  | boolean  |  false | It enables delete feature.  |
-| resolve_add  | boolean  |  false | Manually resolve add(after making call to server). It defaults to false. See <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/resolve_row_add">example</a> for more information.  |
+| resolve_add  | boolean  |  false | Manually resolve add(after making call to server). It defaults to false. See <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/resolve_row_add">example</a> for more information.  |
 | resolve_edit  | boolean  |  false | Manually resolve edit.  |
 | resolve_delete  | boolean  |  false | Manually resolve delete feature.  |
 ##### css
@@ -121,11 +121,11 @@ Below are configs that can be set
 | filter_function  | Function  |  n/a | Custom filter function. filter must be enabled for this. See this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/filter_column">Example</a> for more information. |
 | case_sensitive_filter  | boolean  |  false | Case Sensitive/Insensitive Filter.  |
 | editable  | boolean  |  false | To make a specific column editable. By default columns are not editable. edit option needs to be true at **grid** level.  |
-| renderer  | Function  |  n/a | It is a method to render customized value for the column. See this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/basic_tree_grid">Example</a>.  |
+| renderer  | Function  |  n/a | It is a method to render customized value for the column. See this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/basic_tree_grid">Example</a>.  |
 | header_renderer  | Function  |  n/a | It is a method to customize column header. |
 | type  | string  |  '' | Set to 'custom' to have custom component for the column. Otherwise leave blank.  |
 | component  | Object  |  n/a | Custom View Component. Mandatory if type is custom.See this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/custom_view_component">Example</a>.|
-| editor  | Object  |  n/a | Custom Editor Component. If given custom editor component will be used instead of default editor. See this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/custom_edit_component">Example</a>.  |
+| editor  | Object  |  n/a | Custom Editor Component. If given custom editor component will be used instead of default editor. See this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/custom_edit_component">Example</a>.  |
 | on_component_init  | Function  |  n/a | Callback function for the column on component init.  |
 | summary_renderer  | Function  |  n/a | Renderer for summary. See this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/summary_row">Example</a> for more information. |
 | sortable  | boolean  |  false | Sort Column. Only available for subgrid feature.  |
@@ -163,7 +163,7 @@ Below are configs that can be set
 
 | Event  |Arguments   | Description |
 |---|---|---|
-| expand  | **row_data:** Expanded Row <br/> For Subgrid and Dynamic-Children-Loading:<br/> **event** Consist of: <ul><li> **data:** Selected Row </li><li> **resolve:** Promise Object</li></ul> | Event fires when parent is expanded. For Subgrid, see this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/subgrid">Example</a>. For Dynamic-Children-Loading, see this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/dynamic_children">Example</a> |
+| expand  | **row_data:** Expanded Row <br/> For Subgrid and Dynamic-Children-Loading:<br/> **event** Consist of: <ul><li> **data:** Selected Row </li><li> **resolve:** Promise Object</li></ul> | Event fires when parent is expanded. For Subgrid, see this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/subgrid">Example</a>. For Dynamic-Children-Loading, see this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/dynamic_children">Example</a> |
 | collapse  | **row_data:** Collapsed Row | Event fires when parent is collapsed.  |
 | cellclick  | **event** Consist of: <ul><li> **row:** Selected Row </li><li> **column:** Selected Column</li><li> **event:** Selected Column</li></ul> | Event fires when a child cell is clicked.  |
 | rowselect  | **event** Consist of: <ul><li> **data:** Selected Row </li><li> **event:** Event Object</li></ul> | Event fires when a row is selected.  |
@@ -208,8 +208,8 @@ AngularTreeGridComponent has some very useful functions. Below is an example how
 | collapseAll  | None | Collapses all rows  |
 | selectAll  | None | Selects all rows  |
 | deSelectAll  | None | DeSelects all rows  |
-| expandRow  | <ul><li> id: Row id(Primary Key) </li><li> suppress_event: Suppress expand event. It defaults to false.</li></ul> | Expands a specific row. see this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/specific_expand_collapse">Example</a>. |
-| collapseRow  | <ul><li> id: Row id(Primary Key) </li><li> suppress_event: Suppress expand event. It defaults to false.</li></ul> | Collapses a specific row. see this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/specific_expand_collapse">Example</a>. |
+| expandRow  | <ul><li> id: Row id(Primary Key) </li><li> suppress_event: Suppress expand event. It defaults to false.</li></ul> | Expands a specific row. see this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/specific_expand_collapse">Example</a>. |
+| collapseRow  | <ul><li> id: Row id(Primary Key) </li><li> suppress_event: Suppress expand event. It defaults to false.</li></ul> | Collapses a specific row. see this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/specific_expand_collapse">Example</a>. |
 | disableRowSelection  |  id: Row id(Primary Key) | Disables Row Selection for the specific Row id. |
 | enableRowSelection  |  id: Row id(Primary Key) | Enables Row Selection for the specific Row id. |
 | disableRowExpand  |  id: Row id(Primary Key) | Disables Row Expand for the specific Row id. |
