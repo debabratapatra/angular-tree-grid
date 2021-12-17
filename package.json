@@ -1,6 +1,6 @@
 {
   "name": "angular-tree-grid",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "homepage": "https://github.com/debabratapatra/angular-tree-grid#readme",
   "license": "MIT",
   "peerDependencies": {
@@ -10,7 +10,7 @@
   "author": {
     "name": "Debabrata Patra",
     "email": "debabratapatra12@gmail.com",
-    "url": "https://debabratapatra.github.io/"
+    "url": "https://curiouslinks.com/"
   },
   "repository": {
     "type": "git",
