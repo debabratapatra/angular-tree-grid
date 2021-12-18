@@ -17,7 +17,7 @@ Choose the correct version for your application.
 
 | Angular  |angular-tree-grid |
 |---|---|
-| <= 8  | 2.8.7  |
+| <= 8  | 2.8.71  |
 | >= 9  | 3.0.0  |
 
 ## Installation
