@@ -29,13 +29,13 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
 
   default_configs: Configs = {
     css: {
-      expand_class: 'plus',
-      collapse_class: 'minus',
-      add_class: 'plus',
-      edit_class: '',
-      delete_class: '',
-      save_class: '',
-      cancel_class: '',
+      expand_icon: '',
+      collapse_icon: '',
+      add_icon: '',
+      edit_icon: '',
+      delete_icon: '',
+      save_icon: '',
+      cancel_icon: '',
       row_selection_class: 'selected',
       header_class: '',
       row_filter_class: '',
@@ -58,7 +58,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
     subgrid: false,
     load_children_on_expand: false,
     action_column_width: '60px',
-    row_class_function: () => true,
+    row_class_function: () => '',
     row_edit_function: () => true,
     row_delete_function: () => true,
     subgrid_config: {

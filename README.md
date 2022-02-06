@@ -99,13 +99,13 @@ Below are configs that can be set
 ##### css
 | Field  |Type   |Default |  Description |
 |---|---|---|---|
-| expand_class  | string  |  plus | Icon class for Expand icon. Font Awesome class can be given.  |
-| collapse_class  | string  |  minus | Icon class for Collapse icon. Font Awesome class can be given.  |
-| add_class  | string  |  plus | Icon class for Add icon. Font Awesome class can be given.  |
-| edit_class  | string  |  edit | Icon class for Edit icon. Font Awesome class can be given.  |
-| delete_class  | string  |  delete | Icon class for Delete icon. Font Awesome class can be given.  |
-| save_class  | string  |  save | Icon class for Save icon. Font Awesome class can be given.  |
-| cancel_class  | string  |  cancel | Icon class for Cancel icon. Font Awesome class can be given.  |
+| expand_icon  | string  |  plus | Icon class for Expand icon. Font Awesome class can be given.  |
+| collapse_icon  | string  |  minus | Icon class for Collapse icon. Font Awesome class can be given.  |
+| add_icon  | string  |  plus | Icon class for Add icon. Font Awesome class can be given.  |
+| edit_icon  | string  |  edit | Icon class for Edit icon. Font Awesome class can be given.  |
+| delete_icon  | string  |  delete | Icon class for Delete icon. Font Awesome class can be given.  |
+| save_icon  | string  |  save | Icon class for Save icon. Font Awesome class can be given.  |
+| cancel_icon  | string  |  cancel | Icon class for Cancel icon. Font Awesome class can be given.  |
 | row_selection_class  | string  |  n/a | CSS Class for selected row.  |
 | header_class  | string  |  n/a | CSS Class for header.  |
 | table_class  | string  |  n/a | CSS Class for Table.  |
