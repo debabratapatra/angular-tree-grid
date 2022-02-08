@@ -75,6 +75,10 @@ Below are configs that can be set
 |  data_loading_text |  string | 'Loading...'  |  Loading place holder. This will be displayed when data is empty. |
 |  filter |  boolean | false  |  It enables filter toolbar. Filter is customizable at column level. |
 |  multi_select |  boolean | false  |  It enables checkbox selection. |
+|  cascade_selection |  boolean | false  |  It enables selection of children on selection of Parent and viceversa. |
+|  pagination |  boolean | false  |  It enables Pagination. |
+|  per_page |  number | 10  |  Number of rows per page. |
+|  row_draggable |  boolean | false  |  It enables dragging and dropping of a row over another. See <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/drag_drop">Example</a> for more information.|
 |  show_summary_row |  boolean | false  |  It enables summary or footer row. Use summary_renderer at the column level |
 |  load_children_on_expand |  boolean | false  |  It enables dynamic children loading. It means children will be loaded on row-expand. See <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/dynamic_children">Example</a> for more information.|	
 |  subgrid |  boolean | false  |  It enables subgrid feature. parent_id_field is not mandatory for subgrid. Add feature is disabled when it is true. See this <a href="https://curiouslinks.com/pages/angular-tree-grid/demo/#/subgrid">Example</a> for more information|	
