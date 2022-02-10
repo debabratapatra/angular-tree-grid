@@ -1,6 +1,7 @@
 @import '../../angular-tree-grid.component.scss';
 
 tr {
+    border-bottom: 1px solid #cdd5dc;
     &.selected {
         background-color: #e2e7eb;
     }
@@ -22,7 +23,6 @@ tr {
     }
 
     td {
-        border: 1px solid #cdd5dc;
         vertical-align: middle;
         position: relative;
         padding: 0.5rem 0.5rem;
@@ -46,6 +46,11 @@ tr {
 
         &.clear-right-border {
             border-right: 0 !important;
+        }
+
+        select {
+            padding: 5px;
+            border: 1px solid #d1cece;
         }
     }
 }

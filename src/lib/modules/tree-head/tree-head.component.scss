@@ -1,6 +1,7 @@
 @import '../../angular-tree-grid.component.scss';
 
 tr {
+    border-bottom: 1px solid #cdd5dc;;
     background: #fff;
 
     th {
@@ -8,7 +9,6 @@ tr {
         font-weight: 600;
         line-height: 1.25;
         color: #181818;
-        border: 1px solid #cdd5dc;
         vertical-align: middle;
         position: relative;
         box-sizing: border-box;

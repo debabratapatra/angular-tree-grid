@@ -38,6 +38,12 @@ export class TreeCellActionsComponent implements OnInit {
   }
 
   enableEdit(index, row_data) {
+
+    //Cancel all previous edits.
+    for (const id in this.edit_tracker) {
+      this.edit_tracker[id] = false;
+    }
+    
     this.edit_tracker[index] = true;
 
     // Only if edit_parent is true.
