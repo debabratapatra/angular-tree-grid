@@ -6,7 +6,7 @@
       (click)="enableEdit(row_data[configs.id_field], row_data)"
       *ngIf="configs.css.edit_icon"
       title="Edit row"
-      [innerHTML]="this.configs.css.edit_icon"
+      [innerHTML]="this.configs.css.edit_icon | safeHtml"
     ></span>
     <svg
       (click)="enableEdit(row_data[configs.id_field], row_data)"
@@ -31,7 +31,7 @@
         (click)="saveRecord($event)"
         *ngIf="configs.css.save_icon"
         title="Save row"
-        [innerHTML]="this.configs.css.save_icon"
+        [innerHTML]="this.configs.css.save_icon | safeHtml"
       ></span>
       <svg
         (click)="saveRecord($event)"
@@ -56,7 +56,7 @@
         (click)="canceledit.emit(row_data)"
         *ngIf="configs.css.cancel_icon"
         title="Cancel row"
-        [innerHTML]="this.configs.css.cancel_icon"
+        [innerHTML]="this.configs.css.cancel_icon | safeHtml"
       ></span>
       <svg
         (click)="canceledit.emit(row_data)"
@@ -95,7 +95,7 @@
     *ngIf="configs.css.delete_icon"
     title="Delete row"
     (click)="deleteRecord(row_data)"
-    [innerHTML]="this.configs.css.delete_icon"
+    [innerHTML]="this.configs.css.delete_icon | safeHtml"
   ></span>
   <svg
     *ngIf="!configs.css.delete_icon"

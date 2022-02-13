@@ -22,7 +22,7 @@
             configs.actions.add &&
             configs.css.add_icon.length > 0
           "
-          [innerHTML]="configs.css.add_icon"
+          [innerHTML]="configs.css.add_icon | safeHtml"
           title="Add a row"
         ></span>
         <span

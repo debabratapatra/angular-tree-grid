@@ -19,7 +19,7 @@
               visibility: row_data.expand_disabled ? 'hidden' : 'visible'
             }"
             *ngIf="show_expand_icon && configs.css.expand_icon.length > 0"
-            [innerHTML]="configs.css.expand_icon"
+            [innerHTML]="configs.css.expand_icon | safeHtml"
           ></span>
           <span
             class="expand-icon inbuild-icon"
@@ -40,7 +40,7 @@
               visibility: row_data.expand_disabled ? 'hidden' : 'visible'
             }"
             *ngIf="show_expand_icon && configs.css.collapse_icon.length > 0"
-            [innerHTML]="configs.css.collapse_icon"
+            [innerHTML]="configs.css.collapse_icon | safeHtml"
           ></span>
           <span
             class="expand-icon inbuild-icon"

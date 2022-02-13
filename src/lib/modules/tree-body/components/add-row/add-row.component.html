@@ -5,7 +5,7 @@
       (click)="saveAddRecord($event)"
       *ngIf="configs.css.save_icon"
       title="Save row"
-      [innerHTML]="this.configs.css.save_icon"
+      [innerHTML]="this.configs.css.save_icon | safeHtml"
     ></span>
     <svg
       (click)="saveAddRecord($event)"
@@ -30,7 +30,7 @@
       (click)="cancelAddEdit()"
       *ngIf="configs.css.cancel_icon"
       title="Cancel row"
-      [innerHTML]="this.configs.css.cancel_icon"
+      [innerHTML]="this.configs.css.cancel_icon | safeHtml"
     ></span>
     <svg
       (click)="cancelAddEdit()"
