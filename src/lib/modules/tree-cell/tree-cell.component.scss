@@ -12,10 +12,17 @@ span.no-expand-icon {
 span.expand-icon-container {
     position: relative;
     cursor: pointer;
-    margin: 0 5px 0 0;
+    padding: 0 5px 0 0;
+    width: 21px;
+    box-sizing: border-box;
+    text-align: center;
 
     span.inbuild-icon {
         font-size: 25px;
+    }
+    span.inbuild-dash-icon {
+        font-size: 17px;
+        font-weight: 700;
     }
 }
 

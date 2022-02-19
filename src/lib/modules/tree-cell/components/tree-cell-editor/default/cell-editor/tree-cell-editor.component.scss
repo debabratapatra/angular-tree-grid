@@ -1,9 +1,11 @@
 
 input.cell-default {
-    padding: 5px;
+    padding: 0.2rem 0.5rem;
+    height: 2rem;
     box-sizing: border-box;
     width: 100%;
     border: 1px solid #d1cece;
+    border-radius: 3px;
 }
 
 input.expandable-editor {

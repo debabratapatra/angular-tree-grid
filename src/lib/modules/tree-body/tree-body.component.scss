@@ -22,6 +22,16 @@ tr {
         background: #fcfcfc;
     }
 
+    &.row-add {
+        td {
+            padding: 0.2rem;
+
+            &.action-column {
+                padding: 0.5rem 1rem;
+            }
+        }
+    }
+
     td {
         vertical-align: middle;
         position: relative;
@@ -49,7 +59,8 @@ tr {
         }
 
         select {
-            padding: 5px;
+            padding: 0.2rem 0.5rem;
+            height: 2rem;
             border: 1px solid #d1cece;
         }
     }

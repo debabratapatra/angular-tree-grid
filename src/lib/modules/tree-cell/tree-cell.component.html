@@ -3,7 +3,7 @@
     <div
       [ngStyle]="{
         'padding-left': row_data.leaf
-          ? row_data.levelx * 20 + 'px'
+          ? row_data.levelx * 10 + 20 + 'px'
           : row_data.levelx * 10 + 'px'
       }"
     >
@@ -12,7 +12,11 @@
         *ngIf="row_data.levelx == 0 && row_data.leaf"
       ></span>
       <ng-container *ngIf="!expand_tracker[row_data.pathx]">
-        <span (click)="expandRow($event)" class="expand-icon-container">
+        <span
+          (click)="expandRow($event)"
+          class="expand-icon-container"
+          *ngIf="show_expand_icon"
+        >
           <span
             class="expand-icon"
             [ngStyle]="{
@@ -33,7 +37,11 @@
       </ng-container>
       <ng-container *ngIf="expand_tracker[row_data.pathx]">
         <span *ngIf="row_data.is_loading" class="childred-loader"></span>
-        <span (click)="collapseRow($event)" *ngIf="!row_data.is_loading" class="expand-icon-container">
+        <span
+          (click)="collapseRow($event)"
+          *ngIf="!row_data.is_loading && show_expand_icon"
+          class="expand-icon-container"
+        >
           <span
             class="expand-icon"
             [ngStyle]="{
@@ -43,12 +51,12 @@
             [innerHTML]="configs.css.collapse_icon | safeHtml"
           ></span>
           <span
-            class="expand-icon inbuild-icon"
+            class="expand-icon inbuild-dash-icon"
             [ngStyle]="{
               visibility: row_data.expand_disabled ? 'hidden' : 'visible'
             }"
             *ngIf="show_expand_icon && configs.css.collapse_icon.length == 0"
-            >-</span
+            >—</span
           >
         </span>
       </ng-container>

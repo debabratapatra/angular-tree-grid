@@ -18,7 +18,7 @@
   [store]="store"
   (rowadd)="addRow($event)"
   *ngIf="internal_configs.show_add_row"
-  [ngClass]="configs.row_class_function()">
+  [ngClass]="configs.row_class_function() + ' row-add'">
 </tr>
 <ng-container *ngIf="configs.subgrid">
   <tr db-subgrid

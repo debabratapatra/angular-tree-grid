@@ -6,9 +6,13 @@ td {
     padding: 0.2rem;
 
     input {
-        padding: 5px;
-        box-sizing: border-box;
+        border: 1px solid #cdd5dc;
         width: 100%;
-        border: 1px solid #d1cece;
+        padding: 0.2rem 0.5rem;
+        height: 2rem;
+        border-radius: 3px;
+        box-sizing: border-box;
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing: border-box;
     }
 }
