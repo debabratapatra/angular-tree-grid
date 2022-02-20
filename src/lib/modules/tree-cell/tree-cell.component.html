@@ -1,11 +1,7 @@
 <div (click)="onCellClick($event)">
   <ng-container *ngIf="is_expand_column">
     <div
-      [ngStyle]="{
-        'padding-left': row_data.leaf
-          ? row_data.levelx * 10 + 20 + 'px'
-          : row_data.levelx * 10 + 'px'
-      }"
+      [ngStyle]="getChildrenPadding()"
     >
       <span
         class="no-expand-icon"
@@ -16,6 +12,7 @@
           (click)="expandRow($event)"
           class="expand-icon-container"
           *ngIf="show_expand_icon"
+          title="Expand Row"
         >
           <span
             class="expand-icon"
@@ -41,6 +38,7 @@
           (click)="collapseRow($event)"
           *ngIf="!row_data.is_loading && show_expand_icon"
           class="expand-icon-container"
+          title="Collapse Row"
         >
           <span
             class="expand-icon"

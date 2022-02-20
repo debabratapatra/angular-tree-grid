@@ -13,7 +13,8 @@ export interface Configs {
     action_column_width?: string;
     actions: Actions;
     filter: boolean;
-    multi_select: boolean;
+    multi_select: boolean;    
+    rtl_direction: boolean;
     load_children_on_expand: boolean;
     show_summary_row: boolean;
     subgrid: boolean;

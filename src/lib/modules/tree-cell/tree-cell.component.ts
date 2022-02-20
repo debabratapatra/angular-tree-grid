@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Column } from '../../models/Column.model';
-import { Configs } from '../../models/Configs.model';
+import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
+import { Column } from "../../models/Column.model";
+import { Configs } from "../../models/Configs.model";
 
 @Component({
-  selector: 'db-tree-cell',
-  templateUrl: './tree-cell.component.html',
-  styleUrls: ['./tree-cell.component.scss']
+  selector: "db-tree-cell",
+  templateUrl: "./tree-cell.component.html",
+  styleUrls: ["./tree-cell.component.scss"],
 })
 export class TreeCellComponent implements OnInit {
   is_expand_column: boolean;
@@ -37,7 +37,7 @@ export class TreeCellComponent implements OnInit {
   @Output() canceledit: EventEmitter<any> = new EventEmitter();
   @Output() editcomplete: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.is_expand_column = this.index === 0;
@@ -51,25 +51,47 @@ export class TreeCellComponent implements OnInit {
   }
 
   expandRow(event) {
-    if (this.index === 0 && (!this.row_data.leaf || this.configs.load_children_on_expand)) {
-      this.rowexpand.emit({event: event, data: this.row_data});
+    if (
+      this.index === 0 &&
+      (!this.row_data.leaf || this.configs.load_children_on_expand)
+    ) {
+      this.rowexpand.emit({ event: event, data: this.row_data });
       event.stopPropagation();
     }
   }
 
   collapseRow(event) {
-    if (this.index === 0 && (!this.row_data.leaf || this.configs.load_children_on_expand)) {
-      this.rowcollapse.emit({event: event, data: this.row_data});
+    if (
+      this.index === 0 &&
+      (!this.row_data.leaf || this.configs.load_children_on_expand)
+    ) {
+      this.rowcollapse.emit({ event: event, data: this.row_data });
       event.stopPropagation();
     }
   }
 
   onCellClick(event) {
-    this.cellclick.emit({column: this.column, row: this.row_data, event: event});
+    this.cellclick.emit({
+      column: this.column,
+      row: this.row_data,
+      event: event,
+    });
   }
 
   onEditComplete($event) {
-    this.editcomplete.emit({event: $event, data: this.row_data});
+    this.editcomplete.emit({ event: $event, data: this.row_data });
   }
 
+  getChildrenPadding() {
+    const padding = this.row_data.leaf
+      ? this.row_data.levelx * 10 + 20 + "px"
+      : this.row_data.levelx * 10 + "px";
+    return this.configs.rtl_direction
+      ? {
+          "padding-right": padding,
+        }
+      : {
+          "padding-left": padding,
+        };
+  }
 }

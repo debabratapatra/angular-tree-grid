@@ -75,6 +75,7 @@ Below are configs that can be set
 |  data_loading_text |  string | 'Loading...'  |  Loading place holder. This will be displayed when data is empty. |
 |  filter |  boolean | false  |  It enables filter toolbar. Filter is customizable at column level. |
 |  multi_select |  boolean | false  |  It enables checkbox selection. |
+|  rtl_direction |  boolean | false  |  It is for right to left drawing. |
 |  cascade_selection |  boolean | false  |  It enables selection of children on selection of Parent and viceversa. |
 |  pagination |  boolean | false  |  It enables Pagination. |
 |  per_page |  number | 10  |  Number of rows per page. |
@@ -218,6 +219,7 @@ AngularTreeGridComponent has some very useful functions. Below is an example how
 | enableRowSelection  |  id: Row id(Primary Key) | Enables Row Selection for the specific Row id. |
 | disableRowExpand  |  id: Row id(Primary Key) | Disables Row Expand for the specific Row id. |
 | enableRowExpand  |  id: Row id(Primary Key) | Enables Row Expand for the specific Row id. |
+| export  |  name: String | Exports table content to csv. |
 
 ### Can I hire you guys?
 Yes. Please contact us at <a href="mailto:debabratapatra12@gmail.com">debabratapatra12@gmail.com</a> for any professional support. We will be happy to work with you!
