@@ -83,7 +83,7 @@ export class TreeCellComponent implements OnInit {
   }
 
   getChildrenPadding() {
-    const padding = this.row_data.leaf
+    const padding = this.row_data.leaf && !this.configs.load_children_on_expand
       ? this.row_data.levelx * 10 + 20 + "px"
       : this.row_data.levelx * 10 + "px";
     return this.configs.rtl_direction

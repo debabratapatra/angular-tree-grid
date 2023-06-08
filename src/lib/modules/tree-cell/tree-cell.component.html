@@ -5,7 +5,7 @@
     >
       <span
         class="no-expand-icon"
-        *ngIf="row_data.levelx == 0 && row_data.leaf"
+        *ngIf="row_data.levelx == 0 && row_data.leaf && !configs.load_children_on_expand"
       ></span>
       <ng-container *ngIf="!expand_tracker[row_data.pathx]">
         <span
