@@ -1,56 +1,31 @@
 <td *ngIf="configs.multi_select"></td>
 <td class="action-column">
   <div class="icon-container">
-    <span
-      (click)="saveAddRecord($event)"
-      *ngIf="configs.css.save_icon"
-      title="Save row"
-      [innerHTML]="this.configs.css.save_icon | safeHtml"
-    ></span>
-    <svg
-      (click)="saveAddRecord($event)"
-      title="Save row"
-      *ngIf="!configs.css.save_icon"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
+    <span (click)="saveAddRecord($event)" *ngIf="configs.css?.save_icon" title="Save row"
+      [innerHTML]="this.configs.css?.save_icon! | safeHtml"></span>
+    <svg (click)="saveAddRecord($event)" title="Save row" *ngIf="!configs.css?.save_icon"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <title>Save row</title>
       <g data-name="Layer 2">
         <g data-name="save">
           <rect width="24" height="24" opacity="0" />
           <path
-            d="M20.12 8.71l-4.83-4.83A3 3 0 0 0 13.17 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-7.17a3 3 0 0 0-.88-2.12zM10 19v-2h4v2zm9-1a1 1 0 0 1-1 1h-2v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2h-3V5h3.17a1.05 1.05 0 0 1 .71.29l4.83 4.83a1 1 0 0 1 .29.71z"
-          />
+            d="M20.12 8.71l-4.83-4.83A3 3 0 0 0 13.17 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-7.17a3 3 0 0 0-.88-2.12zM10 19v-2h4v2zm9-1a1 1 0 0 1-1 1h-2v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2h-3V5h3.17a1.05 1.05 0 0 1 .71.29l4.83 4.83a1 1 0 0 1 .29.71z" />
         </g>
       </g>
     </svg>
   </div>
   <div class="icon-container">
-    <span
-      (click)="cancelAddEdit()"
-      *ngIf="configs.css.cancel_icon"
-      title="Cancel row"
-      [innerHTML]="this.configs.css.cancel_icon | safeHtml"
-    ></span>
-    <svg
-      (click)="cancelAddEdit()"
-      *ngIf="!configs.css.cancel_icon"
-      title="Cancel row"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
+    <span (click)="cancelAddEdit()" *ngIf="configs.css?.cancel_icon" title="Cancel row"
+      [innerHTML]="this.configs.css?.cancel_icon! | safeHtml"></span>
+    <svg (click)="cancelAddEdit()" *ngIf="!configs.css?.cancel_icon" title="Cancel row"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <title>Cancel row</title>
       <g data-name="Layer 2">
         <g data-name="close">
-          <rect
-            width="24"
-            height="24"
-            transform="rotate(180 12 12)"
-            opacity="0"
-          />
+          <rect width="24" height="24" transform="rotate(180 12 12)" opacity="0" />
           <path
-            d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-          />
+            d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z" />
         </g>
       </g>
     </svg>
@@ -58,23 +33,11 @@
 </td>
 <td *ngFor="let column of columns" [ngClass]="{ 'column-hide': column.hidden }">
   <div *ngIf="column.editable">
-    <db-custom-cell-editor-component
-      *ngIf="column.editor"
-      [cell_value]=""
-      [column]="column"
-      [row_data]="row_data"
-      (canceledit)="cancelAddEdit()"
-      (editcomplete)="saveAddRecord($event)"
-    >
+    <db-custom-cell-editor-component *ngIf="column.editor" cell_value="" [column]="column" [row_data]="row_data"
+      (canceledit)="cancelAddEdit()" (editcomplete)="saveAddRecord($event)">
     </db-custom-cell-editor-component>
-    <db-tree-cell-editor
-      *ngIf="!column.editor"
-      [cell_value]=""
-      [row_data]="row_data"
-      [column]="column"
-      (canceledit)="cancelAddEdit()"
-      (editcomplete)="saveAddRecord($event)"
-    >
+    <db-tree-cell-editor *ngIf="!column.editor" cell_value="" [row_data]="row_data" [column]="column"
+      (canceledit)="cancelAddEdit()" (editcomplete)="saveAddRecord($event)">
     </db-tree-cell-editor>
   </div>
 </td>

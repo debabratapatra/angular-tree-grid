@@ -1,116 +1,67 @@
-<ng-container
-  *ngIf="configs.actions.edit && configs.row_edit_function(row_data)"
->
+<ng-container *ngIf="configs.actions?.edit && configs?.row_edit_function(row_data)">
   <div *ngIf="!edit_tracker[row_data[configs.id_field]]" class="icon-container">
-    <span
-      (click)="enableEdit(row_data[configs.id_field], row_data)"
-      *ngIf="configs.css.edit_icon"
-      title="Edit row"
-      [innerHTML]="this.configs.css.edit_icon | safeHtml"
-    ></span>
-    <svg
-      (click)="enableEdit(row_data[configs.id_field], row_data)"
-      *ngIf="!configs.css.edit_icon"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-    >
+    <span (click)="enableEdit(row_data[configs.id_field], row_data)" *ngIf="configs.css?.edit_icon" title="Edit row"
+      [innerHTML]="this.configs.css?.edit_icon! | safeHtml"></span>
+    <svg (click)="enableEdit(row_data[configs.id_field], row_data)" *ngIf="!configs.css?.edit_icon"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <title>Edit row</title>
       <g data-name="Layer 2">
         <g data-name="edit">
           <rect width="24" height="24" opacity="0" />
           <path
-            d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM9.08 17.62l-3 .28.27-3L12 9.32l2.7 2.7zM16 10.68L13.32 8l1.95-2L18 8.73z"
-          />
+            d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM9.08 17.62l-3 .28.27-3L12 9.32l2.7 2.7zM16 10.68L13.32 8l1.95-2L18 8.73z" />
         </g>
       </g>
     </svg>
   </div>
   <ng-container *ngIf="edit_tracker[row_data[configs.id_field]]">
     <div class="icon-container">
-      <span
-        (click)="saveRecord($event)"
-        *ngIf="configs.css.save_icon"
-        title="Save row"
-        [innerHTML]="this.configs.css.save_icon | safeHtml"
-      ></span>
-      <svg
-        (click)="saveRecord($event)"
-        title="Save row"
-        *ngIf="!configs.css.save_icon"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-      >
+      <span (click)="saveRecord($event)" *ngIf="configs.css?.save_icon" title="Save row"
+        [innerHTML]="this.configs.css?.save_icon! | safeHtml"></span>
+      <svg (click)="saveRecord($event)" title="Save row" *ngIf="!configs.css?.save_icon"
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <title>Save row</title>
         <g data-name="Layer 2">
           <g data-name="save">
             <rect width="24" height="24" opacity="0" />
             <path
-              d="M20.12 8.71l-4.83-4.83A3 3 0 0 0 13.17 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-7.17a3 3 0 0 0-.88-2.12zM10 19v-2h4v2zm9-1a1 1 0 0 1-1 1h-2v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2h-3V5h3.17a1.05 1.05 0 0 1 .71.29l4.83 4.83a1 1 0 0 1 .29.71z"
-            />
+              d="M20.12 8.71l-4.83-4.83A3 3 0 0 0 13.17 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-7.17a3 3 0 0 0-.88-2.12zM10 19v-2h4v2zm9-1a1 1 0 0 1-1 1h-2v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2h-3V5h3.17a1.05 1.05 0 0 1 .71.29l4.83 4.83a1 1 0 0 1 .29.71z" />
           </g>
         </g>
       </svg>
     </div>
     <div class="icon-container">
-      <span
-        (click)="canceledit.emit(row_data)"
-        *ngIf="configs.css.cancel_icon"
-        title="Cancel row"
-        [innerHTML]="this.configs.css.cancel_icon | safeHtml"
-      ></span>
-      <svg
-        (click)="canceledit.emit(row_data)"
-        *ngIf="!configs.css.cancel_icon"
-        title="Cancel row"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-      >
+      <span (click)="canceledit.emit(row_data)" *ngIf="configs.css?.cancel_icon" title="Cancel row"
+        [innerHTML]="this.configs.css?.cancel_icon! | safeHtml"></span>
+      <svg (click)="canceledit.emit(row_data)" *ngIf="!configs.css?.cancel_icon" title="Cancel row"
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <title>Cancel row</title>
         <g data-name="Layer 2">
           <g data-name="close">
-            <rect
-              width="24"
-              height="24"
-              transform="rotate(180 12 12)"
-              opacity="0"
-            />
+            <rect width="24" height="24" transform="rotate(180 12 12)" opacity="0" />
             <path
-              d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-            />
+              d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z" />
           </g>
         </g>
       </svg>
     </div>
   </ng-container>
 </ng-container>
-<div
-  class="icon-container"
-  *ngIf="
-    configs.actions.delete &&
+<div class="icon-container" *ngIf="
+    configs.actions?.delete &&
     !edit_tracker[row_data[configs.id_field]] &&
-    configs.row_delete_function(row_data)
-  "
->
-  <span
-    *ngIf="configs.css.delete_icon"
-    title="Delete row"
-    (click)="deleteRecord(row_data)"
-    [innerHTML]="this.configs.css.delete_icon | safeHtml"
-  ></span>
-  <svg
-    *ngIf="!configs.css.delete_icon"
-    title="Delete row"
-    (click)="deleteRecord(row_data)"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-  >
+    configs?.row_delete_function(row_data)
+  ">
+  <span *ngIf="configs.css?.delete_icon" title="Delete row" (click)="deleteRecord(row_data)"
+    [innerHTML]="this.configs.css?.delete_icon! | safeHtml"></span>
+  <svg *ngIf="!configs.css?.delete_icon" title="Delete row" (click)="deleteRecord(row_data)"
+    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <title>Delete row</title>
     <g data-name="Layer 2">
       <g data-name="trash-2">
         <rect width="24" height="24" opacity="0" />
         <path
-          d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V8h12z"
-        />
+          d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V8h12z" />
         <path d="M9 17a1 1 0 0 0 1-1v-4a1 1 0 0 0-2 0v4a1 1 0 0 0 1 1z" />
         <path d="M15 17a1 1 0 0 0 1-1v-4a1 1 0 0 0-2 0v4a1 1 0 0 0 1 1z" />
       </g>

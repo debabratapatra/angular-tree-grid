@@ -1,18 +1,18 @@
-@import '../../tree-body.component.scss';
+@import "../../tree-body.component.scss";
 
 td {
-    vertical-align: middle;
-    position: relative;
-    padding: 0.2rem;
+  vertical-align: middle;
+  position: relative;
+  padding: 0.2rem;
 
-    input {
-        border: 1px solid #cdd5dc;
-        width: 100%;
-        padding: 0.2rem 0.5rem;
-        height: 2rem;
-        border-radius: 3px;
-        box-sizing: border-box;
-        -webkit-box-sizing:border-box;
-        -moz-box-sizing: border-box;
-    }
+  input {
+    border: 1px solid #cdd5dc;
+    width: 100%;
+    padding: 0.2rem 0.5rem;
+    height: 2rem;
+    border-radius: 3px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
 }

@@ -1,67 +1,67 @@
-@import '../../angular-tree-grid.component.scss';
+@import "../../angular-tree-grid.component.scss";
 
 tr {
-    border-bottom: 1px solid #cdd5dc;
-    &.selected {
-        background-color: #e2e7eb;
-    }
-    span.parent_container {
-        padding-left: 45px;
-    }
+  border-bottom: 1px solid #cdd5dc;
+  &.selected {
+    background-color: #e2e7eb;
+  }
+  span.parent_container {
+    padding-left: 45px;
+  }
 
-    &.child {
-        background: #fff;
-        td:nth-child(2) {
-            padding: 0.875rem 1.25rem 0.875rem 2.5rem !important;
-        }
+  &.child {
+    background: #fff;
+    td:nth-child(2) {
+      padding: 0.875rem 1.25rem 0.875rem 2.5rem !important;
     }
-    &.parent {
-        background: #fafbff;
-    }
-    &.subgrid-row {
-        background: #fcfcfc;
-    }
+  }
+  &.parent {
+    background: #fafbff;
+  }
+  &.subgrid-row {
+    background: #fcfcfc;
+  }
 
-    &.row-add {
-        td {
-            padding: 0.2rem;
-
-            &.action-column {
-                padding: 0.5rem 1rem;
-            }
-        }
-    }
-
+  &.row-add {
     td {
-        vertical-align: middle;
-        position: relative;
-        padding: 0.5rem 0.5rem;
-        box-sizing: border-box;
+      padding: 0.2rem;
 
-        &.checkbox_column {
-            text-align: center;
-        }
-
-        &.expand-column {
-            padding: 0.3rem;
-        }
-    
-        &.column-hide {
-            display: none;
-        }
-
-        &.clear-left-border {
-            border-left: 0 !important;
-        }
-
-        &.clear-right-border {
-            border-right: 0 !important;
-        }
-
-        select {
-            padding: 0.2rem 0.5rem;
-            height: 2rem;
-            border: 1px solid #d1cece;
-        }
+      &.action-column {
+        padding: 0.5rem 1rem;
+      }
     }
+  }
+
+  td {
+    vertical-align: middle;
+    position: relative;
+    padding: 0.5rem 0.5rem;
+    box-sizing: border-box;
+
+    &.checkbox_column {
+      text-align: center;
+    }
+
+    &.expand-column {
+      padding: 0.3rem;
+    }
+
+    &.column-hide {
+      display: none;
+    }
+
+    &.clear-left-border {
+      border-left: 0 !important;
+    }
+
+    &.clear-right-border {
+      border-right: 0 !important;
+    }
+
+    select {
+      padding: 0.2rem 0.5rem;
+      height: 2rem;
+      border: 1px solid #d1cece;
+    }
+  }
 }

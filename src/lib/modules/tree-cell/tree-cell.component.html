@@ -1,138 +1,65 @@
 <div (click)="onCellClick($event)">
   <ng-container *ngIf="is_expand_column">
-    <div
-      [ngStyle]="getChildrenPadding()"
-    >
-      <span
-        class="no-expand-icon"
-        *ngIf="row_data.levelx == 0 && row_data.leaf && !configs.load_children_on_expand"
-      ></span>
+    <div [ngStyle]="getChildrenPadding()">
+      <span class="no-expand-icon"
+        *ngIf="row_data.levelx == 0 && row_data.leaf && !configs.load_children_on_expand"></span>
       <ng-container *ngIf="!expand_tracker[row_data.pathx]">
-        <span
-          (click)="expandRow($event)"
-          class="expand-icon-container"
-          *ngIf="show_expand_icon"
-          title="Expand Row"
-        >
-          <span
-            class="expand-icon"
-            [ngStyle]="{
+        <span (click)="expandRow($event)" class="expand-icon-container" *ngIf="show_expand_icon" title="Expand Row">
+          <span class="expand-icon" [ngStyle]="{
               visibility: row_data.expand_disabled ? 'hidden' : 'visible'
-            }"
-            *ngIf="show_expand_icon && configs.css.expand_icon.length > 0"
-            [innerHTML]="configs.css.expand_icon | safeHtml"
-          ></span>
-          <span
-            class="expand-icon inbuild-icon"
-            [ngStyle]="{
+            }" *ngIf="show_expand_icon && configs.css?.expand_icon?.length! > 0"
+            [innerHTML]="configs.css?.expand_icon! | safeHtml"></span>
+          <span class="expand-icon inbuild-icon" [ngStyle]="{
               visibility: row_data.expand_disabled ? 'hidden' : 'visible'
-            }"
-            *ngIf="show_expand_icon && configs.css.expand_icon.length == 0"
-            >+</span
-          >
+            }" *ngIf="show_expand_icon && configs.css?.expand_icon?.length! == 0">+</span>
         </span>
       </ng-container>
       <ng-container *ngIf="expand_tracker[row_data.pathx]">
         <span *ngIf="row_data.is_loading" class="childred-loader"></span>
-        <span
-          (click)="collapseRow($event)"
-          *ngIf="!row_data.is_loading && show_expand_icon"
-          class="expand-icon-container"
-          title="Collapse Row"
-        >
-          <span
-            class="expand-icon"
-            [ngStyle]="{
+        <span (click)="collapseRow($event)" *ngIf="!row_data.is_loading && show_expand_icon"
+          class="expand-icon-container" title="Collapse Row">
+          <span class="expand-icon" [ngStyle]="{
               visibility: row_data.expand_disabled ? 'hidden' : 'visible'
-            }"
-            *ngIf="show_expand_icon && configs.css.collapse_icon.length > 0"
-            [innerHTML]="configs.css.collapse_icon | safeHtml"
-          ></span>
-          <span
-            class="expand-icon inbuild-dash-icon"
-            [ngStyle]="{
+            }" *ngIf="show_expand_icon && configs.css?.collapse_icon?.length! > 0"
+            [innerHTML]="configs.css?.collapse_icon! | safeHtml"></span>
+          <span class="expand-icon inbuild-dash-icon" [ngStyle]="{
               visibility: row_data.expand_disabled ? 'hidden' : 'visible'
-            }"
-            *ngIf="show_expand_icon && configs.css.collapse_icon.length == 0"
-            >—</span
-          >
+            }" *ngIf="show_expand_icon && configs.css?.collapse_icon?.length == 0">—</span>
         </span>
       </ng-container>
-      <ng-container
-        *ngIf="!edit_on || !column.editable"
-        [ngSwitch]="column.type"
-      >
-        <db-custom-cell-component
-          *ngSwitchCase="'custom'"
-          [column]="column"
-          [row_data]="row_data"
-        >
+      <ng-container *ngIf="!edit_on || !column.editable" [ngSwitch]="column.type">
+        <db-custom-cell-component *ngSwitchCase="'custom'" [column]="column" [row_data]="row_data">
         </db-custom-cell-component>
-        <db-tree-cell-view
-          *ngSwitchDefault
-          [column]="column"
-          [row_data]="row_data"
-        >
+        <db-tree-cell-view *ngSwitchDefault [column]="column" [row_data]="row_data">
         </db-tree-cell-view>
       </ng-container>
       <ng-container *ngIf="edit_on && column.editable">
-        <db-custom-cell-editor-component
-          *ngIf="column.editor"
-          [cell_value]="cell_value"
-          [column]="column"
-          [row_data]="row_data"
-          (canceledit)="canceledit.emit(row_data['pathx'])"
-          (editcomplete)="onEditComplete($event)"
-        >
+        <db-custom-cell-editor-component *ngIf="column.editor" [cell_value]="cell_value" [column]="column"
+          [row_data]="row_data" (canceledit)="canceledit.emit(row_data['pathx'])"
+          (editcomplete)="onEditComplete($event)">
         </db-custom-cell-editor-component>
-        <db-tree-cell-editor
-          *ngIf="!column.editor"
-          [cell_value]="cell_value"
-          [row_data]="row_data"
-          [column]="column"
-          [expandable_column]="true"
-          (canceledit)="canceledit.emit(row_data['pathx'])"
-          (editcomplete)="onEditComplete($event)"
-        >
+        <db-tree-cell-editor *ngIf="!column.editor" [cell_value]="cell_value" [row_data]="row_data" [column]="column"
+          [expandable_column]="true" (canceledit)="canceledit.emit(row_data['pathx'])"
+          (editcomplete)="onEditComplete($event)">
         </db-tree-cell-editor>
       </ng-container>
     </div>
   </ng-container>
   <ng-container *ngIf="!is_expand_column">
     <ng-container *ngIf="!edit_on || !column.editable" [ngSwitch]="column.type">
-      <db-custom-cell-component
-        *ngSwitchCase="'custom'"
-        [column]="column"
-        [row_data]="row_data"
-      >
+      <db-custom-cell-component *ngSwitchCase="'custom'" [column]="column" [row_data]="row_data">
       </db-custom-cell-component>
-      <db-tree-cell-view
-        *ngSwitchDefault
-        [column]="column"
-        [row_data]="row_data"
-      >
+      <db-tree-cell-view *ngSwitchDefault [column]="column" [row_data]="row_data">
       </db-tree-cell-view>
     </ng-container>
 
     <ng-container *ngIf="edit_on && column.editable">
-      <db-custom-cell-editor-component
-        *ngIf="column.editor"
-        [cell_value]="cell_value"
-        [column]="column"
-        [row_data]="row_data"
-        (canceledit)="canceledit.emit(row_data['pathx'])"
-        (editcomplete)="onEditComplete($event)"
-      >
+      <db-custom-cell-editor-component *ngIf="column.editor" [cell_value]="cell_value" [column]="column"
+        [row_data]="row_data" (canceledit)="canceledit.emit(row_data['pathx'])" (editcomplete)="onEditComplete($event)">
       </db-custom-cell-editor-component>
-      <db-tree-cell-editor
-        *ngIf="!column.editor"
-        [cell_value]="cell_value"
-        [row_data]="row_data"
-        [column]="column"
-        [expandable_column]="false"
-        (canceledit)="canceledit.emit(row_data['pathx'])"
-        (editcomplete)="onEditComplete($event)"
-      >
+      <db-tree-cell-editor *ngIf="!column.editor" [cell_value]="cell_value" [row_data]="row_data" [column]="column"
+        [expandable_column]="false" (canceledit)="canceledit.emit(row_data['pathx'])"
+        (editcomplete)="onEditComplete($event)">
       </db-tree-cell-editor>
     </ng-container>
   </ng-container>

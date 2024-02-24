@@ -1,12 +1,8 @@
 {
   "name": "angular-tree-grid",
-  "version": "6.0.1",
+  "version": "7.0.0",
   "homepage": "https://github.com/debabratapatra/angular-tree-grid#readme",
   "license": "MIT",
-  "peerDependencies": {
-    "@angular/common": ">=7.0.0",
-    "@angular/core": ">=7.0.0"
-  },
   "author": {
     "name": "Debabrata Patra",
     "email": "debabratapatra12@gmail.com",
@@ -33,6 +29,7 @@
     "Angular 6",
     "Angular 7",
     "Angular 13",
+    "Angular 17",
     "Opensource",
     "Angular Tree Grid",
     "Angular Sub-grid",

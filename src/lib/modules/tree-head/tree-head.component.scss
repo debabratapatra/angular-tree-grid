@@ -1,51 +1,51 @@
-@import '../../angular-tree-grid.component.scss';
+@import "../../angular-tree-grid.component.scss";
 
 tr {
-    border-bottom: 1px solid #cdd5dc;;
-    background: #fff;
+  border-bottom: 1px solid #cdd5dc;
+  background: #fff;
 
-    th {
-        font-size: 1rem;
-        font-weight: 600;
-        line-height: 1.25;
-        color: #181818;
-        vertical-align: middle;
-        position: relative;
-        box-sizing: border-box;
+  th {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #181818;
+    vertical-align: middle;
+    position: relative;
+    box-sizing: border-box;
 
-        div {
-            padding: 0.5rem 0.5rem;
-        }
-
-        &.column-hide {
-            display: none;
-        }
-
-        &.action-column {
-            span.icon-container {
-                cursor: pointer;
-            }
-        }
-
-        span.inbuild-icon {
-            font-size: 25px;
-        }
+    div {
+      padding: 0.5rem 0.5rem;
     }
+
+    &.column-hide {
+      display: none;
+    }
+
+    &.action-column {
+      span.icon-container {
+        cursor: pointer;
+      }
+    }
+
+    span.inbuild-icon {
+      font-size: 25px;
+    }
+  }
 }
 
 th.clear-left-border {
-    border-left: 0 !important;
+  border-left: 0 !important;
 }
 
 th.clear-right-border {
-    border-right: 0 !important;
+  border-right: 0 !important;
 }
 
 .column-hide {
-    display: none;
+  display: none;
 }
 
 svg {
-    width: 25px;
-    padding-right: 3px;
+  width: 25px;
+  padding-right: 3px;
 }

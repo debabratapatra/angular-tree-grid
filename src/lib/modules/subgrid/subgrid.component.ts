@@ -1,19 +1,18 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { Store } from '../../store/store';
-import { Configs } from '../../models/Configs.model';
+import { Component, OnInit, Input, EventEmitter } from "@angular/core";
+import { Store } from "../../store/store";
+import { Configs } from "../../models/Configs.model";
 
 @Component({
-  selector: '[db-subgrid]',
-  templateUrl: './subgrid.component.html',
-  styleUrls: ['./subgrid.component.scss']
+  selector: "[db-subgrid]",
+  templateUrl: "./subgrid.component.html",
+  styleUrls: ["./subgrid.component.scss"],
 })
 export class SubgridComponent implements OnInit {
+  @Input()
+  store!: Store;
 
   @Input()
-  store: Store;
-
-  @Input()
-  configs: Configs;
+  configs!: Configs;
 
   @Input()
   expand_tracker: any;
@@ -28,64 +27,71 @@ export class SubgridComponent implements OnInit {
   row_data: any;
 
   @Input()
-  cellclick: EventEmitter<any>;
+  cellclick!: EventEmitter<any>;
 
   @Input()
-  expand: EventEmitter<any>;
+  expand!: EventEmitter<any>;
 
   @Input()
-  rowselect: EventEmitter<any>;
+  rowselect!: EventEmitter<any>;
 
   @Input()
-  rowdeselect: EventEmitter<any>;
+  rowdeselect!: EventEmitter<any>;
 
   @Input()
-  rowsave: EventEmitter<any>;
+  rowsave!: EventEmitter<any>;
 
   @Input()
-  rowdelete: EventEmitter<any>;
+  rowdelete!: EventEmitter<any>;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
 
-  saveRecord($event) {
+  saveRecord($event: any) {
     const element = $event.data;
 
-    if (this.configs.actions.resolve_edit) {
+    if (this.configs.actions?.resolve_edit) {
       const promise = new Promise((resolve, reject) => {
         this.rowsave.emit({
           data: element,
-          resolve: resolve
+          resolve: resolve,
         });
       });
 
-      promise.then(() => {
-        this.checkAndRefreshData(element);
-      }).catch((err) => {});
+      promise
+        .then(() => {
+          this.checkAndRefreshData(element);
+        })
+        .catch((err) => {});
     } else {
       this.checkAndRefreshData(element);
       this.rowsave.emit(element);
     }
   }
 
-  checkAndRefreshData(element) {
+  checkAndRefreshData(element: any) {
     this.edit_tracker[element[this.configs.id_field]] = false;
     this.internal_configs.show_parent_col = false;
 
     // Only refresh if Parent has been changed.
-    if (this.internal_configs.current_edited_row[this.configs.parent_id_field]
-      !== element[this.configs.parent_id_field]) {
-        this.refreshData(element);
+    if (
+      this.internal_configs.current_edited_row[this.configs.parent_id_field] !==
+      element[this.configs.parent_id_field]
+    ) {
+      this.refreshData(element);
     }
   }
 
-  refreshData(element) {
+  refreshData(element: any) {
     // If edit parent is not true then don't refresh.
-    if (!this.configs.actions.edit_parent) {
+    if (!this.configs.actions?.edit_parent) {
       return;
     }
-    element[this.configs.parent_id_field] = parseInt(element[this.configs.parent_id_field], 10);
+    element[this.configs.parent_id_field] = parseInt(
+      element[this.configs.parent_id_field],
+      10
+    );
     this.expand_tracker = {};
     this.edit_tracker = {};
     this.store.processData(
@@ -97,7 +103,7 @@ export class SubgridComponent implements OnInit {
     );
   }
 
-  cancelEdit(row_data) {
+  cancelEdit(row_data: any) {
     const index = row_data[this.configs.id_field];
 
     // Cancel all changes ie copy from back up.
@@ -107,13 +113,13 @@ export class SubgridComponent implements OnInit {
     this.internal_configs.show_parent_col = false;
   }
 
-  onRowExpand(event) {
+  onRowExpand(event: any) {
     const row_data = event.data;
 
     const promise = new Promise((resolve, reject) => {
       this.expand.emit({
         data: row_data,
-        resolve: resolve
+        resolve: resolve,
       });
     });
 
@@ -122,37 +128,37 @@ export class SubgridComponent implements OnInit {
     blank_row.loading_children = true;
 
     // Add Child rows to the table.
-    promise.then((child_rows: any) => {
-      blank_row.loading_children = false;
+    promise
+      .then((child_rows: any) => {
+        blank_row.loading_children = false;
 
-      if (child_rows) {
-        child_rows.map(child => {
-          child.leaf = true;
-        });
-        blank_row.children = child_rows;
-      } else {
-
-        // Persist old children. If didn't exist then assign blank array.
-        if (!blank_row.children) {
-          blank_row.children = [];
+        if (child_rows) {
+          child_rows.map((child: any) => {
+            child.leaf = true;
+          });
+          blank_row.children = child_rows;
+        } else {
+          // Persist old children. If didn't exist then assign blank array.
+          if (!blank_row.children) {
+            blank_row.children = [];
+          }
         }
-      }
-
-    }).catch((err) => {});
+      })
+      .catch((err) => {});
   }
 
-  onRowCollapse(event) {
+  onRowCollapse(event: any) {
     const row_data = event.data;
     this.expand_tracker[row_data.pathx] = false;
   }
 
-  selectRowOnCheck(row_data, event) {
+  selectRowOnCheck(row_data: any, event: any) {
     if (event.target.checked) {
       row_data.row_selected = true;
-      this.rowselect.emit({data: row_data, event: event});
+      this.rowselect.emit({ data: row_data, event: event });
     } else {
       row_data.row_selected = false;
-      this.rowdeselect.emit({data: row_data, event: event});
+      this.rowdeselect.emit({ data: row_data, event: event });
     }
 
     this.setSelectAllConfig();
@@ -165,14 +171,12 @@ export class SubgridComponent implements OnInit {
   setSelectAllConfig() {
     let select_all = true;
 
-    this.store.getDisplayData().forEach(data => {
+    this.store.getDisplayData().forEach((data) => {
       if (!data.row_selected) {
         select_all = false;
       }
     });
 
     this.internal_configs.all_selected = select_all;
-
   }
-
 }

@@ -3,57 +3,36 @@
   <!-- Expandable Row -->
   <ng-container *ngIf="!row_data.leaf">
     <td *ngIf="configs.multi_select" class="checkbox_column">
-      <input type="checkbox" [checked]="row_data.row_selected" (click)="selectRowOnCheck(row_data, $event)" 
+      <input type="checkbox" [checked]="row_data.row_selected" (click)="selectRowOnCheck(row_data, $event)"
         [attr.disabled]="row_data.selection_disabled">
     </td>
-    <td db-tree-cell-actions 
-      *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add)"
-      [row_data]="row_data"
-      [configs]="configs"
-      [store]="store"
-      [edit_tracker]="edit_tracker"
-      [internal_configs]="internal_configs"
-      [rowdelete]="rowdelete"
-      (canceledit)="cancelEdit($event)" 
-      (editcomplete)="saveRecord($event)"
-      >
+    <td db-tree-cell-actions *ngIf="(configs.actions?.edit || configs.actions?.delete || configs.actions?.add)"
+      [row_data]="row_data" [configs]="configs" [store]="store" [edit_tracker]="edit_tracker"
+      [internal_configs]="internal_configs" [rowdelete]="rowdelete" (canceledit)="cancelEdit($event)"
+      (editcomplete)="saveRecord($event)">
     </td>
-    <td *ngFor="let column of configs.columns; index as i" 
+    <td *ngFor="let column of configs.columns; index as i"
       [ngClass]="{'column-hide': column.hidden, 'expand-column': i == 0}">
-      <db-tree-cell
-        [configs]="configs"
-        [column]="column"
-        [index]="i"
-        [row_data]="row_data"
-        [expand_tracker]="expand_tracker"
-        [edit_on]="edit_tracker[row_data[configs.id_field]]"
-        [cellclick]="cellclick"
-        (rowexpand)="onRowExpand($event)"
-        (rowcollapse)="onRowCollapse($event)"
-        (editcomplete)="saveRecord($event)"
-      >
+      <db-tree-cell [configs]="configs" [column]="column" [index]="i" [row_data]="row_data"
+        [expand_tracker]="expand_tracker" [edit_on]="edit_tracker[row_data[configs.id_field]]" [cellclick]="cellclick"
+        (rowexpand)="onRowExpand($event)" (rowcollapse)="onRowCollapse($event)" (editcomplete)="saveRecord($event)">
       </db-tree-cell>
     </td>
   </ng-container>
 
   <!-- Subgrid Rows -->
-  <ng-container *ngIf="row_data.leaf">    
+  <ng-container *ngIf="row_data.leaf">
     <td *ngIf="configs.multi_select"></td>
-    <td *ngIf="(configs.actions.edit || configs.actions.delete || configs.actions.add)"></td>
-    <td [attr.colspan]="configs.columns.length" class="subgrid-column">
-        <table class="subgrid-table">
-          <thead db-subgrid-head
-            [row_data]="row_data"
-            [configs]="configs">
-            
-          </thead>
-          <tbody db-subgrid-body
-            [configs]="configs"
-            [expand_tracker]="expand_tracker"
-            [cellclick]="cellclick"
-            [row_data]="row_data">
-          </tbody>            
-        </table>
-    </td>    
-  </ng-container>  
+    <td *ngIf="(configs.actions?.edit || configs.actions?.delete || configs.actions?.add)"></td>
+    <td [attr.colspan]="configs.columns?.length" class="subgrid-column">
+      <table class="subgrid-table">
+        <thead db-subgrid-head [row_data]="row_data" [configs]="configs">
+
+        </thead>
+        <tbody db-subgrid-body [configs]="configs" [expand_tracker]="expand_tracker" [cellclick]="cellclick"
+          [row_data]="row_data">
+        </tbody>
+      </table>
+    </td>
+  </ng-container>
 </ng-container>

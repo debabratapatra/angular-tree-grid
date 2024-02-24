@@ -8,29 +8,29 @@ import { Configs } from "../../models/Configs.model";
   styleUrls: ["./tree-cell.component.scss"],
 })
 export class TreeCellComponent implements OnInit {
-  is_expand_column: boolean;
-  show_expand_icon: boolean;
-  cell_value: string;
+  is_expand_column: boolean = false;
+  show_expand_icon: boolean = false;
+  cell_value: string = "";
   @Input()
-  configs: Configs;
+  configs!: Configs;
 
   @Input()
-  index: number;
+  index!: number;
 
   @Input()
   row_data: any;
 
   @Input()
-  column: Column;
+  column!: Column;
 
   @Input()
   expand_tracker: any;
 
   @Input()
-  cellclick: EventEmitter<any>;
+  cellclick!: EventEmitter<any>;
 
   @Input()
-  edit_on: boolean;
+  edit_on!: boolean;
 
   @Output() rowexpand: EventEmitter<any> = new EventEmitter();
   @Output() rowcollapse: EventEmitter<any> = new EventEmitter();
@@ -50,7 +50,7 @@ export class TreeCellComponent implements OnInit {
     this.cell_value = this.row_data[this.column.name];
   }
 
-  expandRow(event) {
+  expandRow(event: any) {
     if (
       this.index === 0 &&
       (!this.row_data.leaf || this.configs.load_children_on_expand)
@@ -60,7 +60,7 @@ export class TreeCellComponent implements OnInit {
     }
   }
 
-  collapseRow(event) {
+  collapseRow(event: any) {
     if (
       this.index === 0 &&
       (!this.row_data.leaf || this.configs.load_children_on_expand)
@@ -70,7 +70,7 @@ export class TreeCellComponent implements OnInit {
     }
   }
 
-  onCellClick(event) {
+  onCellClick(event: any) {
     this.cellclick.emit({
       column: this.column,
       row: this.row_data,
@@ -78,14 +78,15 @@ export class TreeCellComponent implements OnInit {
     });
   }
 
-  onEditComplete($event) {
+  onEditComplete($event: any) {
     this.editcomplete.emit({ event: $event, data: this.row_data });
   }
 
   getChildrenPadding() {
-    const padding = this.row_data.leaf && !this.configs.load_children_on_expand
-      ? this.row_data.levelx * 10 + 20 + "px"
-      : this.row_data.levelx * 10 + "px";
+    const padding =
+      this.row_data.leaf && !this.configs.load_children_on_expand
+        ? this.row_data.levelx * 10 + 20 + "px"
+        : this.row_data.levelx * 10 + "px";
     return this.configs.rtl_direction
       ? {
           "padding-right": padding,

@@ -1,28 +1,35 @@
-import { Component, OnInit, Output, EventEmitter, Input, ViewEncapsulation } from '@angular/core';
-import { Column } from '../../../../models/Column.model';
-import { Configs } from '../../../../models/Configs.model';
-import { Store } from '../../../../store/store';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  Input,
+  ViewEncapsulation,
+} from "@angular/core";
+import { Column } from "../../../../models/Column.model";
+import { Configs } from "../../../../models/Configs.model";
+import { Store } from "../../../../store/store";
 
 @Component({
-  selector: '[db-add-row]',
-  templateUrl: './add-row.component.html',
-  styleUrls: ['./add-row.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  selector: "[db-add-row]",
+  templateUrl: "./add-row.component.html",
+  styleUrls: ["./add-row.component.scss"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AddRowComponent implements OnInit {
-  raw_data: any[];
+  raw_data: any[] = [];
   row_data: any = {};
   parents: any[] = [];
-  show_add_row: boolean;
+  show_add_row: boolean = false;
 
   @Input()
-  store: Store;
+  store!: Store;
 
   @Input()
-  columns: Column[];
+  columns!: Column[];
 
   @Input()
-  configs: Configs;
+  configs!: Configs;
 
   @Input()
   internal_configs: any;
@@ -30,24 +37,22 @@ export class AddRowComponent implements OnInit {
   @Output() rowadd: EventEmitter<any> = new EventEmitter();
   @Output() canceledit: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.raw_data = this.store.getRawData();
-    this.columns.forEach(column => {
-      this.row_data[column.name] = '';
+    this.columns.forEach((column) => {
+      this.row_data[column.name] = "";
     });
-    this.parents = this.raw_data.map(
-      element => {
-        return {
-          'id': element[this.configs.id_field],
-          'value': element[this.configs.parent_display_field]
-        };
-      }
-    );
+    this.parents = this.raw_data.map((element) => {
+      return {
+        id: element[this.configs.id_field],
+        value: element[this.configs.parent_display_field],
+      };
+    });
   }
 
-  saveAddRecord(e) {
+  saveAddRecord(e: any) {
     this.raw_data.push(this.row_data);
     this.rowadd.emit(this.row_data);
   }
@@ -55,5 +60,4 @@ export class AddRowComponent implements OnInit {
   cancelAddEdit() {
     this.internal_configs.show_add_row = false;
   }
-
 }

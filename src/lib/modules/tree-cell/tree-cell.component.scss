@@ -1,44 +1,48 @@
-@import '../../angular-tree-grid.component.scss';
+@import "../../angular-tree-grid.component.scss";
 
 i.expand-icon {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 span.no-expand-icon {
-    display: inline-block;
-    width: 14px;
+  display: inline-block;
+  width: 14px;
 }
 
 span.expand-icon-container {
-    position: relative;
-    cursor: pointer;
-    padding: 0 5px 0 0;
-    width: 21px;
-    box-sizing: border-box;
-    text-align: center;
+  position: relative;
+  cursor: pointer;
+  padding: 0 5px 0 0;
+  width: 21px;
+  box-sizing: border-box;
+  text-align: center;
 
-    span.inbuild-icon {
-        font-size: 25px;
-    }
-    span.inbuild-dash-icon {
-        font-size: 17px;
-        font-weight: 700;
-    }
+  span.inbuild-icon {
+    font-size: 25px;
+  }
+  span.inbuild-dash-icon {
+    font-size: 17px;
+    font-weight: 700;
+  }
 }
 
-span.childred-loader{
-    border: 3px solid #f3f3f3;
-    -webkit-animation: spin 1s linear infinite;
-    animation: spin 1s linear infinite;
-    border-top: 3px solid #555;
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    display: inline-block;
-    margin-right: 5px;
+span.childred-loader {
+  border: 3px solid #f3f3f3;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  border-top: 3px solid #555;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

@@ -1,14 +1,14 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { Configs } from '../../../../models/Configs.model';
+import { Component, OnInit, Input, EventEmitter } from "@angular/core";
+import { Configs } from "../../../../models/Configs.model";
 
 @Component({
-  selector: '[db-subgrid-body]',
-  templateUrl: './subgrid-body.component.html',
-  styleUrls: ['./subgrid-body.component.scss']
+  selector: "[db-subgrid-body]",
+  templateUrl: "./subgrid-body.component.html",
+  styleUrls: ["./subgrid-body.component.scss"],
 })
 export class SubgridBodyComponent implements OnInit {
   @Input()
-  configs: Configs;
+  configs!: Configs;
 
   @Input()
   expand_tracker: any;
@@ -17,11 +17,9 @@ export class SubgridBodyComponent implements OnInit {
   row_data: any;
 
   @Input()
-  cellclick: EventEmitter<any>;
+  cellclick!: EventEmitter<any>;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -1,32 +1,12 @@
-<table [attr.class]="'db-tree-view ' + configs.css.table_class" >
-    <thead 
-        db-tree-head
-        [store]="store"
-        [expand_tracker]="expand_tracker"
-        [internal_configs]="internal_configs"
-        [edit_tracker]="edit_tracker"
-        [rowselectall]="rowselectall"
-        [rowdeselectall]="rowdeselectall"
-        [columns]="columns"
-        [configs]="configs">
+<table [attr.class]="'db-tree-view ' + configs.css?.table_class">
+    <thead db-tree-head [store]="store" [expand_tracker]="expand_tracker" [internal_configs]="internal_configs"
+        [edit_tracker]="edit_tracker" [rowselectall]="rowselectall" [rowdeselectall]="rowdeselectall"
+        [columns]="columns" [configs]="configs">
     </thead>
 
-    <tbody 
-        db-tree-body
-        [store]="store"
-        [expand_tracker]="expand_tracker"
-        [edit_tracker]="edit_tracker"
-        [internal_configs]="internal_configs"
-        [columns]="columns"
-        [configs]="configs"
-        [cellclick]="cellclick"
-        [expand]="expand"
-        [collapse]="collapse"
-        [rowdelete]="rowdelete"
-        [rowsave]="rowsave"
-        [rowadd]="rowadd"
-        [rowselect]="rowselect"
-        [rowdeselect]="rowdeselect"
-    >        
+    <tbody db-tree-body [store]="store" [expand_tracker]="expand_tracker" [edit_tracker]="edit_tracker"
+        [internal_configs]="internal_configs" [columns]="columns" [configs]="configs" [cellclick]="cellclick"
+        [expand]="expand" [collapse]="collapse" [rowdelete]="rowdelete" [rowsave]="rowsave" [rowadd]="rowadd"
+        [rowselect]="rowselect" [rowdeselect]="rowdeselect">
     </tbody>
 </table>

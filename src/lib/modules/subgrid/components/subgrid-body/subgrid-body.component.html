@@ -1,25 +1,18 @@
 <ng-container *ngIf="row_data.loading_children">
   <tr>
-    <td [attr.colspan]="configs.subgrid_config.columns.length" 
-      [innerHTML]="configs.subgrid_config.data_loading_text"
+    <td [attr.colspan]="configs.subgrid_config?.columns?.length" [innerHTML]="configs.subgrid_config?.data_loading_text"
       class="subgrid-loading-text"></td>
   </tr>
 </ng-container>
 <ng-container *ngIf="!row_data.loading_children">
   <tr *ngFor="let child_data of row_data.children">
-    <td *ngFor="let column of configs.subgrid_config.columns; index as i">
-      <db-tree-cell
-        [configs]="configs"
-        [column]="column"
-        [index]="1"
-        [row_data]="child_data"
-        [expand_tracker]="expand_tracker"
-        [cellclick]="cellclick"
-      ></db-tree-cell>
+    <td *ngFor="let column of configs.subgrid_config?.columns; index as i">
+      <db-tree-cell [configs]="configs" [column]="column" [index]="1" [row_data]="child_data"
+        [expand_tracker]="expand_tracker" [cellclick]="cellclick"></db-tree-cell>
     </td>
   </tr>
-  <tr *ngIf="configs.subgrid_config.show_summary_row">
-    <td *ngFor="let column of configs.subgrid_config.columns">
+  <tr *ngIf="configs.subgrid_config?.show_summary_row">
+    <td *ngFor="let column of configs.subgrid_config?.columns">
       <div [innerHTML]="column.summary_renderer && column.summary_renderer(row_data.children)"></div>
     </td>
   </tr>
