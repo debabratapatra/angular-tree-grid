@@ -1,4 +1,10 @@
-import { Component, OnInit, Input, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  EventEmitter,
+  ChangeDetectorRef,
+} from "@angular/core";
 import { Configs } from "../../models/Configs.model";
 import { Column } from "../../models/Column.model";
 import { AngularTreeGridService } from "../../angular-tree-grid.service";
@@ -56,14 +62,20 @@ export class TreeBodyComponent implements OnInit {
   @Input()
   rowdeselect!: EventEmitter<any>;
 
-  constructor(private angularTreeGridService: AngularTreeGridService) {}
+  constructor(
+    private angularTreeGridService: AngularTreeGridService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.display_data = this.store.getDisplayData();
-    this.angularTreeGridService.display_data_observable$.subscribe((store) => {
-      this.display_data = this.store.getDisplayData();
-      this.setParents();
-    });
+    this.angularTreeGridService.display_data_observable$.subscribe(
+      (display_data) => {
+        this.display_data = this.store.getDisplayData();
+        this.setParents();
+        this.cdr.detectChanges();
+      }
+    );
     this.setParents();
   }
 

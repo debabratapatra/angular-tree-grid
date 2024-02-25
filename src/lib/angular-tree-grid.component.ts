@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter,
   OnInit,
+  ChangeDetectionStrategy,
 } from "@angular/core";
 import { Configs } from "./models/Configs.model";
 import { AngularTreeGridService } from "./angular-tree-grid.service";
@@ -15,6 +16,7 @@ import { Store } from "./store/store";
   selector: "db-angular-tree-grid",
   templateUrl: "angular-tree-grid.component.html",
   styleUrls: ["./angular-tree-grid.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AngularTreeGridComponent implements OnChanges, OnInit {
   processed_data: any[] = [];
@@ -246,20 +248,24 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
 
   collapseAll() {
     this.angularTreeGridService.collapseAll(this.expand_tracker);
+    this.angularTreeGridService.updateDisplayDataObservable(null);
   }
 
   expandAll() {
     this.angularTreeGridService.expandAll(this.expand_tracker);
+    this.angularTreeGridService.updateDisplayDataObservable(null);
   }
 
   selectAll() {
     this.angularTreeGridService.selectAll(this.store.getDisplayData());
     this.internal_configs.all_selected = true;
+    this.angularTreeGridService.updateDisplayDataObservable(null);
   }
 
   deSelectAll() {
     this.angularTreeGridService.deSelectAll(this.store.getDisplayData());
     this.internal_configs.all_selected = false;
+    this.angularTreeGridService.updateDisplayDataObservable(null);
   }
 
   expandRow(row_id: any, suppress_event?: false) {
@@ -272,6 +278,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
       this.store.getDisplayData(),
       this.store
     );
+    this.angularTreeGridService.updateDisplayDataObservable(null);
   }
 
   collapseRow(row_id: number, suppress_event?: false) {
@@ -283,6 +290,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
       this.configs,
       this.store.getDisplayData()
     );
+    this.angularTreeGridService.updateDisplayDataObservable(null);
   }
 
   disableRowSelection(row_id: number) {
@@ -291,6 +299,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
       this.configs,
       row_id
     );
+    this.angularTreeGridService.updateDisplayDataObservable(null);
   }
 
   enableRowSelection(row_id: number) {
@@ -299,6 +308,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
       this.configs,
       row_id
     );
+    this.angularTreeGridService.updateDisplayDataObservable(null);
   }
 
   disableRowExpand(row_id: number) {
@@ -307,6 +317,7 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
       this.configs,
       row_id
     );
+    this.angularTreeGridService.updateDisplayDataObservable(null);
   }
 
   enableRowExpand(row_id: number) {
@@ -315,5 +326,6 @@ export class AngularTreeGridComponent implements OnChanges, OnInit {
       this.configs,
       row_id
     );
+    this.angularTreeGridService.updateDisplayDataObservable(null);
   }
 }

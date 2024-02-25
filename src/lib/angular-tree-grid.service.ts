@@ -12,7 +12,7 @@ export class AngularTreeGridService {
 
   constructor() {}
 
-  updateDisplayDataObservable(display_data: any[]) {
+  updateDisplayDataObservable(display_data: any) {
     this.display_data_observable.next(display_data);
   }
 

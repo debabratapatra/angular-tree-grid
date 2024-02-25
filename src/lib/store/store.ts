@@ -90,7 +90,6 @@ export class Store {
     this.processed_data = top_rows.concat(children).concat(bottom_rows);
 
     this.setDisplayData([...this.processed_data]);
-    this.angularTreeGridService.updateDisplayDataObservable(this.display_data);
   }
 
   filterBy(columns: Column[], search_values: any) {

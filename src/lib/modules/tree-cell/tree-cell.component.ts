@@ -11,6 +11,7 @@ export class TreeCellComponent implements OnInit {
   is_expand_column: boolean = false;
   show_expand_icon: boolean = false;
   cell_value: string = "";
+
   @Input()
   configs!: Configs;
 
